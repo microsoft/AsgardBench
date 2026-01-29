@@ -6,7 +6,7 @@ set -ex
 # Automatically configures vLLM flags based on model type
 #
 # Run with:
-#   uv run amlt run Magmathor/Model/aml_vllm_starter.yaml --yes --description "VLLM Starter"
+#   uv run amlt run AsgardBench/Model/aml_vllm_starter.yaml --yes --description "VLLM Starter"
 
 # Parse command line arguments
 PORT=${1:-43289}

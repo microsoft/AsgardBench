@@ -99,7 +99,7 @@ def list_reports() -> list[Path]:
     return sorted(root.glob("*/REPORT.md"))
 
 
-st.set_page_config(page_title="Magmathor Report Viewer", layout="wide")
+st.set_page_config(page_title="AsgardBench Report Viewer", layout="wide")
 
 reports = list_reports()
 if not reports:

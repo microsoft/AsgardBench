@@ -8,7 +8,7 @@
             "name": "Plan Generator",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/Magmathor/plan_generator.py",
+            "program": "${workspaceFolder}/AsgardBench/plan_generator.py",
             "console": "integratedTerminal",
             "justMyCode": true
         },
@@ -20,7 +20,7 @@
             "justMyCode": true,
             "args": [
                 "run",
-                "${workspaceFolder}/Magmathor/plan_viewer.py"
+                "${workspaceFolder}/AsgardBench/plan_viewer.py"
             ],
             "module": "streamlit"
         },
@@ -32,7 +32,7 @@
             "justMyCode": true,
             "args": [
                 "run",
-                "${workspaceFolder}/Magmathor/Utils/plan_monitor.py"
+                "${workspaceFolder}/AsgardBench/Utils/plan_monitor.py"
             ],
             "module": "streamlit"
         },
@@ -40,7 +40,7 @@
             "name": "Manual Conrol",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/Magmathor/Utils/manual_control.py",
+            "program": "${workspaceFolder}/AsgardBench/Utils/manual_control.py",
             "cwd": "${workspaceFolder}",
             "env": {
                 "PYTHONPATH": "${workspaceFolder}"
@@ -52,7 +52,7 @@
             "name": "Model Tester (WSL)",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/Magmathor/Model/model_tester.py",
+            "program": "${workspaceFolder}/AsgardBench/Model/model_tester.py",
             "cwd": "${workspaceFolder}",
             "env": {
                 "PYTHONPATH": "${workspaceFolder}"
@@ -76,7 +76,7 @@
             "name": "Model Tester",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/Magmathor/Model/model_tester.py",
+            "program": "${workspaceFolder}/AsgardBench/Model/model_tester.py",
             "cwd": "${workspaceFolder}",
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
@@ -102,7 +102,7 @@
             "name": "Count Plans",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/Magmathor/Utils/count_plans.py",
+            "program": "${workspaceFolder}/AsgardBench/Utils/count_plans.py",
             "cwd": "${workspaceFolder}",
             "env": {
                 "PYTHONPATH": "${workspaceFolder}"
@@ -114,7 +114,7 @@
             "name": "Convert RawStep",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/Magmathor/Utils/convert_raw.py",
+            "program": "${workspaceFolder}/AsgardBench/Utils/convert_raw.py",
             "cwd": "${workspaceFolder}",
             "env": {
                 "PYTHONPATH": "${workspaceFolder}"
@@ -126,7 +126,7 @@
             "name": "Save Scene Items",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/Magmathor/Utils/make_item_cache.py",
+            "program": "${workspaceFolder}/AsgardBench/Utils/make_item_cache.py",
             "cwd": "${workspaceFolder}",
             "env": {
                 "PYTHONPATH": "${workspaceFolder}"
@@ -138,7 +138,7 @@
             "name": "Test",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/Magmathor/Tests/tests.py",
+            "program": "${workspaceFolder}/AsgardBench/Tests/tests.py",
             "cwd": "${workspaceFolder}",
             "env": {
                 "PYTHONPATH": "${workspaceFolder}"
@@ -150,11 +150,11 @@
             "name": "Convert Plan to Prompt",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/Magmathor/Utils/convert_plan_to_prompt.py",
+            "program": "${workspaceFolder}/AsgardBench/Utils/convert_plan_to_prompt.py",
             "cwd": "${workspaceFolder}",
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
-                "INPUT_DIR": "C:/Code/magma-r/magmathor/Generated/training"
+                "INPUT_DIR": "${input:inputDir}"
             },
             "console": "integratedTerminal",
             "justMyCode": true
@@ -163,7 +163,7 @@
             "name": "Display Plan Tree",
             "type": "python",
             "request": "launch",
-            "module": "Magmathor.Utils.display_plan_tree",
+            "module": "AsgardBench.Utils.display_plan_tree",
             "args": [
                 "${input:planTreeDir}"
             ],
@@ -182,29 +182,17 @@
             "justMyCode": true,
             "args": [
                 "run",
-                "${workspaceFolder}/Magmathor/Utils/compare_images.py",
+                "${workspaceFolder}/AsgardBench/Utils/compare_images.py",
                 "--",
                 "--benchmark", "${input:benchmarkName}"
             ],
             "module": "streamlit"
         },
         {
-            "name": "OpenRouter Cost Report",
-            "type": "debugpy",
-            "request": "launch",
-            "program": "${workspaceFolder}/scripts/openrouter_cost_report.py",
-            "cwd": "${workspaceFolder}",
-            "env": {
-                "PYTHONPATH": "${workspaceFolder}"
-            },
-            "console": "integratedTerminal",
-            "justMyCode": true
-        },
-        {
             "name": "Generate Reports",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/Magmathor/Model/generate_reports.py",
+            "program": "${workspaceFolder}/AsgardBench/Model/generate_reports.py",
             "cwd": "${workspaceFolder}",
             "env": {
                 "PYTHONPATH": "${workspaceFolder}"
@@ -228,13 +216,6 @@
                     "remoteRoot": "."
                 }
             ]
-        },
-        {
-            "name": "Remount Blob Storage",
-            "type": "node-terminal",
-            "request": "launch",
-            "command": "bash ${workspaceFolder}/Magmathor/Utils/remount_blob.sh",
-            "cwd": "${workspaceFolder}"
         }
     ],
     "compounds": [
@@ -277,6 +258,12 @@
             "type": "promptString",
             "description": "Human-readable model name for display purposes",
             "default": "Qwen2.5-VL-7B-Instruct_BASE"
+        },
+        {
+            "id": "inputDir",
+            "type": "promptString",
+            "description": "Input directory for plan conversion",
+            "default": "Generated/training"
         }
     ]
 }

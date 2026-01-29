@@ -4,26 +4,22 @@ Test/
 Tests/
 _Test/
 checkpoints/
-amlt/
-.amltconfig
 models/
 __pycache__
 
+# Secrets - never commit these
 .env
 .env.*
 !.env.example
+*.pem
+*.key
+secrets.json
+credentials.json
 
 /.sync_tracker.db
 logs/
-PromptExamples/
 
-/experiment_runner/experiment_state.json
-Magmathor/cache/search_cache.json
-
-/experiment_runner/aml_jobs.json
-
+AsgardBench/cache/search_cache.json
 
 /copilot-reports/
-/experiment_runner__cs/
-/20251223__Test__pre_DOUBLE_CHECK/
 /*__Test__*/

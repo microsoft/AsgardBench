@@ -405,7 +405,7 @@ class VerifyPlanDirectoriesGUI:
         dir_frame.columnconfigure(1, weight=1)
 
         ttk.Label(dir_frame, text="Root Directory:").grid(row=0, column=0, padx=(0, 5))
-        self.dir_var = tk.StringVar(value="/mnt/magmathor/20260115_Test")
+        self.dir_var = tk.StringVar(value="Test")
         self.dir_entry = ttk.Entry(dir_frame, textvariable=self.dir_var)
         self.dir_entry.grid(row=0, column=1, sticky="ew", padx=5)
         self.browse_btn = ttk.Button(

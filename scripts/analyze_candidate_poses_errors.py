@@ -16,8 +16,8 @@ from typing import Any
 
 import pandas as pd
 
-import Magmathor.constants as c
-from Magmathor.Utils.json_utils import FileReadError, read_json_file
+import AsgardBench.constants as c
+from AsgardBench.Utils.json_utils import FileReadError, read_json_file
 
 
 def get_short_object_name(object_name: str) -> str:
@@ -509,7 +509,10 @@ def main():
     # Quick test mode: pass --test or -t to only process 3 files
     limit = 3 if any(arg in sys.argv for arg in ["--test", "-t"]) else None
 
-    base_path = "/mnt/magmathor/20260115_Test"
+    # Get base path from command line or use default
+    base_path = (
+        sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("-") else "Test"
+    )
 
     print(f"Analyzing candidate poses errors in {base_path}...")
     print()
@@ -618,7 +621,7 @@ def main():
         )
 
     df = pd.DataFrame(rows)
-    output_path = "/home/larsliden/Magmathor/Generated/candidate_poses_errors.xlsx"
+    output_path = "Generated/candidate_poses_errors.xlsx"
 
     # Create summary dataframe
     pct_failed = failed_plans_with_pose_errors / total_plans if total_plans > 0 else 0

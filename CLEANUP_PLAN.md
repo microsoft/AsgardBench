@@ -66,26 +66,32 @@ Clean up the internal Magmathor benchmark codebase for public release as "Asgard
 - [x] Remove `GPTActorAML` references from `model_tester.py`
 - [ ] Regenerate `uv.lock` after changes (do at end of all phases)
 
-### Phase 3: Rename & Restructure
+### Phase 3: Rename & Restructure ✅ COMPLETE
 *After bulk deletions, fewer files to update*
 
-#### 3a: Rename package
-- [ ] Rename `Magmathor/` directory to `AsgardBench/`
-- [ ] Update all imports throughout codebase
-- [ ] Update `pyproject.toml` (name, description, package name)
-- [ ] Update `CLAUDE.md` references from Magmathor to AsgardBench
+#### 3a: Rename package ✅
+- [x] Rename `Magmathor/` directory to `AsgardBench/`
+- [x] Update all imports throughout codebase (sed replacement)
+- [x] Update `pyproject.toml` (name, description, package name)
+- [x] Update `CLAUDE.md` references from Magmathor to AsgardBench
 
-#### 3b: Constants cleanup
-*Do with rename since paths are changing anyway*
-- [ ] Update `constants.py` to remove internal paths:
-  - [ ] Remove/simplify `MOUNTED_STORAGE_PATH` logic (no blobfuse for public users)
-  - [ ] Change `TEST_FOLDER_NAME` to generic `./Test` or configurable path
-  - [ ] Remove `IN_AML` checks if not needed
-- [ ] Audit for any other hardcoded internal references
+#### 3b: Constants cleanup ✅
+- [x] Update `constants.py` to remove internal paths:
+  - [x] Removed `MOUNTED_STORAGE_PATH`, `USING_MOUNTED_STORAGE`, `IN_AML`, `TEST_FOLDER_NAME`
+  - [x] Added configurable env vars: `ASGARDBENCH_DATA_DIR`, `ASGARDBENCH_TEST_DIR`
+- [x] Updated `storage_utils.py` - removed AML-specific code
+- [x] Updated `utils.py` - replaced `IN_AML` with `ASGARDBENCH_NO_COLOR` env var
+- [x] Updated `model_tester.py` - replaced `IN_AML` with `ASGARDBENCH_QUIET` env var
 
-#### 3c: VS Code settings cleanup
-- [ ] Clean `.vscode/launch.json` - remove personal paths
-- [ ] Review `.vscode/settings.json` for personal settings
+#### 3c: VS Code settings cleanup ✅
+- [x] Updated `.vscode/launch.json`:
+  - [x] Changed all Magmathor -> AsgardBench
+  - [x] Removed hardcoded personal path (C:/Code/...)
+  - [x] Removed "Remount Blob Storage" config
+  - [x] Removed "OpenRouter Cost Report" config (script doesn't exist)
+  - [x] Added inputDir input variable
+- [x] Cleaned `.vscode/settings.json` - removed personal color settings
+- [x] Updated `.gitignore` - removed obsolete entries, updated cache path
 
 ### Phase 4: Simplify Model API
 *Depends on Phase 2 (old actors still exist for reference while building new one)*
@@ -131,6 +137,13 @@ Clean up the internal Magmathor benchmark codebase for public release as "Asgard
 - [ ] Identify commented-out code blocks that should be removed
 - [ ] Check for unreachable code paths
 - [ ] Remove any debug/test code not meant for production
+- [ ] **Remove BoxPrompts reference** - commented import in model_tester.py for non-existent `prompt_box_templates.py`
+- [ ] **Review all Utils/** - check which utilities are needed for public release:
+  - [ ] `Utils/DataTranformations/` - likely internal data migration scripts (update_cook_tasks.py, etc.)
+  - [ ] `Utils/upgrade/` - one-time upgrade scripts
+  - [ ] `Utils/calibrate_hand_shift.py`, `Utils/review_hand_shifts.py` - internal calibration tools?
+  - [ ] `Utils/convert_*.py` - data conversion utilities
+  - [ ] Keep: `plan_viewer.py`, `compare_images.py`, `manual_control.py`
 
 #### 5b: Keep useful tools
 - [ ] Keep `plan_viewer.py` (useful for users to inspect benchmark output)

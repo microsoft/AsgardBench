@@ -20,7 +20,7 @@ import shutil
 import sys
 from pathlib import Path
 
-import Magmathor.constants as c
+import AsgardBench.constants as c
 
 
 def count_candidate_poses_errors(test_result: dict) -> int:

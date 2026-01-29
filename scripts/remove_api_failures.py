@@ -18,8 +18,8 @@ from pathlib import Path
 from tkinter import messagebox, ttk
 from typing import Dict, List, Tuple
 
-# Default base path
-DEFAULT_BASE_PATH = "/mnt/magmathor"
+# Default base path (can be overridden via command line)
+DEFAULT_BASE_PATH = "Test"
 
 # Pattern to match --rep{n} directories
 REP_PATTERN = re.compile(r"--rep\d+$")
@@ -191,34 +191,11 @@ def remove_api_failures(
                     break
 
             if failure.plan_folder and failure.plan_folder.exists():
-                # Create backup path
-                # Use the first directory after /mnt/magmathor/ as the root, append _API_Failures
-                # e.g., /mnt/magmathor/20260115_Test/benchmark/model/task--rep1/Plans/plan
-                #    -> /mnt/magmathor/20260115_Test_API_Failures/benchmark/model/task--rep1/Plans/plan
+                # Create backup path by appending _API_Failures to the parent rep directory
                 rep_dir = failure.rep_dir
-
-                # Find the magmathor mount point and use the next directory as the root
-                backup_folder = None
-                parts = rep_dir.parts
-                for i, part in enumerate(parts):
-                    if part == "magmathor" and i + 1 < len(parts):
-                        # Next part is the test root directory
-                        test_root_name = parts[i + 1]
-                        test_root = Path(*parts[: i + 2])
-                        backup_root = (
-                            test_root.parent / f"{test_root_name}_API_Failures"
-                        )
-                        # Preserve relative path from test root
-                        rel_path = rep_dir.relative_to(test_root)
-                        backup_plans_dir = backup_root / rel_path / "Plans"
-                        backup_folder = backup_plans_dir / failure.plan_folder.name
-                        break
-
-                # Fallback to old behavior if magmathor not found in path
-                if backup_folder is None:
-                    backup_rep_dir = rep_dir.parent / f"{rep_dir.name}_Removed"
-                    backup_plans_dir = backup_rep_dir / "Plans"
-                    backup_folder = backup_plans_dir / failure.plan_folder.name
+                backup_rep_dir = rep_dir.parent / f"{rep_dir.name}_Removed"
+                backup_plans_dir = backup_rep_dir / "Plans"
+                backup_folder = backup_plans_dir / failure.plan_folder.name
 
                 try:
                     backup_plans_dir.mkdir(parents=True, exist_ok=True)
@@ -480,15 +457,7 @@ class RemoveAPIFailuresApp:
             return
 
         # Determine destination path for display
-        dest_path = "(backup location)"
-        if self.failures:
-            sample_dir = self.failures[0].rep_dir
-            parts = sample_dir.parts
-            for i, part in enumerate(parts):
-                if part == "magmathor" and i + 1 < len(parts):
-                    test_root_name = parts[i + 1]
-                    dest_path = f"/mnt/magmathor/{test_root_name}_API_Failures/"
-                    break
+        dest_path = "(backup folders with _Removed suffix)"
 
         # Confirm with user
         count = len(self.failures)
