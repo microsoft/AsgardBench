@@ -1,0 +1,261 @@
+# AsgardBench Public Release - Cleanup Plan
+
+## Problem Statement
+Clean up the internal Magmathor benchmark codebase for public release as "AsgardBench". This involves removing internal tooling, simplifying the API, fixing security issues, and preparing proper documentation.
+
+## Key Decisions Made
+- **Entry Point**: Remove `experiment_runner/`, use simplified `model_tester.py` or module-level API
+- **AML Integration**: Remove all Azure ML-specific code
+- **Model Providers**: Single unified OpenAI-compatible client (works with OpenAI, Azure OpenAI, OpenRouter, VLLM, etc.)
+- **Agent Assets**: Remove `.github/agents/`, `.github/prompts/`, `.claude/skills/`; keep only `CLAUDE.md`
+- **Scripts**: Keep only scripts useful for benchmark users
+- **Test Data**: Include benchmark JSON files directly in repo (no images, no LFS needed)
+- **Repository**: Clean up and release this repo directly
+
+---
+
+## Workplan
+
+### Phase 1: Security & Sensitive Data ⚠️ CRITICAL - DO FIRST
+- [ ] **Remove exposed API key** in `.env` file (CRITICAL: `sk-or-v1-c644...` is exposed)
+- [ ] Audit all files for hardcoded secrets, subscription IDs, resource names
+- [ ] Remove/anonymize user-specific paths (`laliden`, `atupini`, specific Azure resource IDs)
+- [ ] Review `.gitignore` to ensure secrets aren't committed
+- [ ] **General security review** - scan for potential vulnerabilities:
+  - [ ] Check for unsafe deserialization (pickle, yaml.load, etc.)
+  - [ ] Check for command injection risks (subprocess, os.system, etc.)
+  - [ ] Check for path traversal vulnerabilities
+  - [ ] Review any user input handling
+
+### Phase 2: Remove Internal Tooling & Dependencies
+*Bulk deletion of internal-only code. Do this before rename to reduce files to update.*
+
+#### 2a: Remove experiment_runner/
+- [ ] Delete entire `experiment_runner/` directory
+- [ ] Remove `run_runner.sh`
+
+#### 2b: Remove Azure ML integration
+- [ ] Delete `Magmathor/Model/aml_*.yaml` files (4 files)
+- [ ] Delete `Magmathor/Model/gpt_actor_aml.py`
+- [ ] Delete `.amltconfig` and `.amltignore`
+- [ ] Remove `Magmathor/Utils/keyvault.py` (Azure Key Vault)
+- [ ] Remove `Magmathor/Utils/remount_blob.sh` (Azure blob mounting)
+
+#### 2c: Remove Copilot/Agent assets
+- [ ] Delete `.github/agents/` directory (6 agent files)
+- [ ] Delete `.github/prompts/` directory (2 prompt files)
+- [ ] Delete `.claude/` directory (skills)
+
+#### 2d: Clean up scripts/
+- [ ] Delete `scripts/sync_tests_to_blob.py` (Azure-specific)
+- [ ] Delete `scripts/move_configs.py` (Azure-specific)
+- [ ] Delete `scripts/check_retry_logs.py` (hardcoded internal paths)
+- [ ] Delete `scripts/rename_exps_from_config.py` (experiment_runner related)
+- [ ] Delete `scripts/amulet/` if exists
+
+#### 2e: Remove misc internal files
+- [ ] Delete `Magmathor/TODO.txt` and `Magmathor/TASK_IDEAS.txt`
+- [ ] Delete `Magmathor/Model/Magmathor.code-workspace`
+- [ ] Delete `test_push_slices_apart.py` (test file)
+- [ ] Delete `.env` (contains secrets - will create new `.env.example`)
+
+#### 2f: Dependencies cleanup
+*Do alongside AML removal since they're related*
+- [ ] Remove from `pyproject.toml`:
+  - [ ] `azureml-core` (AML-specific)
+  - [ ] `azure-keyvault-secrets` (internal auth)
+  - [ ] `azure-identity` (if no longer needed after unified client)
+- [ ] Review if all remaining deps are needed
+- [ ] Regenerate `uv.lock` after changes
+
+### Phase 3: Rename & Restructure
+*After bulk deletions, fewer files to update*
+
+#### 3a: Rename package
+- [ ] Rename `Magmathor/` directory to `AsgardBench/`
+- [ ] Update all imports throughout codebase
+- [ ] Update `pyproject.toml` (name, description, package name)
+- [ ] Update `CLAUDE.md` references from Magmathor to AsgardBench
+
+#### 3b: Constants cleanup
+*Do with rename since paths are changing anyway*
+- [ ] Update `constants.py` to remove internal paths:
+  - [ ] Remove/simplify `MOUNTED_STORAGE_PATH` logic (no blobfuse for public users)
+  - [ ] Change `TEST_FOLDER_NAME` to generic `./Test` or configurable path
+  - [ ] Remove `IN_AML` checks if not needed
+- [ ] Audit for any other hardcoded internal references
+
+#### 3c: VS Code settings cleanup
+- [ ] Clean `.vscode/launch.json` - remove personal paths
+- [ ] Review `.vscode/settings.json` for personal settings
+
+### Phase 4: Simplify Model API
+*Depends on Phase 2 (old actors still exist for reference while building new one)*
+
+#### 4a: Create unified OpenAI-compatible actor
+- [ ] Create new `openai_actor.py` - single generic client supporting all OpenAI-compatible APIs
+- [ ] Support environment variables:
+  - `OPENAI_API_KEY` - API key for authentication
+  - `OPENAI_BASE_URL` - Base URL (OpenAI, Azure, OpenRouter, VLLM, etc.)
+  - `OPENAI_API_VERSION` - Optional, for Azure OpenAI
+- [ ] Works with: standard OpenAI, Azure OpenAI (API key), OpenRouter, VLLM, any compatible endpoint
+- [ ] Port prompt caching logic from OpenRouter actor:
+  - Keep `split_prompt_for_caching()` utility (already in prompt_templates.py)
+  - Auto-detect provider (Anthropic/Gemini) from model name or base URL
+  - Add `cache_control: {type: "ephemeral"}` only for providers that need it
+  - Others (OpenAI, DeepSeek, etc.) use automatic prefix caching
+
+#### 4b: Remove specialized actors
+*After new actor is working*
+- [ ] Delete `gpt_actor.py` (has complex Azure AD auth, credential rotation)
+- [ ] Delete `openrouter_actor.py` (now handled by unified client)
+- [ ] Delete `glm_actor.py` (specialized, can use unified client)
+
+#### 4c: Update model_tester.py
+- [ ] Simplify to use only the new unified OpenAI actor
+- [ ] Set default configuration to baseline: `T0_Fs_H60_C0_I1_R1_S1`
+- [ ] Remove experiment_catalogue references
+- [ ] Ensure CLI is user-friendly
+- [ ] Document reproducibility: which BASE_URL for each provider
+
+#### 4d: Create new .env.example
+- [ ] Create `.env.example` with:
+  - `OPENAI_API_KEY`
+  - `OPENAI_BASE_URL`
+  - `OPENAI_API_VERSION` (optional)
+
+### Phase 5: Dead Code & General Cleanup
+*After all deletions and refactoring - now we can see what's truly unused*
+
+#### 5a: Dead code identification
+- [ ] Identify and remove unused functions/classes across codebase
+- [ ] Check for unused imports
+- [ ] Identify commented-out code blocks that should be removed
+- [ ] Check for unreachable code paths
+- [ ] Remove any debug/test code not meant for production
+
+#### 5b: Keep useful tools
+- [ ] Keep `plan_viewer.py` (useful for users to inspect benchmark output)
+
+### Phase 6: Include Test Data
+*Can happen anytime, but logical to do after code is stable*
+
+- [ ] Add `Generated/magt_benchmark_p1/` through `p6/` to git (JSON only)
+- [ ] Update `.gitignore` to allow benchmark data folders
+- [ ] Verify data doesn't include images or large files
+- [ ] Document data structure
+- [ ] **Create sanity check partition** (`Generated/magt_benchmark_sanity/`):
+  - [ ] Include 2 easy "turn on TV" tasks for quick setup verification
+  - [ ] Document in README as recommended first step
+  - [ ] Users can run this to verify model connection before full benchmark
+
+### Phase 7: Documentation
+*After all code changes are complete*
+
+#### 7a: README.md (main entry point)
+- [ ] Rewrite `README` → `README.md` with proper structure:
+  - [ ] Project description & motivation (what is AsgardBench?)
+  - [ ] Installation instructions (uv/pip)
+  - [ ] Quick start guide (minimal example to run evaluation)
+  - [ ] How to run benchmark on your model
+  - [ ] How to run with Docker (recommended for ease of use)
+  - [ ] Configuration options (ablation settings, temperature, etc.)
+  - [ ] Reproducibility: how to reproduce paper results
+  - [ ] Citation information
+
+#### 7b: Docker support
+- [ ] Create `Dockerfile` for easy setup
+- [ ] Document Docker usage in README
+
+#### 7c: Data documentation
+- [ ] Document benchmark data structure (what's in each folder, JSON schema)
+- [ ] Document output data format (what results look like, schema of test_results.json)
+- [ ] Document how data generation works (plan_generator.py flow)
+- [ ] Document how to generate new tasks/scenarios (for extensibility)
+
+#### 7d: Prompt DSL documentation (optional, for advanced users)
+- [ ] Document the custom action language format
+- [ ] Note: editing prompts not recommended for reproducibility
+- [ ] Include in separate doc file or appendix section
+
+#### 7e: Other docs
+- [ ] Update `CLAUDE.md` for public contributors
+- [ ] Add `LICENSE` file (MIT per MS guidelines)
+- [ ] Add `CITATION.cff` or citation info in README
+
+### Phase 8: Final Validation
+- [ ] Run linters (`black`, `isort`)
+- [ ] Test that benchmark runs end-to-end with mock model
+- [ ] Verify all imports work after rename
+- [ ] Review final file list
+
+---
+
+## User Tasks (Decisions & Coworker Confirmation)
+
+These tasks require your decision or confirmation with coworkers:
+
+### Decisions Needed
+- [ ] **Review `vllm_actor.py`** - likely remove if unified client works, but confirm
+- [ ] **Review `qwenvl25_actor.py`** - keep if needed for local HuggingFace models?
+- [ ] **Review remaining scripts/** - check which are useful for benchmark users
+- [ ] **Review `AsgardBench/Utils/`** - identify any other internal-only utilities
+- [ ] **Review `compare_images.py`** - keep if useful for users?
+- [ ] **Review `streamlit_report_app.py`** - keep or remove?
+- [ ] **GPU requirements** - can we remove GPU requirements for evaluation? (AI2-THOR rendering)
+- [ ] **Add `CONTRIBUTING.md`?** - decide if desired
+
+### Confirm with Coworkers
+- [ ] **VS Code launch configs** - check which launch.json configs to keep
+- [ ] **Git history cleanup** - may need git-filter-branch or BFG if secrets in history
+
+---
+
+## Files to DELETE (Summary)
+```
+experiment_runner/          # Entire directory
+run_runner.sh
+.amltconfig
+.amltignore
+.github/agents/             # Entire directory
+.github/prompts/            # Entire directory
+.claude/                    # Entire directory
+.env                        # Contains secrets!
+
+Magmathor/Model/aml_*.yaml  # 4 files
+Magmathor/Model/gpt_actor_aml.py
+Magmathor/Model/gpt_actor.py        # Replace with generic
+Magmathor/Model/openrouter_actor.py # Replace with generic
+Magmathor/Model/glm_actor.py
+Magmathor/Model/Magmathor.code-workspace
+Magmathor/TODO.txt
+Magmathor/TASK_IDEAS.txt
+Magmathor/Utils/keyvault.py
+Magmathor/Utils/remount_blob.sh
+
+scripts/sync_tests_to_blob.py
+scripts/move_configs.py
+scripts/check_retry_logs.py
+scripts/rename_exps_from_config.py
+
+test_push_slices_apart.py
+streamlit_report_app.py     # If internal only (pending decision)
+```
+
+## Files to CREATE
+```
+README.md                   # Proper documentation
+LICENSE                     # MIT license
+Dockerfile                  # Docker setup for easy evaluation
+AsgardBench/Model/openai_actor.py  # Unified OpenAI-compatible client
+.env.example                # OPENAI_API_KEY, OPENAI_BASE_URL, OPENAI_API_VERSION
+docs/data_generation.md     # How data generation works + how to use it
+docs/prompt_dsl.md          # Prompt DSL reference (optional/advanced)
+Generated/magt_benchmark_sanity/  # Sanity check partition (2 easy tasks)
+```
+
+## Notes
+- The `.env` file contains an exposed OpenRouter API key - rotate if it was ever committed
+- Several files contain hardcoded Azure subscription IDs and user-specific paths
+- The `uv.lock` file should be regenerated after dependency changes
+- Consider whether Streamlit viewer tools are useful for public users
