@@ -9,7 +9,9 @@ amlt/
 models/
 __pycache__
 
-/.env
+.env
+.env.*
+!.env.example
 
 /.sync_tracker.db
 logs/

@@ -16,16 +16,19 @@ Clean up the internal Magmathor benchmark codebase for public release as "Asgard
 
 ## Workplan
 
-### Phase 1: Security & Sensitive Data ⚠️ CRITICAL - DO FIRST
-- [ ] **Remove exposed API key** in `.env` file (CRITICAL: `sk-or-v1-c644...` is exposed)
-- [ ] Audit all files for hardcoded secrets, subscription IDs, resource names
-- [ ] Remove/anonymize user-specific paths (`laliden`, `atupini`, specific Azure resource IDs)
-- [ ] Review `.gitignore` to ensure secrets aren't committed
-- [ ] **General security review** - scan for potential vulnerabilities:
-  - [ ] Check for unsafe deserialization (pickle, yaml.load, etc.)
-  - [ ] Check for command injection risks (subprocess, os.system, etc.)
-  - [ ] Check for path traversal vulnerabilities
-  - [ ] Review any user input handling
+### Phase 1: Security & Sensitive Data ✅ COMPLETE
+- [x] **Remove exposed API key** in `.env` file (deleted)
+- [x] Audit all files for hardcoded secrets, subscription IDs, resource names
+  - Found in: README, experiment_runner/*, Magmathor/Model/aml_*.yaml, scripts/*
+  - These files will be deleted in Phase 2
+- [x] Review `.gitignore` to ensure secrets aren't committed (improved patterns)
+- [x] **General security review** - scan for potential vulnerabilities:
+  - [x] No pickle.load or yaml.unsafe_load found
+  - [x] subprocess usage is safe (internal commands, no user input)
+  - [x] os.system in scenario.py uses internal paths only (low risk)
+  - [x] No eval()/exec() on user input found
+- [x] User-specific paths exist in files scheduled for deletion in Phase 2
+  - .vscode/launch.json has one hardcoded path (will clean in Phase 3)
 
 ### Phase 2: Remove Internal Tooling & Dependencies
 *Bulk deletion of internal-only code. Do this before rename to reduce files to update.*
