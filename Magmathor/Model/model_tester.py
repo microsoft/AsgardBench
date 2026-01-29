@@ -25,7 +25,6 @@ from Magmathor import constants as c
 from Magmathor.cache.item_cache import ItemCache
 from Magmathor.Model.glm_actor import GLMActor
 from Magmathor.Model.gpt_actor import GPTActor
-from Magmathor.Model.gpt_actor_aml import GPTActorAML
 from Magmathor.Model.openrouter_actor import OpenRouterActor
 from Magmathor.Model.prompt_templates import PromptParams, render_prompt
 
@@ -189,7 +188,6 @@ def verify_image_filename_consistency(
 
 MODEL_IMPLEMENTATIONS: dict[str, type] = {
     "gpt": GPTActor,
-    "gpt_aml": GPTActorAML,
     "glm": GLMActor,
     "qwen": QwenVLActor,
     "vllm": VLLMActor,
@@ -287,9 +285,6 @@ def create_model_actor(
     # GPTActor accepts max_completion_tokens, others don't
     if actor_class is GPTActor:
         return actor_class(model_path, temperature, max_completion_tokens)
-
-    if actor_class is GPTActorAML:
-        return actor_class(model_name, temperature)
 
     if actor_class is QwenVLActor:
         return actor_class(model_name, temperature)

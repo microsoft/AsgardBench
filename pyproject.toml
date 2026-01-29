@@ -20,9 +20,6 @@ dependencies = [
     "safetensors",
     "qwen-vl-utils",
     "openai",
-    "azure-identity",
-    "azure-keyvault-secrets",
-    "azureml-core",
     "python-dotenv>=1.2.1",
     "bokeh>=3.8.1",
     "typer>=0.20.0",
@@ -30,7 +27,6 @@ dependencies = [
     "debugpy>=1.8.18",
     # experiment_runner dependencies
     "rich>=13.0.0",
-    "prompt-toolkit>=3.0.0",
     "httpx>=0.27.0",
     "pyyaml>=6.0",
     "dacite>=1.8.0",

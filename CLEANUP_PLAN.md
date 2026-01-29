@@ -30,46 +30,41 @@ Clean up the internal Magmathor benchmark codebase for public release as "Asgard
 - [x] User-specific paths exist in files scheduled for deletion in Phase 2
   - .vscode/launch.json has one hardcoded path (will clean in Phase 3)
 
-### Phase 2: Remove Internal Tooling & Dependencies
-*Bulk deletion of internal-only code. Do this before rename to reduce files to update.*
+### Phase 2: Remove Internal Tooling & Dependencies ✅ COMPLETE
+*Bulk deletion of internal-only code.*
 
-#### 2a: Remove experiment_runner/
-- [ ] Delete entire `experiment_runner/` directory
-- [ ] Remove `run_runner.sh`
+#### 2a: Remove experiment_runner/ ✅
+- [x] Delete entire `experiment_runner/` directory
+- [x] Remove `run_runner.sh`
 
-#### 2b: Remove Azure ML integration
-- [ ] Delete `Magmathor/Model/aml_*.yaml` files (4 files)
-- [ ] Delete `Magmathor/Model/gpt_actor_aml.py`
-- [ ] Delete `.amltconfig` and `.amltignore`
-- [ ] Remove `Magmathor/Utils/keyvault.py` (Azure Key Vault)
-- [ ] Remove `Magmathor/Utils/remount_blob.sh` (Azure blob mounting)
+#### 2b: Remove Azure ML integration ✅
+- [x] Delete `Magmathor/Model/aml_*.yaml` files (4 files)
+- [x] Delete `Magmathor/Model/gpt_actor_aml.py`
+- [x] Delete `.amltconfig` and `.amltignore`
+- [x] Remove `Magmathor/Utils/keyvault.py` (Azure Key Vault)
+- [x] Remove `Magmathor/Utils/remount_blob.sh` (Azure blob mounting)
 
-#### 2c: Remove Copilot/Agent assets
-- [ ] Delete `.github/agents/` directory (6 agent files)
-- [ ] Delete `.github/prompts/` directory (2 prompt files)
-- [ ] Delete `.claude/` directory (skills)
+#### 2c: Remove Copilot/Agent assets ✅
+- [x] Delete `.github/agents/` directory (6 agent files)
+- [x] Delete `.github/prompts/` directory (2 prompt files)
+- [x] Delete `.claude/` directory (skills)
+- [x] Delete empty `.github/` directory
 
-#### 2d: Clean up scripts/
-- [ ] Delete `scripts/sync_tests_to_blob.py` (Azure-specific)
-- [ ] Delete `scripts/move_configs.py` (Azure-specific)
-- [ ] Delete `scripts/check_retry_logs.py` (hardcoded internal paths)
-- [ ] Delete `scripts/rename_exps_from_config.py` (experiment_runner related)
-- [ ] Delete `scripts/amulet/` if exists
+#### 2d: Clean up scripts/ ✅
+- [x] Delete `scripts/sync_tests_to_blob.py` (Azure-specific)
+- [x] Delete `scripts/move_configs.py` (Azure-specific)
+- [x] Delete `scripts/check_retry_logs.py` (hardcoded internal paths)
+- [x] Delete `scripts/rename_exps_from_config.py` (experiment_runner related)
 
-#### 2e: Remove misc internal files
-- [ ] Delete `Magmathor/TODO.txt` and `Magmathor/TASK_IDEAS.txt`
-- [ ] Delete `Magmathor/Model/Magmathor.code-workspace`
-- [ ] Delete `test_push_slices_apart.py` (test file)
-- [ ] Delete `.env` (contains secrets - will create new `.env.example`)
+#### 2e: Remove misc internal files ✅
+- [x] Delete `Magmathor/TODO.txt` and `Magmathor/TASK_IDEAS.txt`
+- [x] Delete `Magmathor/Model/Magmathor.code-workspace`
+- [x] Delete `test_push_slices_apart.py` (test file)
 
-#### 2f: Dependencies cleanup
-*Do alongside AML removal since they're related*
-- [ ] Remove from `pyproject.toml`:
-  - [ ] `azureml-core` (AML-specific)
-  - [ ] `azure-keyvault-secrets` (internal auth)
-  - [ ] `azure-identity` (if no longer needed after unified client)
-- [ ] Review if all remaining deps are needed
-- [ ] Regenerate `uv.lock` after changes
+#### 2f: Dependencies & code cleanup ✅
+- [x] Remove from `pyproject.toml`: `azure-identity`, `azure-keyvault-secrets`, `azureml-core`, `debugpy`, `rich`, `prompt-toolkit`, `httpx`, `dacite`, `csvkit`
+- [x] Remove `GPTActorAML` references from `model_tester.py`
+- [ ] Regenerate `uv.lock` after changes (do at end of all phases)
 
 ### Phase 3: Rename & Restructure
 *After bulk deletions, fewer files to update*
