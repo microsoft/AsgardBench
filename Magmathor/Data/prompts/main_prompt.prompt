@@ -1,0 +1,137 @@
+## Main prompt template for Magmathor environment.
+##
+## OPTIMIZED FOR PREFIX CACHING: Static content comes first so it can be
+## cached across requests. Dynamic content (history, memories, plan) comes last.
+##
+## Condition Codes:
+##   T0 = image mode, T1 = text mode
+##   A1 = first action, A0 = not first action
+##   R0 = no memory, R1 = use memory
+##   S0 = single action, S1 = full steps (plan sequence)
+##   Fn = feedback none, Fs = feedback simple, Fd = feedback detailed
+##   I0 = no previous image, I1 = color previous, I2 = grayscale previous
+
+## ═══════════════════════════════════════════════════════════════════════════
+## STATIC BLOCK - Identical across ALL tasks and steps (best for caching)
+## ═══════════════════════════════════════════════════════════════════════════
+
+## Available Actions (always the same)
+[--------
+*       |
+        | {include:available_actions.prompt}
+--------]
+
+## World Rules (always the same)
+[--------
+*       |
+        | {include:world_rules.prompt}
+--------]
+
+## Task Instructions (always the same structure)
+[--------
+*       | {include:task_instructions.prompt}
+--------]
+
+## Examples (always the same - ~500 lines, biggest caching win!)
+[--------
+*       |
+        | ------------------------------------------------------------
+        | SECTION: EXAMPLES
+        | ------------------------------------------------------------
+        | {include:example1.prompt}
+        | {include:example2.prompt}
+        | {include:example3.prompt}
+--------]
+
+## ═══════════════════════════════════════════════════════════════════════════
+## CACHE BOUNDARY MARKER - Everything above is static, everything below is dynamic
+## For Anthropic models, content above this marker goes in system message with cache_control
+## ═══════════════════════════════════════════════════════════════════════════
+[--------
+*       | <<CACHE_BOUNDARY>>
+--------]
+
+## ═══════════════════════════════════════════════════════════════════════════
+## SEMI-STATIC BLOCK - Stable within a task run (secondary caching benefit)
+## ═══════════════════════════════════════════════════════════════════════════
+
+## Task intro and description
+[--------
+*       |
+        | ------------------------------------------------------------
+        | SECTION: YOUR TASK
+        | ------------------------------------------------------------
+        | You are acting inside a simulated 3D environment.
+        | Your task is: {task_description}
+        |
+--------]
+
+## Available objects for this task
+[--------
+*       |
+        | ------------------------------------------------------------
+        | SECTION: AVAILABLE OBJECTS
+        | ------------------------------------------------------------
+        | {objects_in_scene}
+        |
+--------]
+
+## Image guidance (config-dependent)
+[--------
+*       | ------------------------------------------------------------
+        | SECTION: IMAGE GUIDANCE
+        | ------------------------------------------------------------
+--------]
+
+[--------
+A0 T0 I2| - The first image (grayscale) shows the state of the world before the last action was attempted.
+        | - The second image (color) shows the current state of the world (after the last action was attempted).
+        | - Base all your scene observations on the SECOND (color) image.
+A0 T0 I1| - The first image shows the state of the world before the last action was attempted.
+        | - The second image shows the current state of the world (after the last action was attempted).
+        | - Base all your scene observations on the SECOND image (current state).
+A0 T0 I0| - Base your scene observations on the input image, which shows the current state of the world.
+A0 T1   | - You are only using text input
+A1 T0 I0| - Base your scene observations on the input image, which shows the current state of the world.
+A1 T0 I1| - Base your scene observations on the input image, which shows the current state of the world.
+A1 T0 I2| - Base your scene observations on the input image, which shows the current state of the world.
+A1 T1   | - You are only using text input
+--------]
+
+## First action notice (A1 only)
+[--------
+A1      |
+        | NOTE: This is the FIRST ACTION in the sequence.
+        | There is NO previous action history and NO prior memory. Do not assume any past actions.
+--------]
+
+## ═══════════════════════════════════════════════════════════════════════════
+## DYNAMIC BLOCK - Changes every step (no caching benefit, kept at end)
+## ═══════════════════════════════════════════════════════════════════════════
+
+## Agent Notes (A0 only) - action history changes each step
+[--------
+A0      |
+        | ------------------------------------------------------------
+        | SECTION: AGENT NOTES
+        | ------------------------------------------------------------
+        |
+        | HISTORY OF ATTEMPTED ACTIONS:
+        | {action_history}
+--------]
+
+## Suggested plan sequence (A0 + S1 only) - changes each step
+[--------
+A0 S1   |
+        | SUGGESTED PLAN SEQUENCE (from your previous response):
+        | {suggested_plan_sequence}
+        |
+        | NOTE: This was YOUR proposed plan from the previous step. Evaluate whether it still makes sense given what you observe now. Do NOT follow it blindly — adapt based on the current state.
+--------]
+
+## Memory from previous step (A0 + R1 only) - changes each step
+[--------
+A0 R1   |
+        | MEMORY FROM PREVIOUS STEP:
+        | {memories}
+--------]

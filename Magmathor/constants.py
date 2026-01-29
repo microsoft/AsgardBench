@@ -1,0 +1,1633 @@
+import os
+from enum import Enum
+from pathlib import Path
+
+IMAGE_WIDTH = 1024
+
+# Where to accumulate successful runs
+NEW_PLANS_DIR = "new_plans"
+REPLAY_DIR = "Replay"
+
+TEST_FOLDER_NAME = "20260115_Test"
+MOUNTED_STORAGE_PATH = Path(
+    os.environ.get("MOUNTED_STORAGE_PATH", "~/mnt/magmardata_magmathor")
+).expanduser()
+
+# Check if mounted storage is available (for path decisions)
+USING_MOUNTED_STORAGE = MOUNTED_STORAGE_PATH.exists()
+
+# Check if actually running in Azure ML via amulet (for runtime behavior like disabling colors)
+# AZUREML_RUN_ID is set by AML when running a job
+IN_AML = os.environ.get("AZUREML_RUN_ID") is not None
+
+# Check if running in Azure ML and use mounted storage
+if USING_MOUNTED_STORAGE:
+    # Running with mounted storage - use mounted paths
+    DATASET_DIR = MOUNTED_STORAGE_PATH / "Generated"
+    TEST_DIR = MOUNTED_STORAGE_PATH / TEST_FOLDER_NAME
+else:
+    # Running locally - use local paths
+    DATASET_DIR = "Generated"
+    TEST_DIR = Path(TEST_FOLDER_NAME)
+
+# Text used for fail image filenam
+FAIL = "FAIL"
+
+# Used when no poses can be found for an action
+POSES_ERROR = "Ran out of candidate poses"
+
+# How far the camera is above the agent position
+CAMERA_Y_OFFSET = 0.675
+
+VERTICAL_LOOK_THRESHOLD = 20
+
+# When using a container detect if on lower shelf and should be moved up
+# Upper shelf is 0.53 FloorPlan23, also Test with FloorPlan20
+LOWER_SHELF_THRESHOLD = 0.52
+
+MIN_COUNTER_SPACE = 0.2
+
+DEFAULT_MIN_INTERACTION_DIST = 0.3
+DEFAULT_MAX_INTERACTION_DIST = 1.5
+
+OBJECT_MAX_INTERACTION_DIST = {
+    "Fridge": 2.5,
+    "Microwave": 1.5,
+    "Toaster": 1.5,
+    "CoffeeMachine": 1.5,
+    "StoveBurner": 1.0,
+    "Pan": 1.0,
+    "Mug": 1.0,
+    "Cabinet": 2.0,
+    "Television": 2.5,
+    "Sink": 0.5,
+    "SinkBasin": 0.5,
+}
+
+OBJECT_MIN_INTERACTION_DIST = {
+    "Fridge": 1.5,
+    "Television": 1.5,
+}
+
+# Default threshold for determining if an object is standing upright
+# Determined by inside sink height
+DEFAULT_STANDING_THRESHOLD = 0.60
+OBJECT_STANDING_THRESHOLD = {
+    "Drawer": 0.4,
+    "Cabinet": 0.4,
+}
+
+FOODS_COOKED_IN_PAN = ["Egg", "EggCracked", "PotatoSliced"]
+
+PREFERED_OBJECT_HOMES = {
+    "Apple": ["Fridge"],
+    "Lettuce": ["Fridge"],
+    "Tomato": ["Fridge"],
+    "Egg": ["Fridge"],
+    "EggCracked": ["Pan"],
+    "Bread": ["Fridge"],
+    "Potato": ["Fridge"],
+    "Knife": ["Drawer"],
+    "Fork": ["Drawer"],
+    "Ladle": ["Drawer"],
+    "Spatula": ["Drawer"],
+    "Spoon": ["Drawer"],
+    "ButterKnife": ["Drawer"],
+    "Bowl": ["Cabinet"],
+    "Plate": ["Cabinet"],
+    "Cup": ["SideTable", "Cabinet"],
+    "Mug": ["Cabinet"],
+    "Kettle": ["CounterTop"],
+    "Pan": ["CounterTop"],
+    "Pot": ["CounterTop"],
+    "DishSponge": ["CounterTop", "SideTable", "Cabinet"],
+    "Towel": ["TowelHolder"],
+    "HandTowel": ["TowelHolder"],
+}
+
+SECONDARY_OBJECT_HOMES = {
+    "Ladle": ["Cabinet"],
+    "Pot": ["DiningTable", "SideTable", "Cabinet"],
+    "Pan": ["StoveBurner", "DiningTable", "SideTable"],
+    "Cup": ["DiningTable", "CounterTop"],
+}
+DEFAULT_STARTING_PLACES = [
+    "CounterTop",
+    "DiningTable",
+    "Shelf",
+    "ShelvingUnit",
+    "SideTable",
+]
+
+CLASS_TO_TYPES = {
+    "Silverware": ["Knife", "Fork", "Ladle", "Spatula", "Spoon", "ButterKnife"],
+    "Food": ["Apple", "Lettuce", "Tomato", "Bread", "Potato", "Egg"],
+    "Dishes": ["Bowl", "Plate", "Cup", "Mug", "Pot"],
+    "Cookware": ["Pan", "Pot", "Kettle"],
+    "Surface": [
+        "CounterTop",
+        "DiningTable",
+        "Shelf",
+        "ShelvingUnit",
+        "SideTable",
+        "Floor",
+        "StoveBurner",
+    ],
+    # Non actionable objects in scene
+    "Kitchen": [
+        "AluminumFoil",
+        "Book",
+        "Bottle",
+        "CellPhone",
+        "CreditCard",
+        "Pen",
+        "Pencil",
+        "PepperShaker",
+        "SaltShaker",
+        "SoapBottle",
+        "SprayBottle",
+        "Statue",
+        "Vase",
+        "WineBottle",
+        # DishSponge (Don't add)
+    ],
+    "Bathroom": [
+        "Candle",
+        # "Cloth",
+        "DishSponge",
+        "HousePlant",
+        "PaperTowelRoll",
+        "Plunger",
+        "ScrubBrush",
+        "SoapBar",
+        "SoapBottle",
+        # "SprayBottle",
+    ],
+    "LivingRoom": [
+        "Boots",
+        "Bowl",
+        "Box",
+        "Candle",
+        "HousePlant",
+        "Statue",
+        "TissueBox",
+        "WateringCan",
+        "Vase",
+    ],
+}
+
+SLICED_TYPES = {
+    "Apple": "AppleSliced",
+    "Egg": "EggCracked",
+    "Bread": "BreadSliced",
+    "Potato": "PotatoSliced",
+    "Tomato": "TomatoSliced",
+    "Lettuce": "LettuceSliced",
+}
+SERVE_CONTAINER = {
+    "Egg": "Plate",
+    "EggCracked": "Plate",
+    "Bread": "Plate",
+    "BreadSliced": "Plate",
+    "Potato": "Bowl",
+    "PotatoSliced": "Plate",
+    "Tomato": "Plate",
+    "TomatoSliced": "Plate",
+    "Apple": "Plate",
+    "AppleSliced": "Plate",
+    "Lettuce": "Bowl",
+    "LettuceSliced": "Bowl",
+}
+
+COMPATIBLE_RECEPTACLES = {
+    "AlarmClock": [
+        "Box",
+        "Dresser",
+        "Desk",
+        "SideTable",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "CounterTop",
+        "Shelf",
+    ],
+    "AluminumFoil": [
+        "Microwave",
+        # "Fridge", # Invalid
+        "Dresser",
+        "Desk",
+        "Sink",
+        "SinkBasin",
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+    ],
+    "Apple": [
+        "Pot",
+        "Pan",
+        "Bowl",
+        "Microwave",
+        "Fridge",
+        "Plate",
+        "Sink",
+        "SinkBasin",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "Desk",
+        "CounterTop",
+        "Dresser",
+    ],
+    "AppleSliced": [
+        "Pot",
+        "Pan",
+        "Bowl",
+        "Microwave",
+        "Fridge",
+        "Plate",
+        "Sink",
+        "SinkBasin",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "Desk",
+        "CounterTop",
+        # "GarbageCan",
+        "Dresser",
+    ],
+    "ArmChair": [],
+    "BaseballBat": [
+        "Bed",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "Desk",
+        "CounterTop",
+    ],
+    "BasketBall": [
+        "Sofa",
+        "ArmChair",
+        "Dresser",
+        "Desk",
+        "Bed",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+    ],
+    "Bathtub": [],
+    "BathtubBasin": [],
+    "Bed": [],
+    "Blinds": [],
+    "Book": [
+        "Sofa",
+        "ArmChair",
+        "Box",
+        "Ottoman",
+        "Dresser",
+        "Desk",
+        "Bed",
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        "Drawer",
+    ],
+    "Boots": [],
+    "Bottle": [
+        "Fridge",
+        "Box",
+        "Dresser",
+        "Desk",
+        "Sink",
+        "SinkBasin",
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        "GarbageCan",
+    ],
+    "Bowl": [
+        "Microwave",
+        "Fridge",
+        "Dresser",
+        "Desk",
+        "Sink",
+        "SinkBasin",
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+    ],
+    "Box": [
+        "Sofa",
+        "ArmChair",
+        "Dresser",
+        "Desk",
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        "Ottoman",
+    ],
+    "Bread": [
+        "Microwave",
+        "Fridge",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "Desk",
+        "CounterTop",
+        # "GarbageCan",
+        # "Plate",
+    ],
+    "BreadSliced": [
+        "Microwave",
+        "Fridge",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "Desk",
+        "CounterTop",
+        "Toaster",
+        "Plate",
+    ],
+    "ButterKnife": [
+        # "Pot",
+        # "Pan",
+        # "Bowl",
+        "Mug",
+        # "Plate",
+        "Cup",
+        "Sink",
+        "SinkBasin",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "Desk",
+        "CounterTop",
+        "Drawer",
+    ],
+    "Cabinet": [],
+    "Candle": [
+        "Box",
+        "Dresser",
+        "Desk",
+        "Toilet",
+        "Cart",
+        "Bathtub",
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        "Drawer",
+    ],
+    "CD": [
+        "Box",
+        "Ottoman",
+        "Dresser",
+        "Desk",
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        "Drawer",
+        "GarbageCan",
+        "Safe",
+        "Sofa",
+        "ArmChair",
+    ],
+    "CellPhone": [
+        "Sofa",
+        "ArmChair",
+        "Box",
+        "Ottoman",
+        "Dresser",
+        "Desk",
+        "Bed",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        "Drawer",
+        "Safe",
+    ],
+    "Chair": [],
+    "Cloth": [
+        "Sofa",
+        "ArmChair",
+        "Box",
+        "Ottoman",
+        "Dresser",
+        "LaundryHamper",
+        "Desk",
+        "Toilet",
+        "Cart",
+        "BathtubBasin",
+        "Bathtub",
+        "Sink",
+        "SinkBasin",
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        "Drawer",
+        # "GarbageCan",
+    ],
+    "CoffeeMachine": [],
+    "CoffeeTable": [],
+    "CounterTop": [],
+    "CreditCard": [
+        "Sofa",
+        "ArmChair",
+        "Box",
+        "Ottoman",
+        "Dresser",
+        "Desk",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        "Drawer",
+    ],
+    "Cup": [
+        "Microwave",
+        "Fridge",
+        "Dresser",
+        "Desk",
+        "Sink",
+        "SinkBasin",
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+    ],
+    "Curtains": [],
+    "Desk": [],
+    "DeskLamp": [],
+    "Desktop": [],
+    "DiningTable": [],
+    "DishSponge": [
+        "Pot",
+        "Pan",
+        "Bowl",
+        "Plate",
+        "Box",
+        "Toilet",
+        "Cart",
+        "Cart",
+        "BathtubBasin",
+        "Bathtub",
+        # "Sink",
+        "SinkBasin",
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        "Drawer",
+        "GarbageCan",
+    ],
+    "DogBed": [],
+    "Drawer": [],
+    "Dresser": [],
+    "Dumbbell": [],
+    "Egg": [
+        "Pot",
+        "Pan",
+        "Bowl",
+        "Microwave",
+        "Fridge",
+        "Plate",
+        "Sink",
+        "SinkBasin",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "Desk",
+        "CounterTop",
+        # "GarbageCan",
+    ],
+    "EggCracked": [
+        "Pot",
+        "Pan",
+        "Bowl",
+        "Microwave",
+        "Fridge",
+        "Plate",
+        "Sink",
+        "SinkBasin",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "Desk",
+        "CounterTop",
+    ],
+    "Faucet": [],
+    "Floor": [],
+    "FloorLamp": [],
+    "Footstool": [],
+    "Fork": [
+        "Pot",
+        "Pan",
+        "Bowl",
+        "Mug",
+        "Plate",
+        "Cup",
+        "Sink",
+        "SinkBasin",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "Desk",
+        "CounterTop",
+        "Drawer",
+    ],
+    "Fridge": [],
+    "GarbageBag": [],
+    "GarbageCan": [],
+    "HandTowel": [
+        "Sofa",
+        "ArmChair",
+        "Box",
+        "Ottoman",
+        "Dresser",
+        "LaundryHamper",
+        "Desk",
+        "Toilet",
+        "Cart",
+        "BathtubBasin",
+        "Bathtub",
+        "Sink",
+        "SinkBasin",
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        "Drawer",
+        # "GarbageCan",
+    ],
+    "HandTowelHolder": [],
+    "HousePlant": [
+        "Box",
+        "Dresser",
+        "Desk",
+        "Toilet",
+        "Cart",
+        "Bathtub",
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        "Drawer",
+    ],
+    "Kettle": [
+        "Microwave",
+        "Fridge",
+        "Dresser",
+        "Desk",
+        "Sink",
+        "SinkBasin",
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+    ],
+    "KeyChain": [
+        "Sofa",
+        "ArmChair",
+        "Box",
+        "Ottoman",
+        "Dresser",
+        "Desk",
+        "Bed",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        "Drawer",
+        "Safe",
+    ],
+    "Knife": [
+        # "Pot",
+        # "Pan",
+        # "Bowl",
+        "Mug",
+        "Plate",
+        # "Cup", INVALID
+        "Sink",
+        "SinkBasin",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "Desk",
+        "CounterTop",
+        "Drawer",
+    ],
+    "Ladle": [
+        "Pot",
+        "Pan",
+        "Bowl",
+        "Plate",
+        "Sink",
+        "SinkBasin",
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "Desk",
+        "CounterTop",
+        "Drawer",
+    ],
+    "Laptop": [
+        "Sofa",
+        "ArmChair",
+        "Box",
+        "Ottoman",
+        "Dresser",
+        "Desk",
+        "Bed",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        "Drawer",
+        "Safe",
+    ],
+    "LaundryHamper": [],
+    "Lettuce": [
+        "Pot",
+        "Pan",
+        "Bowl",
+        "Microwave",
+        "Fridge",
+        "Plate",
+        "Sink",
+        "SinkBasin",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "Desk",
+        "CounterTop",
+        # "GarbageCan",
+    ],
+    "LettuceSliced": [
+        "Pot",
+        "Pan",
+        "Bowl",
+        "Microwave",
+        "Fridge",
+        "Plate",
+        "Sink",
+        "SinkBasin",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "Desk",
+        "CounterTop",
+        # "GarbageCan",
+    ],
+    "LightSwitch": [],
+    "Microwave": [],
+    "Mirror": [],
+    "Mug": [
+        "CoffeeMachine",
+        "Microwave",
+        "Fridge",
+        "Dresser",
+        "Desk",
+        "Sink",
+        "SinkBasin",
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+    ],
+    "Newspaper": [
+        "Sofa",
+        "ArmChair",
+        "Box",
+        "Ottoman",
+        "Dresser",
+        "Desk",
+        "Bed",
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        "Drawer",
+    ],
+    "Ottoman": [],
+    "Painting": [],
+    "PaperTowelRoll": [
+        "Microwave",
+        "Fridge",
+        "Dresser",
+        "Desk",
+        "Sink",
+        "SinkBasin",
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+    ],
+    "Pan": [
+        "StoveBurner",
+        "Microwave",
+        "Fridge",
+        "Dresser",
+        "Desk",
+        "Sink",
+        "SinkBasin",
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+    ],
+    "Pen": [
+        "Sofa",
+        "ArmChair",
+        "Box",
+        "Ottoman",
+        "Dresser",
+        "Desk",
+        "Bed",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        "Drawer",
+        "Safe",
+    ],
+    "Pencil": [
+        "Sofa",
+        "ArmChair",
+        "Box",
+        "Ottoman",
+        "Dresser",
+        "Desk",
+        "Bed",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        "Drawer",
+        "Safe",
+    ],
+    "PepperShaker": [
+        # "Microwave", Invalid
+        # "Fridge", Invalid
+        "Dresser",
+        "Desk",
+        # "Sink", Invalid
+        "SinkBasin",
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+    ],
+    "Pillow": [
+        "Sofa",
+        "ArmChair",
+        "Box",
+        "Ottoman",
+        "Dresser",
+        "Desk",
+        "Bed",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+    ],
+    "Plate": [
+        "Microwave",
+        "Fridge",
+        "Dresser",
+        "Desk",
+        "Sink",
+        "SinkBasin",
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+    ],
+    "Plunger": ["Cart", "Cabinet"],
+    "Poster": [],
+    "Pot": [
+        "CounterTop",
+        "Shelf",
+        "Microwave",
+        "StoveBurner",
+        "Fridge",
+        "Dresser",
+        "Desk",
+        "Sink",
+        "SinkBasin",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "Cabinet",
+    ],
+    "Potato": [
+        "Pot",
+        "Pan",
+        "Bowl",
+        "Microwave",
+        "Fridge",
+        "Plate",
+        "Sink",
+        "SinkBasin",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "Desk",
+        "CounterTop",
+        # "GarbageCan",
+    ],
+    "PotatoSliced": [
+        "Pot",
+        "Pan",
+        "Bowl",
+        "Microwave",
+        "Fridge",
+        "Plate",
+        "Sink",
+        "SinkBasin",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "Desk",
+        "CounterTop",
+        # "GarbageCan",
+    ],
+    "RemoteControl": [
+        "Sofa",
+        "ArmChair",
+        "Box",
+        "Ottoman",
+        "Dresser",
+        "Desk",
+        "Bed",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        "Drawer",
+        "Safe",
+    ],
+    "RoomDecor": [],
+    "Safe": [],
+    "SaltShaker": [
+        # "Microwave", Not valid
+        # "Fridge", Not valid
+        "Dresser",
+        "Desk",
+        # "Sink",  Not valid
+        "SinkBasin",
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+    ],
+    "ScrubBrush": ["Sink", "SinkBasin"],
+    "Shelf": [],
+    "ShelvingUnit": [],
+    "ShowerCurtain": [],
+    "ShowerDoor": [],
+    "ShowerHead": [],
+    "ShowerGlass": [],
+    "SideTable": [],
+    "Sink": [],
+    "SinkBasin": [],
+    "SoapBar": ["Sink", "SinkBasin", "Bathtub", "BathtubBasin"],
+    "SoapBottle": [
+        "Dresser",
+        "Desk",
+        "Toilet",
+        "Cart",
+        "Bathtub",
+        # "Sink", Invalid
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        # "Drawer", Invalid
+    ],
+    "Sofa": [],
+    "Spatula": [
+        "Pot",
+        "Pan",
+        "Bowl",
+        # "Mug", Invalid
+        "Plate",
+        # "Cup", Invalid
+        # "Sink", Invalid
+        "SinkBasin",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "Desk",
+        "CounterTop",
+        "Drawer",
+    ],
+    "Spoon": [
+        "Pot",
+        "Pan",
+        "Bowl",
+        "Mug",
+        "Plate",
+        "Cup",
+        "Sink",
+        "SinkBasin",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "Desk",
+        "CounterTop",
+        "Drawer",
+    ],
+    "SprayBottle": [
+        "Dresser",
+        "Desk",
+        "Toilet",
+        "Cart",
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        "Drawer",
+        # "GarbageCan",
+    ],
+    "Statue": [
+        "Box",
+        "Dresser",
+        "Desk",
+        "Toilet",
+        "Cart",
+        "Bathtub",
+        # "Cabinet", INVALID
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        "Drawer",
+    ],
+    "Stool": [],
+    "StoveBurner": [],
+    "StoveKnob": [],
+    "TableTopDecor": [
+        "Box",
+        "Dresser",
+        "Desk",
+        "Toilet",
+        "Cart",
+        "Bathtub",
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        "Drawer",
+    ],
+    "TeddyBear": [
+        "Sofa",
+        "ArmChair",
+        "Box",
+        "Ottoman",
+        "Dresser",
+        "Desk",
+        "Bed",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+    ],
+    "Television": [],
+    "TennisRacket": [
+        "Sofa",
+        "ArmChair",
+        "Dresser",
+        "Desk",
+        "Bed",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+    ],
+    "TissueBox": [
+        "Sofa",
+        "ArmChair",
+        "Box",
+        "Ottoman",
+        "Dresser",
+        "Desk",
+        "Bed",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        "Drawer",
+    ],
+    "Toaster": [],
+    "Toilet": [],
+    "ToiletPaper": [
+        "ToiletPaperHanger",
+        "Sofa",
+        "ArmChair",
+        "Box",
+        "Ottoman",
+        "Dresser",
+        "Desk",
+        "Bed",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        "Drawer",
+    ],
+    "ToiletPaperHanger": [],
+    "Tomato": [
+        "Pot",
+        "Pan",
+        "Bowl",
+        "Microwave",
+        "Fridge",
+        "Plate",
+        "Sink",
+        "SinkBasin",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "Desk",
+        "CounterTop",
+        # "GarbageCan",
+    ],
+    "TomatoSliced": [
+        "Pot",
+        "Pan",
+        "Bowl",
+        "Microwave",
+        "Fridge",
+        "Plate",
+        "Sink",
+        "SinkBasin",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "Desk",
+        "CounterTop",
+    ],
+    "Towel": [
+        "Sofa",
+        "ArmChair",
+        "Box",
+        "Ottoman",
+        "Dresser",
+        "LaundryHamper",
+        "Desk",
+        "Toilet",
+        "Cart",
+        "BathtubBasin",
+        "Bathtub",
+        "Sink",
+        # SinkBasin", Invalid
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        "Drawer",
+        # "GarbageCan",
+    ],
+    "TowelHolder": [],
+    "VacuumCleaner": [],
+    "TVStand": [],
+    "Vase": [
+        "Box",
+        "Dresser",
+        "Desk",
+        "Toilet",
+        "Cart",
+        "Bathtub",
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        "Drawer",
+    ],
+    "Watch": [
+        "Sofa",
+        "ArmChair",
+        "Box",
+        "Ottoman",
+        "Dresser",
+        "Desk",
+        "Bed",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        "Drawer",
+        "Safe",
+    ],
+    "WateringCan": [
+        "Dresser",
+        "Desk",
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        "Drawer",
+    ],
+    "Window": [],
+    "WineBottle": [
+        "Fridge",
+        "Box",
+        "Dresser",
+        "Desk",
+        "Sink",
+        "SinkBasin",
+        "Cabinet",
+        "DiningTable",
+        "TVStand",
+        "CoffeeTable",
+        "SideTable",
+        "CounterTop",
+        "Shelf",
+        # "GarbageCan",
+    ],
+}
+
+ACTIONABLE_OBJECTS = {
+    "Pickupable": [
+        "AlarmClock",
+        "AluminumFoil",
+        "Apple",
+        "AppleSliced",
+        "BaseballBat",
+        "BasketBall",
+        "Book",
+        "Boots",
+        "Bottle",
+        "Bowl",
+        "Box",
+        "Bread",
+        "BreadSliced",
+        "ButterKnife",
+        "Candle",
+        "CD",
+        "CellPhone",
+        "Cloth",
+        "CreditCard",
+        "Cup",
+        "Egg",
+        "EggCracked",
+        "Fork",
+        "HandTowel",
+        "DishSponge",
+        "Dumbbell",
+        "Kettle",
+        "KeyChain",
+        "Knife",
+        "Laptop",
+        "Ladle",
+        "Lettuce",
+        "LettuceSliced",
+        "Mug",
+        "Newspaper",
+        "PaperTowelRoll",
+        "Pan",
+        "Pen",
+        "Pencil",
+        "PepperShaker",
+        "Pillow",
+        "Plate",
+        "Plunger",
+        "Pot",
+        "Potato",
+        "PotatoSliced",
+        "RemoteControl",
+        "SaltShaker",
+        "ScrubBrush",
+        "SoapBar",
+        "SoapBottle",
+        "Spatula",
+        "Spoon",
+        "SprayBottle",
+        "Statue",
+        "TableTopDecor",
+        "TeddyBear",
+        "TennisRacket",
+        "TissueBox",
+        "ToiletPaper",
+        "Tomato",
+        "TomatoSliced",
+        "Towel",
+        "Vase",
+        "Watch",
+        "WateringCan",
+        "WineBottle",
+    ],
+    "Sliceable": ["Apple", "Bread", "Egg", "Lettuce", "Potato", "Tomato"],
+    "Moveable": [
+        "ArmChair",
+        "Chair",
+        "CoffeeMachine",
+        "CoffeeTable",
+        "DeskLamp",
+        "DogBed",
+        "Footstool",
+        "GarbageBag",
+        "LaundryHamper",
+        "Ottoman",
+        "RoomDecor",
+        "Safe",
+        "ShelvingUnit",
+        "Stool",
+        "Television",
+        "VacuumCleaner",
+    ],
+    "Receptacle": [
+        "BathtubBasin",
+        "Bed",
+        "Bowl",
+        "Box",
+        "Cabinet",
+        "CoffeeMachine",
+        "CoffeeTable",
+        "CounterTop",
+        "Cup",
+        "Desk",
+        "DiningTable",
+        "Drawer",
+        "Dresser",
+        "Fridge",
+        "GarbageCan",
+        "HandTowelHolder",
+        "LaundryHamper",
+        "Microwave",
+        "Ottoman",
+        "Plate",
+        "Pot",
+        "Safe",
+        "Shelf",
+        "SideTable",
+        "SinkBasin",
+        "Sofa",
+        "StoveBurner",
+        "TableTopDecor",
+        "TowelHolder",
+        "TVStand",
+    ],
+    "Dirtyable": [
+        "Bowl",
+        "Cloth",
+        "Cup",
+        "HandTowel",
+        "Mirror",
+        "Mug",
+        "Pan",
+        "Plate",
+        "Pot",
+    ],
+    "Openable": [
+        "Blinds",
+        "Book",
+        "Box",
+        "Cabinet",
+        "Drawer",
+        "Fridge",
+        "Kettle",
+        "Laptop",
+        "Microwave",
+        "Safe",
+        "ShowerCurtain",
+        "ShowerDoor",
+        "Toilet",
+    ],
+    "Fillable": [
+        "Bottle",
+        "Bowl",
+        "Cup",
+        "HousePlant",
+        "Kettle",
+        "Mug",
+        "Pan",
+        "Pot",
+        "WateringCan",
+        "WineBottle",
+    ],
+    "Breakable": [
+        "Bottle",
+        "CellPhone",
+        "Egg",
+        "Laptop",
+        "Mirror",
+        "Mug",
+        "ShowerDoor",
+        "ShowerGlass",
+        "Statue",
+        "Television",
+        "Vase",
+        "Window",
+        "WineBottle",
+        "Bowl",
+        "Cup",
+        "Plate",
+    ],
+    "Cookable": ["BreadSliced", "EggCracked", "Potato", "PotatoSliced", "TomatoSliced"],
+    "Toggleable": [
+        "Candle",
+        "CellPhone",
+        "CoffeeMachine",
+        "DeskLamp",
+        "Faucet",
+        "FloorLamp",
+        "LightSwitch",
+        "Microwave",
+        "ShowerHead",
+        "StoveBurner",
+        "StoveKnob",
+        "Television",
+        "Toaster",
+    ],
+    "UsedUp": ["PaperTowelRoll", "SoapBottle", "TissueBox", "ToiletPaper"],
+}
+
+FOOD_COOK_TYPES = {
+    "BreadSliced": ["Toaster"],
+    "Potato": ["Microwave"],
+    "PotatoSliced": ["StoveBurner"],
+    "Egg": ["StoveBurner"],
+}
+
+FOOD_SERVING_DISHES = ["Plate", "Bowl", "Pot"]
+
+FOOD_SLICE_ON_COUNTER_TOP = ["Bread", "Tomato", "Lettuce", "Apple", "Potato"]
+
+
+class Action(str, Enum):
+    PUT = "put"
+    FIND = "find"
+    FACE = "goto"
+    TOGGLE_ON = "toggle_on"
+    TOGGLE_OFF = "toggle_off"
+    CLOSE = "close"
+    PICKUP = "pickup"
+    OPEN = "open"
+    SLICE = "slice"
+    CLEAN = "clean"
+    EMPTY_LIQUID = "empty"
+    EMPTY_HAND = "empty_hand"
+    CLEAR_CONTAINER = "clear_container"
+    PUT_AWAY = "put_away"
+    MOVE_OUT_OF_WAY = "move_out_of_way"
+    MOVE_TO_COUNTER_TOP = "move_to_counter_top"
+    SINK_WASH = "sink_wash"
+    WASH = "wash"
+    DRINK = "drink"
+    BREW_AND_DRINK = "brew_and_drink"
+    BREW = "brew"
+    COOK = "cook"
+    SERVE = "serve"
+    SPRAY = "spray"
+    INVALID_ACTION = "invalid_action"  # When invalid action chosen by model
+    INVALID_OBJECT = "invalid_object"  # When invalid object chosen by model
+    INVALID_RESPONSE = "invalid_response"  # When invalid response received from model
+
+    # Only available in manual control or for setup
+    TURN_LEFT = "left"
+    TURN_RIGHT = "right"
+    TURN_UP = "up"
+    TURN_DOWN = "down"
+    MOVE_FORWARD = "forward"
+    MOVE_BACKWARD = "backward"
+    DIRTY = "dirty"
+    FILL = "fill"
+
+
+class LiquidType(str, Enum):
+    WATER = "water"
+    COFFEE = "coffee"
+    WINE = "wine"
+
+
+class TurnDirection(str, Enum):
+    LEFT = "left"
+    RIGHT = "right"
+    NONE = "none"
+
+
+class Flags(str, Enum):
+    # Don't clear the container when putting
+    PUT_DONT_CLEAR = "dont_clear"
+
+    # Clear the object before picking it up
+    PICKUP_CLEAR = "pickup_clear"
+
+    # Don't clean the object if it's already clean
+    OK_ALREADY_CLEAN = "already_clean"
+
+    # Don't slice
+    DONT_SLICE = "dont_slice"
+
+    # Perform slicing after placing on the pan
+    SLICE_ON_PAN = "slice_on_pan"
+
+    # Don't put away
+    DONT_PUT_AWAY = "dont_put_away"
+
+    # Only select object that aren't used up
+    NOT_USED_UP = "not_used_up"
+
+    # Admin task.  Part of setup, don't record anything
+    ADMIN_TASK = "admin_task"
+
+    # Don't sort optioned by location
+    DONT_SORT = "dont_sort"
+
+    # Doing a PUT action for hand emptying
+    HAND_EMPTY_PUT = "hand_empty_put"
+
+    # Should clean when putting away
+    CLEAN_WHEN_PUTTING_AWAY = "clean_when_putting_away"
+
+    # If multiple objects pick the smallest first
+    SMALLEST_FIRST = "smallest_first"
+
+
+class FilterType(str, Enum):
+    NOT_IN_FRIDGE = "not_in_fridge"
+
+    NOT_USED_UP = "not_used_up"
+
+    GOAL_CONFLICTS = "goal_conflicts"
+
+    DEFECTIVE_CONTAINERS = "filter_defective_containers"
+
+
+class InjectionState(str, Enum):
+    PRE_INJECTION = "pre_injection"
+    INJECTING = "injecting"
+    POST_INJECTION = "post_injection"
+
+
+class Color(str, Enum):
+    NONE = ""
+    ORANGE = "\033[38;5;214m"
+    GREEN = "\033[92m"
+    DARK_GREEN = "\033[38;5;28m"
+    BLUE = "\033[94m"
+    LIGHT_BLUE = "\033[38;5;111m"
+    YELLOW = "\033[33m"
+    RED = "\033[91m"
+    DARK_RED = "\033[38;5;124m"
+    PURPLE = "\033[95m"
+    GREY = "\033[90m"
+    GREY_BLUE = "\033[38;5;67m"
+    RESET = "\033[0m"
+
+
+class FeedbackType(str, Enum):
+    NONE = "none"
+    SIMPLE = "simple"
+    DETAILED = "detailed"
+
+
+class PreviousImageType(str, Enum):
+    """Type of previous image to include in prompts."""
+
+    NONE = "none"
+    COLOR = "color"
+    GRAYSCALE = "grayscale"
+
+
+class PromptVersion(str, Enum):
+    """Prompt template version to use for evaluation."""
+
+    V1 = "v1"  # Original prompt templates (monolithic, less structured)
+    V2 = "v2"  # New modular prompt templates (main_prompt.jinja2)

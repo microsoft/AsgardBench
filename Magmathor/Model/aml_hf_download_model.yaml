@@ -1,0 +1,84 @@
+# uv run amlt run Magmathor/Model/aml_hf_download_model.yaml
+
+description: Download models to blob
+
+target:
+  service: sing
+  name: msrresrchvc
+  workspace_name: atupinirgws
+
+environment:
+  image: amlt-sing/acpt-torch2.7.1-py3.10-cuda12.6-ubuntu22.04
+
+storage:
+  magmathor:
+    storage_account_name: magmardata
+    container_name: magmathor
+  magmar_public:
+    storage_account_name: magmardata
+    container_name: public
+  vlp_datasets:
+    storage_account_name: vlpdatasets
+    container_name: data
+  reuben_models:
+    storage_account_name: reubenprojects
+    container_name: model
+  atupinirgsa_data:
+    storage_account_name: atupinirgsa
+    container_name: data
+
+
+code:
+  local_dir: ./scripts/vllm
+
+search:
+  job_template:
+    name: Magmathor-Download-model-{model_path}
+    # Multi-node setup: NxGPUs where N=number of nodes
+    sku: 8C7
+    priority: high
+    mpi: False
+    sla_tier: Premium
+    process_count_per_node: 1
+    identity: managed
+    command:
+      - set -ex
+
+      # install aria2c and git-lfs (no root needed via conda/pip)
+      - pip install aria2p || true
+      - which aria2c || pip install aria2
+
+      - conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main
+      - conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
+
+      - conda install -y -c conda-forge git-lfs && git lfs install
+
+      # download directly to persistent blob mount - survives crashes, aria2c resumes partial files
+      - chmod +x hfd.sh
+      - ./hfd.sh "{model_path}" --hf_token "$HF_TOKEN" --tool aria2c -x 4 --local-dir "/mnt/magmathor/checkpoints/huggingface/{model_path}"
+
+
+    submit_args:
+      container_args:
+        shm_size: 256g
+        ipc: host
+      env:
+        NCCL_IB_DISABLE: 0
+        NCCL_DEBUG: INFO
+        NCCL_IB_TIMEOUT: 60
+        MKL_THREADING_LAYER: GNU
+        # Ray environment variables will be set by the script
+        RAY_DEDUP_LOGS: "0"
+        _AZUREML_SINGULARITY_JOB_UAI: /subscriptions/2cd190bb-b42a-477c-b1bb-2f20932d8dc5/resourceGroups/atupinirg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/atupinirgid
+    tags: []
+  max_trials: 1000
+  type: grid
+  params:
+    - name: model_path
+      spec: discrete
+      values:
+        - deepseek-ai/DeepSeek-V3.2
+        # - Qwen/Qwen3-VL-235B-A22B-Thinking
+        # - Qwen/Qwen3-VL-235B-A22B-Instruct
+        # - Qwen/Qwen3-VL-30B-A3B-Thinking
+        # - Qwen/Qwen3-VL-30B-A3B-Instruct

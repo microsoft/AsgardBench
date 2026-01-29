@@ -1,0 +1,26 @@
+<think>
+VISUAL OBSERVATIONS:
+INVENTORY CHECK:
+LAST ACTION ASSESMENT:
+MEMORY CHECK:
+PLAN REASONING:
+
+
+</think>
+
+<answer>
+SUGGESTED PLAN SEQUENCE
+THINGS TO REMEMBER:
+ACTION:
+</answer>
+
+Tests:
+
+1)
+Response to Failed action (PICKUP)
+
+2)
+Response to new information (something in sink)
+
+3)
+Response to Failed action (DIRTY)

@@ -1,0 +1,159 @@
+## Purpose of the example:
+## - Response to Failed action (PICKUP)
+
+## Example 3: Cook an Egg
+## - Fs/Fd: Egg is cracked in pan, ready to cook (TOGGLE_ON StoveBurner)
+## - Fn: PICKUP Egg failed silently, need to FIND Egg
+## - T1 Fn: NOT INCLUDED (handled in main_prompt.prompt)
+##
+## Condition Codes:
+##   T0 = image mode, T1 = text mode
+##   Fn = feedback none, Fs = feedback simple, Fd = feedback detailed
+##   R0 = no memory, R1 = use memory
+##   S0 = no full steps, S1 = full steps
+##   H0 = hand invisible, H1 = hand visible
+
+*       |
+*       | Example 3:
+*       | Your primary goal is: Slice a Lettuce and put it in the Bowl
+*       |
+*       | HISTORY OF ATTEMPTED ACTIONS:
+[--------
+Fn      | 0. FIND Knife
+        | 1. PICKUP Knife
+        | 2. FIND Lettuce
+        | 3. SLICE Lettuce
+        | 4. FIND CounterTop
+        | 5. PUT CounterTop
+        | 6. FIND LettuceSliced
+        | 7. PICKUP LettuceSliced
+        | 8. FIND Bowl
+        | 9. PUT Bowl
+Fs      | 0. FIND Knife  Success
+        | 1. PICKUP Knife  Success
+        | 2. FIND Lettuce  Success
+        | 3. SLICE Lettuce  Success
+        | 4. FIND CounterTop  Success
+        | 5. PUT CounterTop  Success
+        | 6. FIND LettuceSliced  Success
+        | 7. PICKUP LettuceSliced  Success
+        | 8. FIND Bowl  Success
+        | 9. PUT Bowl  Failure
+Fd      | 0. FIND Knife  Success
+        | 1. PICKUP Knife  Success
+        | 2. FIND Lettuce  Success
+        | 3. SLICE Lettuce  Success
+        | 4. FIND CounterTop  Success
+        | 5. PUT CounterTop  Success
+        | 6. FIND LettuceSliced  Success
+        | 7. PICKUP LettuceSliced  Success
+        | 8. FIND Bowl  Success
+        | 9. PUT Bowl  Failure Cannot PUT in Bowl as it is dirty.
+--------]
+
+[--------
+S1      |
+        | SUGGESTED PLAN SEQUENCE (from your previous response):
+        | 1. PUT Bowl
+--------]
+
+[--------
+A0 R1   |
+        | MEMORY FROM PREVIOUS STEP:
+        | - Completed: Found Knife ✓, Picked up Knife ✓, Sliced Lettuce ✓, Put Knife down ✓, Picked up LettuceSliced ✓, Found Bowl ✓
+        | - Current: PUT LettuceSliced in Bowl
+        | - Remaining: (none — final step)
+--------]
+
+*       | Response:
+*       |
+*       | <think>
+
+[--------
+T0      | VISUAL OBSERVATIONS:
+        | - I see: Bowl on the CounterTop, SinkBasin, Faucet, DishSponge near the sink.
+        | - The Bowl has visible stains and residue inside — it appears dirty.
+--------]
+
+*       |
+*       | INVENTORY CHECK:
+[--------
+T0 H0   | - I see a leafy green object at the bottom center; based on shape and task context, I am holding the LettuceSliced.
+T0 H1   | - I see my hand holding a leafy green object at the bottom center; based on shape and task context, I am holding the LettuceSliced.
+T1 Fs   | - HISTORY OF ATTEMPTED ACTIONS shows PICKUP LettuceSliced Success, and no subsequent PUT so I am holding the LettuceSliced
+T1 Fd   | - HISTORY OF ATTEMPTED ACTIONS shows PICKUP LettuceSliced, and no subsequent PUT so I am holding the LettuceSliced
+T1 Fn   | - HISTORY OF ATTEMPTED ACTIONS shows PICKUP LettuceSliced and no subsequent PUT so I assume I am holding the LettuceSliced
+--------]
+
+*       |
+*       | LAST ACTION ASSESSMENT:
+[--------
+Fs      | - Last action was PUT Bowl, the INVENTORY CHECK indicates that I'm still holding the LettuceSliced and HISTORY OF ATTEMPTED ACTIONS says it failed.
+Fd      | - Last action was PUT Bowl, the INVENTORY CHECK indicates that I'm still holding the LettuceSliced and HISTORY OF ATTEMPTED ACTIONS says it failed.
+T0 Fn   | - Last action was PUT Bowl, the INVENTORY CHECK indicates that I'm still holding the LettuceSliced, so it failed.
+T1 Fn   | - Last action was PUT Bowl
+--------]
+T0      | - Looking at the Bowl, I can see it has visible stains — it's clearly dirty.
+Fd      | - HISTORY OF ATTEMPTED ACTIONS says it failed because Cannot PUT in Bowl as it is dirty.
+*       | - According to WORLD RULES, PUT will fail if the container is dirty.
+
+*       |
+*       | DOUBLE CHECK:
+[--------
+T0      | - I assume I am holding LettuceSliced — this matches INVENTORY CHECK, confirmed.
+        | - I assume Knife was put on CounterTop after slicing — I don't see it in current view, so I'll trust my assumption.
+        | - I assume I found the Bowl — I can see the Bowl now, but it has visible stains (dirty).
+        | - NEW OBSERVATION: Bowl is dirty and cannot accept items until cleaned. SinkBasin and Faucet are visible for washing.
+T1      | - I assume I am holding LettuceSliced — confirmed by INVENTORY CHECK.
+        | - I assume Bowl was found.
+--------]
+
+*       |
+*       | PLAN REASONING:
+*       | - To put the LettuceSliced in the Bowl, the Bowl must be clean first.
+*       | - I need to put down the LettuceSliced temporarily, then wash the Bowl in the SinkBasin.
+*       | - Once the Bowl is clean, I can PICKUP the LettuceSliced again and PUT it in the Bowl.
+*       |
+*       | </think>
+*       |
+*       | <answer>
+*       | THINGS TO REMEMBER:
+[--------
+T0      | - Completed: Sliced Lettuce ✓, Picked up LettuceSliced ✓, Found Bowl ✓, PUT Bowl failed
+        | - Current: Wash Bowl (dirty — blocking PUT)
+        | - Remaining: PUT LettuceSliced in Bowl
+T1 Fsd  | - Completed: Sliced Lettuce ✓, Picked up LettuceSliced ✓, Found Bowl ✓, PUT Bowl failed
+        | - Current: Wash Bowl (dirty — blocking PUT)
+        | - Remaining: PUT LettuceSliced in Bowl
+--------]
+
+*       |
+
+[--------
+S1      | SUGGESTED PLAN SEQUENCE:
+        | 1. FIND CounterTop
+        | 2. PUT CounterTop
+        | 3. FIND Bowl
+        | 4. PICKUP Bowl
+        | 5. FIND SinkBasin
+        | 6. PUT SinkBasin
+        | 7. FIND DishSponge
+        | 8. PICKUP DishSponge
+        | 9. FIND SinkBasin
+        | 10. TOGGLE_ON Faucet
+        | 11. CLEAN Bowl
+        | 12. TOGGLE_OFF Faucet
+        | 13. FIND CounterTop
+        | 14. PUT CounterTop
+        | 15. FIND Bowl
+        | 16. PICKUP Bowl
+        | 17. FIND CounterTop
+        | 18. PUT CounterTop
+        | 19. FIND LettuceSliced
+        | 20. PICKUP LettuceSliced
+        | 21. FIND Bowl
+        | 22. PUT Bowl
+--------]
+*       |
+*       | Action: PUT CounterTop
+*       | </answer>

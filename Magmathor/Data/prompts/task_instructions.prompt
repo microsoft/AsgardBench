@@ -1,0 +1,158 @@
+## Task Instructions Template
+## Converted from task_instructions.jinja2
+##
+## Condition Codes:
+##   T0 = image mode, T1 = text mode
+##   C1 = include common sense rules
+##   H0 = hand invisible, H1 = hand visible
+##   I0 = no previous image, I1 = color, I2 = grayscale
+##   R0 = no memory, R1 = use memory
+##   S0 = single action, S1 = full steps (plan sequence)
+##   Fn = feedback none, Fs = feedback simple, Fd = feedback detailed
+##
+## Format: Use [ and ] to group alternative lines (only first match is used)
+
+
+*       |
+*       | ------------------------------------------------------------
+*       | SECTION: TASK INSTRUCTIONS
+*       | ------------------------------------------------------------
+
+## ----------------
+## <think> section
+## ----------------
+
+*       | 1. Provide detailed reasoning between <think> and </think>.
+*       |     - Include the following sections
+
+## INVENTORY CHECK
+[--------
+T0      |     VISUAL OBSERVATIONS:
+        |         - List what you observe in {img_ref}:
+--------]
+[--------
+T0 S1   |             - Base your observations on visual appearance only, do NOT use SUGGESTED PLAN SEQUENCE.
+T0 S0   |             - Base your observations on visual appearance only.
+--------]
+[--------
+T0 I12  |             - Separately describe what you see in the FIRST image (before your last action was applied) and the SECOND image (after your last action was applied).
+--------]
+[--------
+T0      |             - List objects from AVAILABLE OBJECTS that you see
+        |             - Note containment: What objects are inside or on top of other objects
+        |               (e.g., "Apple is in the Sink", "Mug is on the CounterTop", "Plate contains Egg")
+        |             - Note object states if visible: clean/dirty, sliced/whole, cooked/raw, on/off, open/closed
+--------]
+
+## INVENTORY CHECK
+*       |     INVENTORY CHECK:
+*       |         - Determine if you are holding something and what the OBJECT is
+
+[--------
+T0      |         - Use your VISUAL OBSERVATIONS and ACTION HISTORY FEEDBACK
+--------]
+
+[--------
+T0 H0   |         - If you are holding an object it will be floating at the bottom center of {img_ref}
+        |         - Your hand will not be visible even if you are holding an object
+        |         - If you see NO floating object in the bottom center, you are NOT holding anything
+T0 H1   |         - If you see an object in your hand or fingers, you ARE holding it (state what it is)
+        |         - If you are holding something then your hand or fingers and the object will be visible at the bottom center of {img_ref}
+        |         - If you see NO hand/fingers or object at the bottom center, you are NOT holding anything
+--------]
+
+[--------
+T0      |         - CAUTION: Objects resting on surfaces near the bottom of the frame can be mistaken for held objects.
+        |           - When the visual is ambiguous use ACTION HISTORY FEEDBACK
+--------]
+
+
+
+## LAST ACTION ASSESSMENT
+*       |     LAST ACTION ASSESSMENT:
+Fsd     |         - Treat ACTION HISTORY FEEDBACK as ground truth for action success or failure
+
+[--------
+Fn      |         - Assess whether your last actions succeeded or failed
+--------]
+
+[--------
+T0 I1   |             - Ground your assessment by comparing the first and second images
+T0 I2   |             - Ground your assessment by comparing the current (color) and previous (grayscale) images
+--------]
+
+*       |         - If the action FAILED, analyze WHY:
+*       |              - Which WORLD RULE was violated or which precondition was not met?
+
+
+## DOUBLE CHECK
+*       |     DOUBLE CHECK:
+[--------
+S1      |         - Do not assume that everything from SUGGESTED PLAN SEQUENCE is accurate, things may have changed.
+        |         - Evaluate if SUGGESTED PLAN SEQUENCE is still valid.
+S0      |         - Do not assume that all your assumptions are accurate, things may have changed.
+        |         - Evaluate if your assumptions are still valid.
+--------]
+[--------
+S1 T0   |             - Check each item against the visual evidence in {img_ref}. If it doesn't align, update your understanding.
+        |             - For example, if an object was assumed to be clean but appears dirty in {img_ref}, adjust your reasoning accordingly.
+        |             - If the SUGGESTED PLAN SEQUENCE mentions an object you don't see, it may be because you are looking somewhere else
+        |                  - Assume steps about unseen objects are valid, unless there was a state change like cooking or slicing.
+S0 T0   |             - Check each item against the visual evidence in {img_ref}. If it doesn't align, update your understanding.
+        |             - For example, if an object was assumed to be clean but appears dirty in {img_ref}, adjust your reasoning accordingly.
+        |             - If your assumptions mention an object but you don't see it, it may be because you are looking somewhere else
+        |                  - Assume your assumptions about unseen objects are valid, unless there was a state change like cooking or slicing.
+--------]
+
+## PLAN REASONING
+*       |     PLAN REASONING:
+*       |        - Based on your assessments above, and the WORLD RULES, reason about what to do next to progress toward completing the task.
+*       |        - Treat this section as a free-form reasoning space to work through your thoughts.
+*       |        - Reason as if you were a human thinking deeply about the task.
+
+## ----------------
+## <answer> section
+## ----------------
+
+*       | 2. Provide your output between <answer> and </answer>.
+*       |    - Include the following sections
+
+## SUGGESTED PLAN SEQUENCE
+[--------
+S1      |     SUGGESTED PLAN SEQUENCE
+        |         - Include a section titled "SUGGESTED PLAN SEQUENCE:" with a numbered list of ALL remaining actions needed to complete the task.
+        |             - Each line should be: N. $ACTION $OBJECT where $ACTION ∈ AVAILABLE ACTIONS and $OBJECT ∈ AVAILABLE OBJECTS.
+        |             - Start from your NEXT action (the one you're about to take) through task completion.
+        |             - If a SUGGESTED PLAN SEQUENCE was provided from your previous response, evaluate it against current observations.
+        |             - Do NOT blindly copy the previous plan — adapt it based on what you actually see now.
+        |             - If actions succeeded or failed unexpectedly, update the plan accordingly.
+        |         - NEVER repeat the same $ACTION $OBJECT that you did in the last turn — choose a new $ACTION or $OBJECT.
+--------]
+
+
+## THINGS TO REMEMBER
+[--------
+*       |     THINGS TO REMEMBER:
+        |         - Include a section titled "THINGS TO REMEMBER:" with a bulleted list (each starting with "- ") of key facts to retain for future steps.
+        |         - Focus on TASK PROGRESS — track COMPLETED milestones, CURRENT SUB-GOAL, and REMAINING steps:
+        |             - Good: "Coffee brewed ✓", "Current: Wash Mug", "Remaining: Store Mug in Cabinet"
+        |             - Bad: "Mug not visible" (stale navigation info), "Attempting PUT..." (speculative)
+        |         - Record DISCOVERED OBSTACLES or CONSTRAINTS that affect the plan:
+        |             - Good: "Sink contains blocking items", "Bowl is dirty (needs washing)"
+        |             - Bad: "I am holding the Mug" (redundant with Inventory Check), "If PUT succeeds..." (speculative)
+        |         - Keep memories MINIMAL and TASK-RELEVANT — do not record every object you see.
+--------]
+[--------
+S1      |         - Do not assume that everything from SUGGESTED PLAN SEQUENCE should be maintained, use your DOUBLE CHECK from above.
+S0      |         - Do not assume that everything from your assumptions should be maintained, use your DOUBLE CHECK from above.
+--------]
+[--------
+T0      |         - Items in "THINGS TO REMEMBER:" should come from the VISUAL OBSERVATIONS above or DOUBLE CHECK, not from assumptions.
+--------]
+
+## ACTION
+*       |     ACTION:
+*       |         - Before choosing your action, verify all preconditions are met for that ACTION
+*       |         - NEVER repeat the exact same action that just failed — if an action failed, try a DIFFERENT action or object first.
+*       |         - If you find yourself doing the same FIND action multiple times in a row, STOP and try a different approach.
+*       |         - End the answer with: Action: $ACTION $OBJECT where $ACTION ∈ AVAILABLE ACTIONS and $OBJECT ∈ AVAILABLE OBJECTS.

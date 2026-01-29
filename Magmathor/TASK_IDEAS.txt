@@ -1,0 +1,113 @@
+Here are several ideas for rich, multi-step tasks whose course can diverge dynamically based on what the agent finds in the scene. Each task is broken down into nested steps, with conditional branches that ensure the procedure adapts if, for example, an object is dirty, missing, or in a different state (whole vs. sliced). These scenarios can serve to test various aspects of planning, object detection, manipulation, and environment interaction in AI2-THOR.
+
+---
+
+### 1. Prepare a Fruit Salad
+
+This task involves gathering fresh produce, preparing them as needed, and combining them in a clean bowl. The agent must be flexible: if a fruit is already in sliced form or if the bowl is dirty, the steps are adjusted accordingly.
+
+```
+Prepare a Fruit Salad
+  Gather Ingredients
+    • Find an "Apple" or "AppleSliced"
+       - If the agent finds an intact Apple, pick it up and then use a Knife to slice it into AppleSliced.
+    • Find a "Tomato" or "TomatoSliced"
+       - If a whole Tomato is found, pick it up and slice it into TomatoSliced.
+    • Find "Lettuce" or "LettuceSliced"
+       - If intact Lettuce is available, pick it up and slice it.
+  Prepare the Mixing Bowl
+    • Locate a "Bowl"
+       - If the Bowl is dirty, perform a cleaning routine:
+         ▸ Find a "SinkBasin"
+         ▸ Find and pick up a "DishSponge"
+         ▸ Turn on the "Faucet", wash the Bowl, then turn off the Faucet.
+  Combine Ingredients
+    • Pick up each prepared (sliced) fruit.
+    • Place sliced Apple, TomatoSliced, and LettuceSliced into the Bowl.
+  Finalize the Salad
+    • Optionally, use a "Cloth" or similar tool (if available) to stir or present the mixture.
+```
+
+---
+
+
+
+---
+
+### 3. Organize the Workspace
+
+In this office-inspired task, the agent tidies a cluttered desk. The agent has to detect various items and decide their correct storage locations while also cleaning the workspace.
+
+```
+Organize the Workspace
+  Assess and Remove Clutter
+    • Locate the "Desk" and identify scattered objects (e.g., "Laptop", "Book", "CellPhone", "Pen").
+    • For each object on the Desk:
+         - Pick it up if it’s obstructing the workspace.
+         - Determine its appropriate storage:
+             ▸ If it’s a "Book", put it into an open "Cabinet" or "Drawer".
+             ▸ If it’s a "CellPhone", decide whether to leave it on the Desk or store it in a "Drawer".
+             ▸ If it’s a "Laptop", ensure it’s placed safely and not in a cluttered area.
+  Clean the Desk Surface
+    • Locate a "Cloth"
+         - If the Cloth is dirty, try to find another on the "CounterTop" or elsewhere.
+    • Use the Cloth to wipe down the Desk (addressing its Dirtyable property).
+  Adjust the Environment
+    • Find a "DeskLamp" (Toggleable).
+         - Toggle (turn on/off) the DeskLamp to improve lighting as needed.
+  Final Check
+    • Verify that all items are neatly stored and that the workspace is tidy.
+```
+
+---
+
+### 4. Water the HousePlant and Tidy Up
+
+This task simulates care for a houseplant, including the necessary steps for watering and cleaning up afterward.
+
+```
+Water the HousePlant and Tidy Up
+  Watering Process
+    • Locate the "HousePlant".
+         - (Simulated condition: assess whether it appears dry.)
+    • Find a "WateringCan".
+         - Pick up the WateringCan.
+         - Check if it is empty:
+             ▸ If empty, locate a "Faucet".
+             ▸ Turn on the Faucet and fill the WateringCan, then turn the Faucet off.
+    • Approach the HousePlant and water it using the filled WateringCan.
+  Post-Watering Cleanup
+    • Place the WateringCan back into an appropriate Receptacle (e.g., into a "Cabinet" or on the "CounterTop").
+    • If any water has spilled onto the floor, pick up a "Cloth" or "DishSponge" and clean up the spill.
+```
+
+---
+
+### 5. Set Up a Party Tray
+
+For a more festive scenario, the agent assembles a party tray that includes beverages and snacks. The steps adapt according to the condition of the objects found (e.g., dirty vs. ready-to-use).
+
+```
+Set Up a Party Tray
+  Gather Beverage Components
+    • Find a "Cup" or "Mug"
+         - If it’s dirty, clean it using the SinkBasin and DishSponge protocol (turn on Faucet, wash, then turn off Faucet).
+    • Locate a "WineBottle"
+         - If the WineBottle is empty, attempt to fill it (using its Fillable property) from a nearby source.
+  Collect Snack Items
+    • Find a "Bowl" or "Plate" to serve as the base.
+         - If the chosen dish is dirty, clean it as needed.
+    • Find "Bread" or "BreadSliced"
+         - If a whole Bread is present, pick it up and use a "ButterKnife" or "Knife" to slice it (producing BreadSliced).
+  Arrange the Tray
+    • Locate a flat surface such as a "CoffeeTable" or "CounterTop" to use as the tray.
+    • Place the cleaned Cup/Mug, WineBottle, and Bowl/Plate with snacks neatly on the surface.
+  Wrap-Up
+    • Ensure any temporary tools (like the DishSponge used for cleaning) are returned to their proper places.
+```
+
+---
+
+Each of these tasks not only requires accomplishing physical actions but also decision-making based on the environmental state—such as cleaning a dirty object, slicing a whole fruit when needed, or reorganizing clutter. This approach provides a versatile test bed for multistep planning where the agent must dynamically adjust its plan.
+
+If you’d like to further explore or tweak any of these scenarios (or create new ones with different thematic constraints), there are many related variations you could consider. For instance, a task involving cleaning a mirror (similar to your example) could be expanded to include checking for obstructions on the window or adjusting lighting conditions using Toggleable items like DeskLamp or LightSwitch.

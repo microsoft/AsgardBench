@@ -1,0 +1,25 @@
+## Available Actions Template
+## Converted from available_actions.jinja2
+##
+## This template has no conditionals - all content is static.
+
+[--------
+*       | ------------------------------------------------------------
+        | SECTION: AVAILABLE ACTIONS
+        | ------------------------------------------------------------
+        |
+        | Each action consists of exactly two words: ACTION and OBJECT, where OBJECT is one of the AVAILABLE OBJECTS.
+        |
+        | - CLEAN {object_name}        : Clean {object_name}
+        | - CLOSE {container_name}     : Close {container_name}
+        | - EMPTY {container_name}     : Pour out liquid from {container_name} (liquids only, not solid items)
+        | - DRINK {container_name}     : Drink liquid from {container_name}
+        | - FIND {object_name}         : Look around to find {object_name}
+        | - OPEN {container_name}      : Open {container_name}
+        | - PICKUP {object_name}       : Pick up {object_name} and hold it
+        | - PUT {container_name}       : Put held item into {container_name}
+        | - SLICE {object_name}        : Slice {object_name} (or crack Egg)
+        | - SPRAY {object_name}        : Spray {object_name} with held object
+        | - TOGGLE_ON {object_name}    : Turn on {object_name}
+        | - TOGGLE_OFF {object_name}   : Turn off {object_name}
+--------]
