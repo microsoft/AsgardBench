@@ -1,0 +1,282 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Plan Generator",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/Magmathor/plan_generator.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Plan Viewer",
+            "type": "debugpy",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "run",
+                "${workspaceFolder}/Magmathor/plan_viewer.py"
+            ],
+            "module": "streamlit"
+        },
+        {
+            "name": "Plan Monitor",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "run",
+                "${workspaceFolder}/Magmathor/Utils/plan_monitor.py"
+            ],
+            "module": "streamlit"
+        },
+        {
+            "name": "Manual Conrol",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/Magmathor/Utils/manual_control.py",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Model Tester (WSL)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/Magmathor/Model/model_tester.py",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "args": [
+                "--test", "magt_benchmark_p2",
+                "--previous_image", "none",
+                "--model", "gpt-4o",
+                "--model-name", "gpt-4o",
+                "--rep", "1",
+                "--temperature", "0.0",
+                "--max_completion_tokens", "4096",
+                "--feedback_type", "simple",
+                "--hand_transparency", "60",
+                "--full_steps"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": false
+        },
+        {
+            "name": "Model Tester",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/Magmathor/Model/model_tester.py",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+                "CUDA_VISIBLE_DEVICES": "0,1,2,3"
+            },
+            "args": [
+                "--test", "magt_benchmark_p5",
+                "--include_common_sense",
+                "--model", "gpt-5.2-medium",
+                "--model-name", "gpt-5.2-medium-vscode",
+                "--rep", "1",
+                "--temperature", "0.6",
+                "--max_completion_tokens", "4096",
+                "--feedback_type", "simple",
+                "--full_steps",
+                "--previous_image", "none",
+                "--hand_transparency", "60"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": false
+        },
+        {
+            "name": "Count Plans",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/Magmathor/Utils/count_plans.py",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Convert RawStep",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/Magmathor/Utils/convert_raw.py",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Save Scene Items",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/Magmathor/Utils/make_item_cache.py",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Test",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/Magmathor/Tests/tests.py",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Convert Plan to Prompt",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/Magmathor/Utils/convert_plan_to_prompt.py",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+                "INPUT_DIR": "C:/Code/magma-r/magmathor/Generated/training"
+            },
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Display Plan Tree",
+            "type": "python",
+            "request": "launch",
+            "module": "Magmathor.Utils.display_plan_tree",
+            "args": [
+                "${input:planTreeDir}"
+            ],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "View Test Results",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "run",
+                "${workspaceFolder}/Magmathor/Utils/compare_images.py",
+                "--",
+                "--benchmark", "${input:benchmarkName}"
+            ],
+            "module": "streamlit"
+        },
+        {
+            "name": "OpenRouter Cost Report",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/scripts/openrouter_cost_report.py",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Generate Reports",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/Magmathor/Model/generate_reports.py",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "args": [],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Python Debugger: Remote Attach",
+            "type": "debugpy",
+            "request": "attach",
+            "connect": {
+                "host": "localhost",
+                "port": 5678
+            },
+            "justMyCode": false,
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}",
+                    "remoteRoot": "."
+                }
+            ]
+        },
+        {
+            "name": "Remount Blob Storage",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "bash ${workspaceFolder}/Magmathor/Utils/remount_blob.sh",
+            "cwd": "${workspaceFolder}"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Plan Generator + Monitor",
+            "configurations": [
+                "Plan Generator",
+                "Plan Monitor"
+            ],
+            "stopAll": true
+        }
+    ],
+    "inputs": [
+        {
+            "id": "planTreeDir",
+            "type": "promptString",
+            "description": "Directory containing plan.json files (e.g., Generated/coffee_plans)",
+            "default": "Generated/coffee_plans"
+        },
+        {
+            "id": "benchmarkName",
+            "type": "promptString",
+            "description": "Benchmark name for comparing images",
+            "default": "benchmark"
+        },
+        {
+            "id": "testName",
+            "type": "promptString",
+            "description": "Test set directory name (e.g., test_new_positions_1)",
+            "default": "test_new_positions_1"
+        },
+        {
+            "id": "modelPath",
+            "type": "promptString",
+            "description": "Model path or name",
+            "default": "Qwen/Qwen2.5-VL-7B-Instruct"
+        },
+        {
+            "id": "modelName",
+            "type": "promptString",
+            "description": "Human-readable model name for display purposes",
+            "default": "Qwen2.5-VL-7B-Instruct_BASE"
+        }
+    ]
+}

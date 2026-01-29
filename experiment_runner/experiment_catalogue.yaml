@@ -1,0 +1,908 @@
+# Experiment catalogue for GPT-4o ablation study
+# All experiments use: prompt_version=v2, temperature=0.6, max_completion_tokens=4096
+#
+# Reasoning effort for reasoning models (o1, o3, gpt-5, gpt-5.2, etc.):
+#   Append effort level to model name: gpt-5.2-{effort}
+#   Valid effort levels: none, low, medium, high
+#   Example: model: gpt-5.2-medium
+#
+# Run mode: where to execute the experiment
+#   run_mode: local  (default) - Run locally via experiment_runner
+#   run_mode: aml    - Submit to AML via Amulet (use 'aml submit' command)
+#
+# Naming convention: T{text}_F{feedback}_H{hand}_C{common}_P{prompt}_I{images}_R{memory}_S{full_steps}_E{temp}_M{max}
+#   T: text_only (0=images, 1=text only)
+#   F: feedback_type (n=none, s=simple, d=detailed)
+#   H: hand_transparency (00-99)
+#   C: include_common_sense (0=off, 1=on)
+#   P: prompt_version (1, 2)
+#   I: previous_image (0=none, 1=color, 2=grayscale)
+#   R: use_memory (0=off, 1=on)
+#   S: full_steps (0=off, 1=on)
+#   E: temperature (60 = 0.6)
+#   M: max_completion_tokens
+
+# Baseline config: T0_Fs_H60_C0_I1_R0_S1
+
+base_settings:
+  replicates: 1
+  text_only: false
+  feedback_type: simple
+  hand_transparency: 60
+  include_common_sense: false
+  prompt_version: v2
+  previous_image: color
+  use_memory: true
+  full_steps: true
+  temperature: 0.0
+  max_completion_tokens: 4096
+
+
+experiments:
+  # - name: gpt-5.2-none
+  #   run_mode: aml
+  #   settings:
+  #     model: gpt-5.2-none
+  #     replicates: 3
+
+  # - name: gpt-5.2-medium
+  #   run_mode: aml
+  #   settings:
+  #     model: gpt-5.2-medium
+  #     replicates: 3
+
+  # ############################################
+  # # full set for gpt-4o
+  # ############################################
+
+  # T0_Fs_H60_C0_I1_R1_S1 (baseline)
+  - name: gpt-4o
+    settings:
+      model: gpt-4o
+      replicates: 3
+
+  # T0_Fn_H60_C0_I1_R1_S1
+  - name: gpt-4o
+    settings:
+      model: gpt-4o
+      replicates: 3
+      feedback_type: none
+
+  # T0_Fd_H60_C0_I1_R1_S1
+  - name: gpt-4o
+    settings:
+      model: gpt-4o
+      replicates: 3
+      feedback_type: detailed
+
+  # T0_Fs_H00_C0_I1_R1_S1
+  - name: gpt-4o
+    settings:
+      model: gpt-4o
+      replicates: 3
+      hand_transparency: 0
+
+  # # T0_Fs_H60_C1_I1_R1_S1
+  # - name: gpt-4o
+  #   settings:
+  #     model: gpt-4o
+  #     replicates: 3
+  #     include_common_sense: true
+
+  # T0_Fs_H60_C0_I0_R1_S1
+  - name: gpt-4o
+    settings:
+      model: gpt-4o
+      replicates: 3
+      previous_image: none
+
+  # T0_Fs_H60_C0_I2_R1_S1
+  - name: gpt-4o
+    settings:
+      model: gpt-4o
+      replicates: 3
+      previous_image: grayscale
+
+  # T0_Fs_H60_C0_I1_R0_S1
+  - name: gpt-4o
+    settings:
+      model: gpt-4o
+      replicates: 3
+      use_memory: false
+
+  # T0_Fs_H60_C0_I1_R1_S0
+  - name: gpt-4o
+    settings:
+      model: gpt-4o
+      replicates: 3
+      full_steps: false
+
+  # T1_Fn_H00_C0_I0_R1_S1
+  - name: gpt-4o
+    settings:
+      model: gpt-4o
+      replicates: 3
+      text_only: true
+      feedback_type: none
+      hand_transparency: 0
+      previous_image: none
+
+  # T1_Fs_H00_C0_I0_R1_S1
+  - name: gpt-4o
+    settings:
+      model: gpt-4o
+      replicates: 3
+      text_only: true
+      feedback_type: simple
+      hand_transparency: 0
+      previous_image: none
+
+  # T1_Fd_H00_C0_I0_R1_S1
+  - name: gpt-4o
+    settings:
+      model: gpt-4o
+      replicates: 3
+      text_only: true
+      feedback_type: detailed
+      hand_transparency: 0
+      previous_image: none
+
+  ############################################
+  # full set for gpt-5.2-high
+  ############################################
+
+  # T0_Fs_H60_C0_I1_R1_S1 (baseline)
+  - name: gpt-5.2-high
+    run_mode: aml
+    settings:
+      model: gpt-5.2-high
+      max_completion_tokens: 16384
+
+  # T0_Fn_H60_C0_I1_R1_S1
+  - name: gpt-5.2-high
+    run_mode: aml
+    settings:
+      model: gpt-5.2-high
+      feedback_type: none
+      max_completion_tokens: 16384
+
+  # T0_Fd_H60_C0_I1_R1_S1
+  - name: gpt-5.2-high
+    run_mode: aml
+    settings:
+      model: gpt-5.2-high
+      feedback_type: detailed
+      max_completion_tokens: 16384
+
+  # T0_Fs_H00_C0_I1_R1_S1
+  - name: gpt-5.2-high
+    run_mode: aml
+    settings:
+      model: gpt-5.2-high
+      max_completion_tokens: 16384
+      hand_transparency: 0
+
+  # # T0_Fs_H60_C1_I1_R1_S1
+  # - name: gpt-5.2-high
+  #   run_mode: aml
+  #   settings:
+  #     model: gpt-5.2-high
+  #     max_completion_tokens: 16384
+  #     include_common_sense: true
+
+  # T0_Fs_H60_C0_I0_R1_S1
+  - name: gpt-5.2-high
+    run_mode: aml
+    settings:
+      model: gpt-5.2-high
+      max_completion_tokens: 16384
+      previous_image: none
+
+  # T0_Fs_H60_C0_I2_R1_S1
+  - name: gpt-5.2-high
+    run_mode: aml
+    settings:
+      model: gpt-5.2-high
+      max_completion_tokens: 16384
+      previous_image: grayscale
+
+  # T0_Fs_H60_C0_I1_R0_S1
+  - name: gpt-5.2-high
+    run_mode: aml
+    settings:
+      model: gpt-5.2-high
+      max_completion_tokens: 16384
+      use_memory: false
+
+  # T0_Fs_H60_C0_I1_R1_S0
+  - name: gpt-5.2-high
+    run_mode: aml
+    settings:
+      model: gpt-5.2-high
+      max_completion_tokens: 16384
+      full_steps: false
+
+  # T1_Fn_H00_C0_I0_R1_S1
+  - name: gpt-5.2-high
+    run_mode: aml
+    settings:
+      model: gpt-5.2-high
+      max_completion_tokens: 16384
+      text_only: true
+      feedback_type: none
+      hand_transparency: 0
+      previous_image: none
+
+  # T1_Fs_H00_C0_I0_R1_S1
+  - name: gpt-5.2-high
+    run_mode: aml
+    settings:
+      model: gpt-5.2-high
+      max_completion_tokens: 16384
+      text_only: true
+      feedback_type: simple
+      hand_transparency: 0
+      previous_image: none
+
+  # T1_Fd_H00_C0_I0_R1_S1
+  - name: gpt-5.2-high
+    run_mode: aml
+    settings:
+      model: gpt-5.2-high
+      max_completion_tokens: 16384
+      text_only: true
+      feedback_type: detailed
+      hand_transparency: 0
+      previous_image: none
+
+  ############################################
+  # full set for llama
+  ############################################
+
+  # T0_Fs_H60_C0_I1_R1_S1 (baseline)
+  - name: Llama-4-Maverick-17B-128E-Instruct-FP8
+    run_mode: aml
+    settings:
+      model: Llama-4-Maverick-17B-128E-Instruct-FP8
+      replicates: 3
+
+  # T0_Fn_H60_C0_I1_R1_S1
+  - name: Llama-4-Maverick-17B-128E-Instruct-FP8
+    run_mode: aml
+    settings:
+      model: Llama-4-Maverick-17B-128E-Instruct-FP8
+      feedback_type: none
+      replicates: 3
+
+  # T0_Fd_H60_C0_I1_R1_S1
+  - name: Llama-4-Maverick-17B-128E-Instruct-FP8
+    run_mode: aml
+    settings:
+      model: Llama-4-Maverick-17B-128E-Instruct-FP8
+      feedback_type: detailed
+      replicates: 3
+
+  # T0_Fs_H00_C0_I1_R1_S1
+  - name: Llama-4-Maverick-17B-128E-Instruct-FP8
+    run_mode: aml
+    settings:
+      model: Llama-4-Maverick-17B-128E-Instruct-FP8
+      hand_transparency: 0
+      replicates: 3
+
+  # # T0_Fs_H60_C1_I1_R1_S1
+  # - name: Llama-4-Maverick-17B-128E-Instruct-FP8
+  #   run_mode: aml
+  #   settings:
+  #     model: Llama-4-Maverick-17B-128E-Instruct-FP8
+  #     include_common_sense: true
+  #     replicates: 3
+
+  # T0_Fs_H60_C0_I0_R1_S1
+  - name: Llama-4-Maverick-17B-128E-Instruct-FP8
+    run_mode: aml
+    settings:
+      model: Llama-4-Maverick-17B-128E-Instruct-FP8
+      previous_image: none
+      replicates: 3
+
+  # T0_Fs_H60_C0_I2_R1_S1
+  - name: Llama-4-Maverick-17B-128E-Instruct-FP8
+    run_mode: aml
+    settings:
+      model: Llama-4-Maverick-17B-128E-Instruct-FP8
+      previous_image: grayscale
+      replicates: 3
+
+  # T0_Fs_H60_C0_I1_R0_S1
+  - name: Llama-4-Maverick-17B-128E-Instruct-FP8
+    run_mode: aml
+    settings:
+      model: Llama-4-Maverick-17B-128E-Instruct-FP8
+      use_memory: false
+      replicates: 3
+
+  # T0_Fs_H60_C0_I1_R1_S0
+  - name: Llama-4-Maverick-17B-128E-Instruct-FP8
+    run_mode: aml
+    settings:
+      model: Llama-4-Maverick-17B-128E-Instruct-FP8
+      full_steps: false
+      replicates: 3
+
+  # T1_Fn_H00_C0_I0_R1_S1
+  - name: Llama-4-Maverick-17B-128E-Instruct-FP8
+    run_mode: aml
+    settings:
+      model: Llama-4-Maverick-17B-128E-Instruct-FP8
+      text_only: true
+      feedback_type: none
+      hand_transparency: 0
+      previous_image: none
+      replicates: 3
+
+  # T1_Fs_H00_C0_I0_R1_S1
+  - name: Llama-4-Maverick-17B-128E-Instruct-FP8
+    run_mode: aml
+    settings:
+      model: Llama-4-Maverick-17B-128E-Instruct-FP8
+      text_only: true
+      feedback_type: simple
+      hand_transparency: 0
+      previous_image: none
+      replicates: 3
+
+  # T1_Fd_H00_C0_I0_R1_S1
+  - name: Llama-4-Maverick-17B-128E-Instruct-FP8
+    run_mode: aml
+    settings:
+      model: Llama-4-Maverick-17B-128E-Instruct-FP8
+      text_only: true
+      feedback_type: detailed
+      hand_transparency: 0
+      previous_image: none
+      replicates: 3
+
+  # ############################################
+  # # full set for mistral
+  # ############################################
+
+  # T0_Fs_H60_C0_I1_R1_S1 (baseline)
+  - name: Mistral-Large-3
+    run_mode: aml
+    settings:
+      model: Mistral-Large-3
+      replicates: 3
+
+  # T0_Fn_H60_C0_I1_R1_S1
+  - name: Mistral-Large-3
+    run_mode: aml
+    settings:
+      model: Mistral-Large-3
+      feedback_type: none
+      replicates: 3
+
+  # T0_Fd_H60_C0_I1_R1_S1
+  - name: Mistral-Large-3
+    run_mode: aml
+    settings:
+      model: Mistral-Large-3
+      feedback_type: detailed
+      replicates: 3
+
+  # T0_Fs_H00_C0_I1_R1_S1
+  - name: Mistral-Large-3
+    run_mode: aml
+    settings:
+      model: Mistral-Large-3
+      hand_transparency: 0
+      replicates: 3
+
+  # # T0_Fs_H60_C1_I1_R1_S1
+  # - name: Mistral-Large-3
+  #   run_mode: aml
+  #   settings:
+  #     model: Mistral-Large-3
+  #     include_common_sense: true
+  #     replicates: 3
+
+  # T0_Fs_H60_C0_I0_R1_S1
+  - name: Mistral-Large-3
+    run_mode: aml
+    settings:
+      model: Mistral-Large-3
+      previous_image: none
+      replicates: 3
+
+  # T0_Fs_H60_C0_I2_R1_S1
+  - name: Mistral-Large-3
+    run_mode: aml
+    settings:
+      model: Mistral-Large-3
+      previous_image: grayscale
+      replicates: 3
+
+  # T0_Fs_H60_C0_I1_R0_S1
+  - name: Mistral-Large-3
+    run_mode: aml
+    settings:
+      model: Mistral-Large-3
+      use_memory: false
+      replicates: 3
+
+  # T0_Fs_H60_C0_I1_R1_S0
+  - name: Mistral-Large-3
+    run_mode: aml
+    settings:
+      model: Mistral-Large-3
+      full_steps: false
+      replicates: 3
+
+  # T1_Fn_H00_C0_I0_R1_S1
+  - name: Mistral-Large-3
+    run_mode: aml
+    settings:
+      model: Mistral-Large-3
+      text_only: true
+      feedback_type: none
+      hand_transparency: 0
+      previous_image: none
+      replicates: 3
+
+  # T1_Fs_H00_C0_I0_R1_S1
+  - name: Mistral-Large-3
+    run_mode: aml
+    settings:
+      model: Mistral-Large-3
+      text_only: true
+      feedback_type: simple
+      hand_transparency: 0
+      previous_image: none
+      replicates: 3
+
+  # T1_Fd_H00_C0_I0_R1_S1
+  - name: Mistral-Large-3
+    run_mode: aml
+    settings:
+      model: Mistral-Large-3
+      text_only: true
+      feedback_type: detailed
+      hand_transparency: 0
+      previous_image: none
+      replicates: 3
+
+  # ############################################
+  # # google__gemini-3-pro-preview-high
+  # ############################################
+
+  # T0_Fs_H60_C0_I1_R1_S1 (baseline)
+  - name: google__gemini-3-pro-preview-high
+    run_mode: aml
+    settings:
+      model: google__gemini-3-pro-preview-high
+      max_completion_tokens: 16384
+      replicates: 2
+
+  # # T0_Fn_H60_C0_I1_R1_S1
+  # - name: google__gemini-3-pro-preview-high
+  #   run_mode: aml
+  #   settings:
+  #     model: google__gemini-3-pro-preview-high
+  #     feedback_type: none
+  #     max_completion_tokens: 16384
+
+  # # T0_Fd_H60_C0_I1_R1_S1
+  # - name: google__gemini-3-pro-preview-high
+  #   run_mode: aml
+  #   settings:
+  #     model: google__gemini-3-pro-preview-high
+  #     feedback_type: detailed
+  #     max_completion_tokens: 16384
+
+  # # T0_Fs_H00_C0_I1_R1_S1
+  # - name: google__gemini-3-pro-preview-high
+  #   run_mode: aml
+  #   settings:
+  #     model: google__gemini-3-pro-preview-high
+  #     max_completion_tokens: 16384
+  #     hand_transparency: 0
+
+  # # # T0_Fs_H60_C1_I1_R1_S1
+  # # - name: google__gemini-3-pro-preview-high
+  # #   run_mode: aml
+  # #   settings:
+  # #     model: google__gemini-3-pro-preview-high
+  # #     max_completion_tokens: 16384
+  # #     include_common_sense: true
+
+  # T0_Fs_H60_C0_I0_R1_S1
+  - name: google__gemini-3-pro-preview-high
+    run_mode: aml
+    settings:
+      model: google__gemini-3-pro-preview-high
+      replicates: 2
+      max_completion_tokens: 16384
+      previous_image: none
+
+  # # T0_Fs_H60_C0_I2_R1_S1
+  # - name: google__gemini-3-pro-preview-high
+  #   run_mode: aml
+  #   settings:
+  #     model: google__gemini-3-pro-preview-high
+  #     max_completion_tokens: 16384
+  #     previous_image: grayscale
+
+  # # T0_Fs_H60_C0_I1_R0_S1
+  # - name: google__gemini-3-pro-preview-high
+  #   run_mode: aml
+  #   settings:
+  #     model: google__gemini-3-pro-preview-high
+  #     max_completion_tokens: 16384
+  #     use_memory: false
+
+  # T0_Fs_H60_C0_I1_R1_S0
+  - name: google__gemini-3-pro-preview-high
+    run_mode: aml
+    settings:
+      model: google__gemini-3-pro-preview-high
+      max_completion_tokens: 16384
+      full_steps: false
+
+  # # # T1_Fn_H00_C0_I0_R1_S1
+  # # - name: google__gemini-3-pro-preview-high
+  # #   run_mode: aml
+  # #   settings:
+  # #     model: google__gemini-3-pro-preview-high
+  # #     max_completion_tokens: 16384
+  # #     text_only: true
+  # #     feedback_type: none
+  # #     hand_transparency: 0
+  # #     previous_image: none
+
+  # # T1_Fs_H00_C0_I0_R1_S1
+  # - name: google__gemini-3-pro-preview-high
+  #   run_mode: aml
+  #   settings:
+  #     model: google__gemini-3-pro-preview-high
+  #     max_completion_tokens: 16384
+  #     text_only: true
+  #     feedback_type: simple
+  #     hand_transparency: 0
+  #     previous_image: none
+
+  # # # T1_Fd_H00_C0_I0_R1_S1
+  # # - name: google__gemini-3-pro-preview-high
+  # #   run_mode: aml
+  # #   settings:
+  # #     model: google__gemini-3-pro-preview-high
+  # #     max_completion_tokens: 16384
+  # #     text_only: true
+  # #     feedback_type: detailed
+  # #     hand_transparency: 0
+  # #     previous_image: none
+
+  # ############################################
+  # # anthropic__claude-opus-4.5-high
+  # ############################################
+
+  # T0_Fs_H60_C0_I1_R1_S1 (baseline)
+  - name: anthropic__claude-opus-4.5-high
+    run_mode: aml
+    settings:
+      model: anthropic__claude-opus-4.5-high
+      replicates: 2
+      max_completion_tokens: 16384
+
+  # # T0_Fn_H60_C0_I1_R1_S1
+  # - name: anthropic__claude-opus-4.5-high
+  #   run_mode: aml
+  #   settings:
+  #     model: anthropic__claude-opus-4.5-high
+  #     feedback_type: none
+  #     max_completion_tokens: 16384
+
+  # # T0_Fd_H60_C0_I1_R1_S1
+  # - name: anthropic__claude-opus-4.5-high
+  #   run_mode: aml
+  #   settings:
+  #     model: anthropic__claude-opus-4.5-high
+  #     feedback_type: detailed
+  #     max_completion_tokens: 16384
+
+  # # T0_Fs_H00_C0_I1_R1_S1
+  # - name: anthropic__claude-opus-4.5-high
+  #   run_mode: aml
+  #   settings:
+  #     model: anthropic__claude-opus-4.5-high
+  #     max_completion_tokens: 16384
+  #     hand_transparency: 0
+
+  # # # T0_Fs_H60_C1_I1_R1_S1
+  # # - name: anthropic__claude-opus-4.5-high
+  # #   run_mode: aml
+  # #   settings:
+  # #     model: anthropic__claude-opus-4.5-high
+  # #     max_completion_tokens: 16384
+  # #     include_common_sense: true
+
+  # T0_Fs_H60_C0_I0_R1_S1
+  - name: anthropic__claude-opus-4.5-high
+    run_mode: aml
+    settings:
+      model: anthropic__claude-opus-4.5-high
+      max_completion_tokens: 16384
+      previous_image: none
+
+  # # T0_Fs_H60_C0_I2_R1_S1
+  # - name: anthropic__claude-opus-4.5-high
+  #   run_mode: aml
+  #   settings:
+  #     model: anthropic__claude-opus-4.5-high
+  #     max_completion_tokens: 16384
+  #     previous_image: grayscale
+
+  # # T0_Fs_H60_C0_I1_R0_S1
+  # - name: anthropic__claude-opus-4.5-high
+  #   run_mode: aml
+  #   settings:
+  #     model: anthropic__claude-opus-4.5-high
+  #     max_completion_tokens: 16384
+  #     use_memory: false
+
+  # T0_Fs_H60_C0_I1_R1_S0
+  - name: anthropic__claude-opus-4.5-high
+    run_mode: aml
+    settings:
+      model: anthropic__claude-opus-4.5-high
+      max_completion_tokens: 16384
+      full_steps: false
+
+  # # # T1_Fn_H00_C0_I0_R1_S1
+  # # - name: anthropic__claude-opus-4.5-high
+  # #   run_mode: aml
+  # #   settings:
+  # #     model: anthropic__claude-opus-4.5-high
+  # #     max_completion_tokens: 16384
+  # #     text_only: true
+  # #     feedback_type: none
+  # #     hand_transparency: 0
+  # #     previous_image: none
+
+  # # T1_Fs_H00_C0_I0_R1_S1
+  # - name: anthropic__claude-opus-4.5-high
+  #   run_mode: aml
+  #   settings:
+  #     model: anthropic__claude-opus-4.5-high
+  #     max_completion_tokens: 16384
+  #     text_only: true
+  #     feedback_type: simple
+  #     hand_transparency: 0
+  #     previous_image: none
+
+  # # # T1_Fd_H00_C0_I0_R1_S1
+  # # - name: anthropic__claude-opus-4.5-high
+  # #   run_mode: aml
+  # #   settings:
+  # #     model: anthropic__claude-opus-4.5-high
+  # #     max_completion_tokens: 16384
+  # #     text_only: true
+  # #     feedback_type: detailed
+  # #     hand_transparency: 0
+  # #     previous_image: none
+
+
+  # ############################################
+  # # qwen__qwen3-vl-235b-a22b-thinking
+  # ############################################
+
+  # T0_Fs_H60_C0_I1_R1_S1 (baseline)
+  - name: qwen__qwen3-vl-235b-a22b-thinking
+    run_mode: aml
+    settings:
+      model: qwen__qwen3-vl-235b-a22b-thinking
+      max_completion_tokens: 16384
+
+  # T0_Fn_H60_C0_I1_R1_S1
+  - name: qwen__qwen3-vl-235b-a22b-thinking
+    run_mode: aml
+    settings:
+      model: qwen__qwen3-vl-235b-a22b-thinking
+      feedback_type: none
+      max_completion_tokens: 16384
+
+  # T0_Fd_H60_C0_I1_R1_S1
+  - name: qwen__qwen3-vl-235b-a22b-thinking
+    run_mode: aml
+    settings:
+      model: qwen__qwen3-vl-235b-a22b-thinking
+      feedback_type: detailed
+      max_completion_tokens: 16384
+
+  # T0_Fs_H00_C0_I1_R1_S1
+  - name: qwen__qwen3-vl-235b-a22b-thinking
+    run_mode: aml
+    settings:
+      model: qwen__qwen3-vl-235b-a22b-thinking
+      max_completion_tokens: 16384
+      hand_transparency: 0
+
+  # # T0_Fs_H60_C1_I1_R1_S1
+  # - name: qwvl-2-a22b-
+  #   settings:
+  #     model: qwen__qwen3-vl-235b-a22b-thinking
+  #     max_completion_tokens: 16384
+  #     include_common_sense: true
+
+  # T0_Fs_H60_C0_I0_R1_S1
+  - name: qwen__qwen3-vl-235b-a22b-thinking
+    run_mode: aml
+    settings:
+      model: qwen__qwen3-vl-235b-a22b-thinking
+      max_completion_tokens: 16384
+      previous_image: none
+
+  # T0_Fs_H60_C0_I2_R1_S1
+  - name: qwen__qwen3-vl-235b-a22b-thinking
+    run_mode: aml
+    settings:
+      model: qwen__qwen3-vl-235b-a22b-thinking
+      max_completion_tokens: 16384
+      previous_image: grayscale
+
+  # T0_Fs_H60_C0_I1_R0_S1
+  - name: qwen__qwen3-vl-235b-a22b-thinking
+    run_mode: aml
+    settings:
+      model: qwen__qwen3-vl-235b-a22b-thinking
+      max_completion_tokens: 16384
+      use_memory: false
+
+  # T0_Fs_H60_C0_I1_R1_S0
+  - name: qwen__qwen3-vl-235b-a22b-thinking
+    run_mode: aml
+    settings:
+      model: qwen__qwen3-vl-235b-a22b-thinking
+      max_completion_tokens: 16384
+      full_steps: false
+
+  # T1_Fn_H00_C0_I0_R1_S1
+  - name: qwen__qwen3-vl-235b-a22b-thinking
+    run_mode: aml
+    settings:
+      model: qwen__qwen3-vl-235b-a22b-thinking
+      max_completion_tokens: 16384
+      text_only: true
+      feedback_type: none
+      hand_transparency: 0
+      previous_image: none
+
+  # T1_Fs_H00_C0_I0_R1_S1
+  - name: qwen__qwen3-vl-235b-a22b-thinking
+    run_mode: aml
+    settings:
+      model: qwen__qwen3-vl-235b-a22b-thinking
+      max_completion_tokens: 16384
+      text_only: true
+      feedback_type: simple
+      hand_transparency: 0
+      previous_image: none
+
+  # T1_Fd_H00_C0_I0_R1_S1
+  - name: qwen__qwen3-vl-235b-a22b-thinking
+    run_mode: aml
+    settings:
+      model: qwen__qwen3-vl-235b-a22b-thinking
+      max_completion_tokens: 16384
+      text_only: true
+      feedback_type: detailed
+      hand_transparency: 0
+      previous_image: none
+
+
+  # ############################################
+  # # z-ai__glm-4.6v
+  # ############################################
+
+  # T0_Fs_H60_C0_I1_R1_S1 (baseline)
+  - name: z-ai__glm-4.6v
+    run_mode: aml
+    settings:
+      model: z-ai__glm-4.6v
+      max_completion_tokens: 16384
+
+  # T0_Fn_H60_C0_I1_R1_S1
+  - name: z-ai__glm-4.6v
+    run_mode: aml
+    settings:
+      model: z-ai__glm-4.6v
+      feedback_type: none
+      max_completion_tokens: 16384
+
+  # T0_Fd_H60_C0_I1_R1_S1
+  - name: z-ai__glm-4.6v
+    run_mode: aml
+    settings:
+      model: z-ai__glm-4.6v
+      feedback_type: detailed
+      max_completion_tokens: 16384
+
+  # T0_Fs_H00_C0_I1_R1_S1
+  - name: z-ai__glm-4.6v
+    run_mode: aml
+    settings:
+      model: z-ai__glm-4.6v
+      max_completion_tokens: 16384
+      hand_transparency: 0
+
+  # # T0_Fs_H60_C1_I1_R1_S1
+  # - name: z-ai__glm-4.6v
+  #   run_mode: aml
+  #   settings:
+  #     model: z-ai__glm-4.6v
+  #     max_completion_tokens: 16384
+  #     include_common_sense: true
+
+  # T0_Fs_H60_C0_I0_R1_S1
+  - name: z-ai__glm-4.6v
+    run_mode: aml
+    settings:
+      model: z-ai__glm-4.6v
+      max_completion_tokens: 16384
+      previous_image: none
+
+  # T0_Fs_H60_C0_I2_R1_S1
+  - name: z-ai__glm-4.6v
+    run_mode: aml
+    settings:
+      model: z-ai__glm-4.6v
+      max_completion_tokens: 16384
+      previous_image: grayscale
+
+  # T0_Fs_H60_C0_I1_R0_S1
+  - name: z-ai__glm-4.6v
+    run_mode: aml
+    settings:
+      model: z-ai__glm-4.6v
+      max_completion_tokens: 16384
+      use_memory: false
+
+  # T0_Fs_H60_C0_I1_R1_S0
+  - name: z-ai__glm-4.6v
+    run_mode: aml
+    settings:
+      model: z-ai__glm-4.6v
+      max_completion_tokens: 16384
+      full_steps: false
+
+  # T1_Fn_H00_C0_I0_R1_S1
+  - name: z-ai__glm-4.6v
+    run_mode: aml
+    settings:
+      model: z-ai__glm-4.6v
+      max_completion_tokens: 16384
+      text_only: true
+      feedback_type: none
+      hand_transparency: 0
+      previous_image: none
+
+  # T1_Fs_H00_C0_I0_R1_S1
+  - name: z-ai__glm-4.6v
+    run_mode: aml
+    settings:
+      model: z-ai__glm-4.6v
+      max_completion_tokens: 16384
+      text_only: true
+      feedback_type: simple
+      hand_transparency: 0
+      previous_image: none
+
+  # T1_Fd_H00_C0_I0_R1_S1
+  - name: z-ai__glm-4.6v
+    run_mode: aml
+    settings:
+      model: z-ai__glm-4.6v
+      max_completion_tokens: 16384
+      text_only: true
+      feedback_type: detailed
+      hand_transparency: 0
+      previous_image: none

@@ -1,0 +1,64 @@
+# Generated data and test directories
+Generated/
+Replay/
+Test/
+Tests/
+_Test/
+checkpoints/
+
+# Python cache and virtual environments
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.venv/
+venv/
+env/
+ENV/
+
+# Development tools and caches
+.mypy_cache/
+.pytest_cache/
+.coverage
+.tox/
+.cache/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+.tmp/
+logs/
+
+# Model checkpoints and large files (unless specifically needed)
+*.pth
+*.pt
+*.ckpt
+*.model
+*.pkl
+*.pickle
+
+# Git and version control
+.git/
+.gitignore
+
+# Documentation builds
+docs/_build/
+*.egg-info/

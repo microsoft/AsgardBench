@@ -1,0 +1,176 @@
+# Magmathor
+
+## Setup
+
+### Prerequisites
+
+- [uv](https://docs.astral.sh/uv/) (Python package manager)
+
+### Installation
+
+```bash
+# Install dependencies
+uv sync
+
+# Install pre-commit hooks (for code formatting)
+uv run pre-commit install
+```
+
+> **Note:** The plan generator must be run from WSL.
+
+## Running Model Evaluations
+
+There are two ways to run model evaluations:
+
+### Option 1: Local Testing with `model_tester.py`
+
+Run evaluations locally using the `model_tester.py` script. This is useful for debugging or running on a local GPU.
+
+**Basic usage:**
+```bash
+python Magmathor/Model/model_tester.py --test <test_name> --model <model_path> --model-name <display_name>
+```
+
+**Examples:**
+
+```bash
+# Test with the base Qwen2.5-VL model on test_new_positions_1
+python Magmathor/Model/model_tester.py \
+    --test test_new_positions_1 \
+    --model Qwen/Qwen2.5-VL-7B-Instruct \
+    --model-name Qwen2.5-VL-7B-Instruct_BASE
+
+# Test a fine-tuned model with custom temperature
+python Magmathor/Model/model_tester.py \
+    --test test_new_rooms \
+    --model /path/to/finetuned/model \
+    --model-name MyFinetunedModel \
+    --temperature 0.8
+
+
+# Print results only (no testing)
+python Magmathor/Model/model_tester.py \
+    --test test_new_positions_1 \
+    --print-all-results-auto
+```
+
+**Available arguments:**
+| Argument | Description |
+|----------|-------------|
+| `--test` | Test set name (e.g., `test_new_positions_1`, `test_new_rooms`) |
+| `--model` | Model path or HuggingFace model name |
+| `--model-name` | Human-readable name for results display |
+| `--temperature` | Sampling temperature (default: 0.6) |
+| `--text_only` | Only use text in prompt
+| `--print-results` | Print results without running tests |
+| `--print-all-results-auto` | Auto-discover and print all results |
+| `--check-completion` | Check if all tests are complete (exits with code 0/1) |
+
+### Option 2: Azure ML Testing with AMLT
+
+Run evaluations at scale on Azure ML using AMLT (Azure Machine Learning Tools).
+
+**Prerequisites:**
+
+First, activate the amulet environment:
+```powershell
+C:/Users/laliden/Code/amulet/venv/Scripts/Activate.ps1
+```
+
+**Commands:**
+
+Run evaluation experiment:
+```bash
+amlt run Magmathor/Model/aml_evaluate.yaml -y {job_name}
+```
+
+Collect test results (stores results in blob storage under `/Tests/results.csv`):
+```bash
+amlt run Magmathor/Model/aml_results.yaml -y {job_name}
+```
+
+---
+
+## Comparing Test Results
+
+Use `compare_images.py` to visually compare source (generated) images with test replay images side by side. This is useful for debugging failed test cases where the replay diverged from the expected plan.
+
+**Usage:**
+```bash
+streamlit run Magmathor/Utils/compare_images.py -- --benchmark <benchmark_name>
+```
+
+**Example:**
+```bash
+streamlit run Magmathor/Utils/compare_images.py -- --benchmark benchmark
+```
+
+**How it works:**
+- Looks for source directories in `Generated/{benchmark}/`
+- Looks for compare directories in `Test/{benchmark}/replay/` (with underscore prefix, e.g., `_task_name`)
+- Only shows directories where a failed replay exists (indicated by the underscore prefix)
+- Displays matching images side by side for easy comparison
+- Navigate through images with Previous/Next buttons or slider
+- Move between directories with "Next Dir" button
+
+---
+
+## Removing Test Results
+
+Use `remove_test_result.py` to remove a test result entry from `test_results.json` and delete the associated plan folder.
+
+**Usage:**
+```bash
+python Magmathor/Utils/remove_test_result.py <plan_folder_path> [--dry-run]
+```
+
+**Example:**
+```bash
+# Preview what would be removed (no changes made)
+python Magmathor/Utils/remove_test_result.py \
+    "Test/magt_benchmark/gpt-4o--T0_.../Plans/_coffee__Mug(d)_FloorPlan14_V1" \
+    --dry-run
+
+# Actually remove the entry and folder
+python Magmathor/Utils/remove_test_result.py \
+    "Test/magt_benchmark/gpt-4o--T0_.../Plans/_coffee__Mug(d)_FloorPlan14_V1"
+```
+
+**Notes:**
+- Pass the full path to the plan folder inside the `Plans/` directory
+- The script automatically extracts the plan name and finds the test_results.json
+- Handles plan folders with underscore prefixes (e.g., `_coffee__...`) and step count suffixes (e.g., `[38]`)
+- Use `--dry-run` or `-n` to preview changes without modifying anything
+- Quote paths containing parentheses to avoid bash syntax errors
+
+---
+
+## Code Formatting
+
+This repo uses [Black](https://black.readthedocs.io/) and [isort](https://pycqa.github.io/isort/) for consistent code formatting, enforced via pre-commit hooks.
+
+**Hooks run automatically on every commit.** To run manually:
+
+```bash
+uv run pre-commit run --all-files   # Run all formatting checks
+uv run black .                      # Format Python files
+uv run isort .                      # Sort imports
+```
+
+---
+
+## VS Code Launch Configurations
+
+The following debug configurations are available in VS Code:
+
+| Configuration | Description |
+|--------------|-------------|
+| **Plan Generator** | Runs `plan_generator.py` to generate task plans for AI2-THOR scenarios. |
+| **Plan Viewer** | Launches a Streamlit app (`plan_viewer.py`) to visualize and browse generated plans. |
+| **Manual Control** | Runs `manual_control.py` for manually controlling the AI2-THOR environment. |
+| **Model Tester** | Executes `model_tester.py` to test trained models against generated plans. |
+| **Count Plans** | Runs `count_plans.py` to count the number of generated plans. |
+| **Convert RawStep** | Runs `convert_raw.py` to convert raw step data to the standard format. |
+| **Save Scene Items** | Runs `make_item_cache.py` to cache scene item data for faster loading. |
+| **Test** | Runs the unit tests in `tests.py`. |
+| **Convert Plan to Prompt** | Runs `convert_plan_to_prompt.py` to convert plans into prompt format for training. Requires `INPUT_DIR` environment variable.  |
