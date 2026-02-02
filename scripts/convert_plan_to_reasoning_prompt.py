@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+
+# todo(atupini) do we really want to leave this? it's not complete, but would allow someone to create training data.
+
 """
 Ultra-simplified Ray-based converter: AsgardBench -> ShareGPT single-turn conversations.
 - Assumes Ray is installed and available.
