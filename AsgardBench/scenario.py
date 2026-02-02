@@ -14,7 +14,7 @@ from typing import Any, List, Optional, Tuple
 
 import numpy as np
 from ai2thor.controller import Controller
-from ai2thor.platform import CloudRendering, Linux64
+from ai2thor.platform import Linux64
 from PIL import Image
 
 import AsgardBench.constants as c

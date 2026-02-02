@@ -136,25 +136,44 @@ Clean up the internal Magmathor benchmark codebase for public release as "Asgard
   - `OPENAI_API_VERSION` (optional)
   - AsgardBench-specific config vars
 
-### Phase 5: Dead Code & General Cleanup
+### Phase 5: Dead Code & General Cleanup ✅ COMPLETE
 *After all deletions and refactoring - now we can see what's truly unused*
 
-#### 5a: Dead code identification
-- [ ] Identify and remove unused functions/classes across codebase
-- [ ] Check for unused imports
-- [ ] Identify commented-out code blocks that should be removed
-- [ ] Check for unreachable code paths
-- [ ] Remove any debug/test code not meant for production
-- [ ] **Remove BoxPrompts reference** - commented import in model_tester.py for non-existent `prompt_box_templates.py`
-- [ ] **Review all Utils/** - check which utilities are needed for public release:
-  - [ ] `Utils/DataTranformations/` - likely internal data migration scripts (update_cook_tasks.py, etc.)
-  - [ ] `Utils/upgrade/` - one-time upgrade scripts
-  - [ ] `Utils/calibrate_hand_shift.py`, `Utils/review_hand_shifts.py` - internal calibration tools?
-  - [ ] `Utils/convert_*.py` - data conversion utilities
-  - [ ] Keep: `plan_viewer.py`, `compare_images.py`, `manual_control.py`
+#### 5a: Dead code identification ✅
+- [x] Check for unused imports - fixed `CloudRendering` in scenario.py
+- [x] BoxPrompts reference - already removed (not found)
+- [x] TODO comments reviewed - keeping as future improvement notes
 
-#### 5b: Keep useful tools
-- [ ] Keep `plan_viewer.py` (useful for users to inspect benchmark output)
+#### 5b: Utils cleanup ✅
+Deleted internal-only utilities:
+- [x] `Utils/DataTranformations/` - internal data migration scripts
+- [x] `Utils/upgrade/` - one-time upgrade scripts
+- [x] `Utils/calibrate_hand_shift.py`, `Utils/review_hand_shifts.py` - internal calibration
+- [x] `Utils/convert_plan_to_prompt.py`, `Utils/convert_raw.py` - training data conversion
+- [x] `Utils/generate_plan_tree.py`, `Utils/make_item_cache.py` - internal tools
+- [x] `Utils/remove_test_result.py`, `Utils/run_parallel_tests.sh` - internal scripts
+
+Kept useful utilities:
+- [x] `config_utils.py` - core config (used everywhere)
+- [x] `json_utils.py` - JSON reading utilities
+- [x] `count_plans.py` - plan statistics
+- [x] `compare_images.py` - streamlit image comparison tool
+- [x] `manual_control.py` - manual testing tool
+- [x] `plan_monitor.py` - live monitoring tool
+- [x] `display_plan_tree.py` - visualization tool
+
+#### 5c: Scripts cleanup ✅
+Deleted internal scripts:
+- [x] `scripts/amulet/` - empty AML folder
+- [x] `scripts/vllm/` - internal VLLM deployment
+- [x] `scripts/update_test_results_candidate_poses.py` - one-time migration
+- [x] `scripts/verify_plan_directories.py` - internal verification
+- [x] `scripts/remove_api_failures.py` - internal cleanup UI
+- [x] `scripts/analyze_candidate_poses_errors.py` - internal analysis
+
+Kept useful scripts:
+- [x] `scripts/extract_model_errors.py` - debugging tool
+- [x] `scripts/failure_summary.py` - results analysis
 
 ### Phase 6: Include Test Data
 *Can happen anytime, but logical to do after code is stable*
