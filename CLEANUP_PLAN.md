@@ -168,12 +168,13 @@ Deleted internal scripts:
 - [x] `scripts/vllm/` - internal VLLM deployment
 - [x] `scripts/update_test_results_candidate_poses.py` - one-time migration
 - [x] `scripts/verify_plan_directories.py` - internal verification
-- [x] `scripts/remove_api_failures.py` - internal cleanup UI
 - [x] `scripts/analyze_candidate_poses_errors.py` - internal analysis
 
 Kept useful scripts:
 - [x] `scripts/extract_model_errors.py` - debugging tool
 - [x] `scripts/failure_summary.py` - results analysis
+- [x] `scripts/remove_api_failures.py` - useful for users debugging model connections
+- [ ] `scripts/convert_plan_to_reasoning_prompt.py` - TODO: decide if needed (incomplete script)
 
 ### Phase 6: Include Test Data
 *Can happen anytime, but logical to do after code is stable*
