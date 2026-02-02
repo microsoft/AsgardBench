@@ -41,6 +41,25 @@ class Plan:
         self.failed_steps: List[Step] = (
             raw_plan.failed_steps if raw_plan.failed_steps is not None else []
         )
+        # For stripped plans without full steps array
+        self._step_count: int | None = raw_plan.step_count
+        self._initial_pose: dict | None = raw_plan.initial_pose
+
+    @property
+    def step_count(self) -> int:
+        """Number of steps in the ground-truth plan."""
+        if self._step_count is not None:
+            return self._step_count
+        return len(self.steps)
+
+    @property
+    def initial_pose(self) -> dict | None:
+        """Initial agent pose from first step."""
+        if self._initial_pose is not None:
+            return self._initial_pose
+        if self.steps:
+            return self.steps[0].pose.to_dict()
+        return None
 
     def to_dict(self):
         return {
@@ -59,7 +78,17 @@ class Plan:
 
     @classmethod
     def from_dict(cls, data: dict) -> Plan:
-        steps = [Step.from_dict(step) for step in data["steps"]]
+        # Support both full and stripped plan formats
+        if "steps" in data:
+            steps = [Step.from_dict(step) for step in data["steps"]]
+            step_count = None
+            initial_pose = None
+        else:
+            # Stripped format - no steps array
+            steps = []
+            step_count = data.get("step_count")
+            initial_pose = data.get("initial_pose")
+
         return Plan(
             steps,
             RawPlan(
@@ -78,6 +107,8 @@ class Plan:
                 failed_steps=[
                     Step.from_dict(step) for step in data.get("failed_steps", [])
                 ],
+                step_count=step_count,
+                initial_pose=initial_pose,
             ),
         )
 
@@ -240,6 +271,8 @@ class RawPlan:
         plan_type: PlanType,
         goal: Goal = None,
         failed_steps: List[Step] = None,
+        step_count: int = None,
+        initial_pose: dict = None,
     ):
         self.name = name
         self.task_description = task_description
@@ -255,6 +288,10 @@ class RawPlan:
 
         # List of saved failed steps
         self.failed_steps = failed_steps if failed_steps is not None else []
+
+        # For stripped plans without full steps array
+        self.step_count = step_count
+        self.initial_pose = initial_pose
 
     def to_dict(self):
         return {

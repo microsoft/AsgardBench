@@ -1,4 +1,22 @@
-Generated/
+# Generated data - exclude most, but allow benchmark plan.json files
+# We include plan.json for each benchmark task (the only file needed for evaluation)
+Generated/*
+!Generated/magt_benchmark_p1/
+!Generated/magt_benchmark_p2/
+!Generated/magt_benchmark_p3/
+!Generated/magt_benchmark_p4/
+!Generated/magt_benchmark_p5/
+!Generated/magt_benchmark_p6/
+!Generated/magt_benchmark_sanity/
+
+# Within benchmark folders, only keep plan.json
+Generated/magt_benchmark_*/*/*.png
+Generated/magt_benchmark_*/*/*.txt
+Generated/magt_benchmark_*/*/raw_plan.json
+Generated/magt_benchmark_*/*/log.txt
+Generated/magt_benchmark_*/*/steps.txt
+Generated/magt_benchmark_*/*/steps_w_images.txt
+
 Replay/
 Test/
 Tests/

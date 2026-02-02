@@ -379,10 +379,10 @@ class ModelTester:
 
             test_plan = Plan.from_dict(plan_json)
             self.max_steps_soft = max(
-                int(len(test_plan.steps) * EXTRA_STEP_RATIO_SOFT), 15
+                int(test_plan.step_count * EXTRA_STEP_RATIO_SOFT), 15
             )
             self.max_steps_hard = max(
-                int(len(test_plan.steps) * EXTRA_STEP_RATIO_HARD), 20
+                int(test_plan.step_count * EXTRA_STEP_RATIO_HARD), 20
             )
             self.step_extension = StepExtension.NONE
 
@@ -469,7 +469,7 @@ class ModelTester:
                 task_failed=new_plan.task_failed,
                 goal=new_plan.goal,
                 fail_reason=self.fail_reason,
-                orig_step_count=len(test_plan.steps),
+                orig_step_count=test_plan.step_count,
                 test_step_count=len(new_plan.steps),
                 invalid_actions=self.invalid_actions,
                 invalid_objects=self.invalid_objects,
@@ -668,10 +668,11 @@ class ModelTester:
             save_directory=self.plan_folder,
         )
 
-        # NOTE: Needed for old recorded data as randomization seed was not
-        # set, so have to grab initial rotation from the first plan step
-        initial_pose = test_plan.steps[0].pose.to_dict()
-        initial_pose["standing"] = initial_pose["isStanding"]
+        # Get initial pose from plan (works with both full and stripped formats)
+        initial_pose = test_plan.initial_pose
+        if initial_pose:
+            initial_pose = initial_pose.copy()  # Don't modify the original
+            initial_pose["standing"] = initial_pose.get("isStanding", True)
 
         if not os.path.exists(f"{self.plan_folder}/{test_plan.name}"):
             os.makedirs(f"{self.plan_folder}/{test_plan.name}")
@@ -814,6 +815,12 @@ class ModelTester:
                     )
 
             if self.replay:
+                # Replay mode requires full plan with steps array
+                if not test_plan.steps:
+                    raise ValueError(
+                        "Replay mode requires full plan.json with steps array. "
+                        "Stripped benchmark plans cannot be used for replay."
+                    )
                 if (step_count - 1) >= len(test_plan.steps):
                     self.fail_reason = FailType.MAX_STEPS
                     break

@@ -1,0 +1,134 @@
+{
+  "name": "distribute__Tomato_Bowl(d)_FloorPlan10_V1",
+  "task_description": "Slice the Tomato and put a piece in the Bowl",
+  "scene": "FloorPlan10",
+  "plan_type": "generated",
+  "task_failed": false,
+  "setup_actions": [
+    {
+      "action": "dirty",
+      "object_name": "Bowl_148b0fbf",
+      "argument": null
+    }
+  ],
+  "object_setup": {
+    "target_setup": {
+      "object_specifier": {
+        "names": null,
+        "types": [
+          "Tomato",
+          "DishSponge",
+          "Knife",
+          "Pan",
+          "Plate",
+          "Bowl",
+          "Pot"
+        ],
+        "classes": null,
+        "secondary_names": null,
+        "secondary_types": null,
+        "preferred_name": null,
+        "all": false
+      },
+      "container_specifier": null
+    },
+    "distractor_setups": [
+      {
+        "object_specifier": {
+          "names": null,
+          "types": null,
+          "classes": [
+            "Kitchen",
+            "Silverware"
+          ],
+          "secondary_names": null,
+          "secondary_types": null,
+          "preferred_name": null,
+          "all": false
+        },
+        "container_specifier": null
+      }
+    ],
+    "employed_types": [
+      "Tomato",
+      "DishSponge",
+      "Knife",
+      "Pan",
+      "Plate",
+      "Bowl",
+      "Pot"
+    ]
+  },
+  "goal": {
+    "location_goals": [
+      {
+        "object_type": "TomatoSliced",
+        "destination_type": "Bowl",
+        "outcome": "success"
+      }
+    ],
+    "state_goals": [
+      {
+        "object_type": "CoffeeMachine",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Toaster",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "StoveKnob",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Microwave",
+        "state": "isOpen",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Fridge",
+        "state": "isOpen",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Faucet",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Bowl",
+        "state": "isDirty",
+        "value": false,
+        "outcome": "success"
+      }
+    ],
+    "put_away_goals": [],
+    "action_goals": {},
+    "contents_goals": []
+  },
+  "randomization": {
+    "seed": 6337,
+    "error_injection": null,
+    "fail_action": null
+  },
+  "step_count": 36,
+  "initial_pose": {
+    "position": {
+      "x": 0.0,
+      "y": 0.9009992480278015,
+      "z": -1.25
+    },
+    "rotation": 329.0,
+    "isStanding": true,
+    "horizon": 0.0
+  }
+}

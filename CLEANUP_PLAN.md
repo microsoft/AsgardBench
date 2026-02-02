@@ -176,17 +176,35 @@ Kept useful scripts:
 - [x] `scripts/remove_api_failures.py` - useful for users debugging model connections
 - [ ] `scripts/convert_plan_to_reasoning_prompt.py` - TODO: decide if needed (incomplete script)
 
-### Phase 6: Include Test Data
+### Phase 6: Include Test Data ✅ COMPLETE
 *Can happen anytime, but logical to do after code is stable*
 
-- [ ] Add `Generated/magt_benchmark_p1/` through `p6/` to git (JSON only)
-- [ ] Update `.gitignore` to allow benchmark data folders
-- [ ] Verify data doesn't include images or large files
-- [ ] Document data structure
-- [ ] **Create sanity check partition** (`Generated/magt_benchmark_sanity/`):
-  - [ ] Include 2 easy "turn on TV" tasks for quick setup verification
-  - [ ] Document in README as recommended first step
-  - [ ] Users can run this to verify model connection before full benchmark
+- [x] Update `.gitignore` to allow benchmark data folders (plan.json only)
+  - Excludes: PNG images, txt files, raw_plan.json
+  - Includes: plan.json for each task
+- [x] Verify data doesn't include images or large files
+  - Images excluded via .gitignore patterns
+- [x] **Optimize plan.json files** - strip `steps` array (not needed for evaluation)
+  - Original size: ~5.8MB → Stripped size: ~309KB (94.7% reduction!)
+  - Added `step_count` and `initial_pose` fields to replace steps array data
+  - Updated `Plan.from_dict()` to support both full and stripped formats
+  - Updated `model_tester.py` to use new `step_count` and `initial_pose` properties
+- [x] **Create sanity check partition** (`Generated/magt_benchmark_sanity/`):
+  - [x] 2 "turn on TV" tasks (4 steps each) for quick verification
+  - [x] Copied from magt_benchmark_p6
+- [ ] Add benchmark data to git (ready - run `git add Generated/magt_benchmark_*/`)
+- [ ] Document data structure in README (Phase 7)
+
+**Benchmark data structure (stripped format):**
+- `Generated/magt_benchmark_p{1-6}/` - 18 tasks each (108 total)
+- `Generated/magt_benchmark_sanity/` - 2 easy tasks for setup verification
+- Each task folder contains `plan.json` with:
+  - `name`, `task_description`: Task identification
+  - `scene`: AI2-THOR scene ID (e.g., FloorPlan202)
+  - `step_count`: Number of ground-truth steps
+  - `initial_pose`: Agent starting position/rotation
+  - `goal`: Success criteria
+  - `setup_actions`, `object_setup`, `randomization`: Scene configuration
 
 ### Phase 7: Documentation
 *After all code changes are complete*
