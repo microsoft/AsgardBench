@@ -24,32 +24,25 @@ from AsgardBench.cache.item_cache import ItemCache
 
 # Check if verbose output should be disabled
 _QUIET_MODE = os.environ.get("ASGARDBENCH_QUIET", "").lower() in ("1", "true")
-from AsgardBench.Model.glm_actor import GLMActor
-from AsgardBench.Model.gpt_actor import GPTActor
-from AsgardBench.Model.openrouter_actor import OpenRouterActor
-from AsgardBench.Model.prompt_templates import PromptParams, render_prompt
 
-# import AsgardBench.Model.prompt_box_templates as BoxPrompts
-from AsgardBench.Model.qwenvl25_actor import QwenVLActor
+from AsgardBench.Model.openai_actor import OpenAIActor
+from AsgardBench.Model.prompt_templates import PromptParams, render_prompt
 from AsgardBench.Model.test_results import (
     FailType,
     StepExtension,
     TestResult,
     TestResults,
 )
-from AsgardBench.Model.vllm_actor import VLLMActor
 from AsgardBench.objects import AgentPolicyError, ModelEmptyResponseError, StepError
 from AsgardBench.plan import Plan, PlanType
 from AsgardBench.player import Player
 from AsgardBench.scenario import Scenario
 from AsgardBench.step_log import clear_log_buffer, log_print, set_current_step
-from AsgardBench.storage_utils import ensure_dir_exists, get_azure_ml_info
+from AsgardBench.storage_utils import ensure_dir_exists
 from AsgardBench.Utils.config_utils import EvaluationConfig
 
 # Plans that I'm testing
 PLAN_FOLDER = "Plans"
-QWEN_BASE_NAME = "Qwen2.5-VL-7B-Instruct_BASE"
-QWEN_BASE_MODEL = "Qwen/Qwen2.5-VL-7B-Instruct"
 
 MAX_ACTION_REPEATS = 8
 MAX_CONSECUTIVE_FAILURES = 10
@@ -180,138 +173,6 @@ def verify_image_filename_consistency(
             ), f"Previous image mismatch: {temp_previous_image} != {step_previous_path}"
 
 
-# ---------------------------------------------------------------------------
-# Model Implementation Registry
-# ---------------------------------------------------------------------------
-# Maps implementation name -> actor class.
-# All actors must accept (model_path: str, temperature: float, ...) in __init__
-# and provide get_response(image_path: str | None, prompt: str) -> str.
-
-MODEL_IMPLEMENTATIONS: dict[str, type] = {
-    "gpt": GPTActor,
-    "glm": GLMActor,
-    "qwen": QwenVLActor,
-    "vllm": VLLMActor,
-    "openrouter": OpenRouterActor,
-}
-
-# Default implementation per model pattern (checked in order)
-# Each entry: (model_path_pattern, default_implementation_name)
-# pattern can be a prefix check or substring check
-DEFAULT_IMPLEMENTATION_RULES: list[tuple[str, str]] = [
-    ("gpt-", "gpt"),  # Generic GPT models use the standard GPT actor
-    ("GLM", "glm"),  # GLM models
-    ("Llama-4-Maverick-17B-128E-Instruct-FP8", "gpt"),
-    ("Mistral-Large-3", "gpt"),
-    # OpenRouter models (use "provider__model" format to avoid subfolder creation)
-    # The "__" is converted to "/" by the OpenRouterActor
-    ("deepseek__", "openrouter"),
-    ("z-ai__", "openrouter"),
-    ("thudm__", "openrouter"),
-    ("anthropic__", "openrouter"),
-    ("google__", "openrouter"),
-    ("meta-llama__", "openrouter"),
-    ("mistralai__", "openrouter"),
-    ("qwen__", "openrouter"),
-    # Default fallback is Qwen (handled in get_default_implementation)
-]
-
-
-def get_default_implementation(model_path: str, model_name: str | None) -> str:
-    """Determine the default implementation based on model_path or model_name."""
-    # Check model_name first (higher priority)
-    if model_name:
-        for pattern, impl in DEFAULT_IMPLEMENTATION_RULES:
-            if pattern in model_name or model_name.startswith(pattern):
-                return impl
-
-    # Then check model_path
-    for pattern, impl in DEFAULT_IMPLEMENTATION_RULES:
-        if pattern in model_path or model_path.startswith(pattern):
-            return impl
-
-    # Default to Qwen for unknown models
-    return "qwen"
-
-
-def create_model_actor(
-    model_path: str,
-    model_name: str | None,
-    on_aml: bool,
-    temperature: float,
-    max_completion_tokens: int,
-    implementation: str | None = None,
-    expected_model_path: str | None = None,
-    run_metadata: str | None = None,
-) -> Any:
-    """Create a model actor instance.
-
-    Args:
-        model_path: Path or identifier for the model
-        model_name: Human-readable model name (used for implementation selection)
-        on_aml: Whether the model is hosted on Azure ML
-        temperature: Sampling temperature
-        max_completion_tokens: Max tokens for completion (only used by GPTActor)
-        implementation: Override implementation name (e.g., 'gpt', 'gpt_aml', 'glm', 'qwen').
-                       If None, uses default based on model_path/model_name.
-        expected_model_path: For vLLM - the expected model path on the remote server.
-                            Used to validate all endpoints serve the correct model.
-        run_metadata: Optional identifier for tracking requests (e.g., experiment config name).
-                      Passed to OpenRouterActor for analytics tracking.
-
-    Returns:
-        An actor instance with get_response(image_path, prompt) method.
-
-    Raises:
-        ValueError: If the specified implementation is not found.
-    """
-    if implementation is None:
-        implementation = get_default_implementation(model_path, model_name)
-
-    # Differentiate AML-specific implementations
-    if on_aml and implementation == "gpt":
-        implementation = "gpt_aml"
-
-    if implementation not in MODEL_IMPLEMENTATIONS:
-        available = ", ".join(sorted(MODEL_IMPLEMENTATIONS.keys()))
-        raise ValueError(
-            f"Unknown implementation '{implementation}'. Available: {available}"
-        )
-
-    actor_class = MODEL_IMPLEMENTATIONS[implementation]
-    print(
-        f"Creating model actor: implementation={implementation}, model_path={model_path}, actor_class={actor_class.__name__}"
-    )
-
-    # GPTActor accepts max_completion_tokens, others don't
-    if actor_class is GPTActor:
-        return actor_class(model_path, temperature, max_completion_tokens)
-
-    if actor_class is QwenVLActor:
-        return actor_class(model_name, temperature)
-
-    # VLLMActor expects endpoints as a list (comma-separated in model_path)
-    if actor_class is VLLMActor:
-        endpoints = [ep.strip() for ep in model_path.split(",") if ep.strip()]
-        return actor_class(
-            endpoints=endpoints,
-            temperature=temperature,
-            max_completion_tokens=max_completion_tokens,
-            expected_model_path=expected_model_path,
-        )
-
-    # OpenRouterActor accepts model_name and max_completion_tokens
-    if actor_class is OpenRouterActor:
-        return actor_class(
-            model_path,
-            temperature,
-            max_completion_tokens,
-            run_metadata=run_metadata,
-        )
-
-    return actor_class(model_path, temperature)
-
-
 def get_git_commit() -> str | None:
     """Get the current git commit hash.
 
@@ -343,36 +204,21 @@ class ModelTester:
     def __init__(
         self,
         test_name: str,
-        model_path: str,
-        model_name: str,
+        model: str,
         config: EvaluationConfig,
-        on_aml: bool = False,
-        implementation: str | None = None,
-        expected_model_path: str | None = None,
         rep_number: int = 1,
     ):
 
-        # Support for non-azure hosted models
-        if model_name == QWEN_BASE_NAME:
-            model_path = QWEN_BASE_MODEL
-
-        print(f"-== Testing model: {model_name} at temperature {config.temperature}")
+        print(f"-== Testing model: {model} at temperature {config.temperature}")
 
         self.test_name = test_name
-        self.model_path = model_path
-        self.model_name = model_name
-        self.on_aml = on_aml
+        self.model_id = model
         self.config = config
-        self.implementation = implementation  # None means use default based on model
-        self.expected_model_path = expected_model_path  # For vLLM validation
         self.rep_number = rep_number
 
         mode_str = "TEXT ONLY" if self.config.text_only else "IMAGE"
-        print(f"-== Model Path: {self.model_path} ({mode_str} mode)")
-        print(f"-== Implementation: {self.implementation or 'auto'}")
-        if expected_model_path:
-            print(f"-== Expected Model Path (for validation): {expected_model_path}")
-        self.replay = "replay" in model_path
+        print(f"-== Model: {self.model_id} ({mode_str} mode)")
+        self.replay = "replay" in model
         print(f"-== Replay mode: {self.replay}")
 
         # Where I can find plans to test on
@@ -380,19 +226,12 @@ class ModelTester:
 
         suffix = self.config.get_output_suffix()
         if suffix:
-            self.output_folder = f"{c.TEST_DIR}/{test_name}/{self.model_name}--{suffix}"
+            self.output_folder = f"{c.TEST_DIR}/{test_name}/{self.model_id}--{suffix}"
         else:
-            self.output_folder = f"{c.TEST_DIR}/{test_name}/{self.model_name}"
+            self.output_folder = f"{c.TEST_DIR}/{test_name}/{self.model_id}"
 
         # Append rep number
         self.output_folder = f"{self.output_folder}--rep{rep_number}"
-
-        # Build run metadata for API tracking (e.g., OpenRouter analytics)
-        # Format: "{model_name}--{suffix}--rep{n}--{test_name}" (matches output folder naming)
-        if suffix:
-            self.run_metadata = f"{model_name}--{suffix}--rep{rep_number}--{test_name}"
-        else:
-            self.run_metadata = f"{model_name}--rep{rep_number}--{test_name}"
 
         self.test_results_file = f"{self.output_folder}/test_results.json"
 
@@ -411,15 +250,15 @@ class ModelTester:
             os.makedirs(self.output_folder)
             self.test_results = TestResults(
                 self.test_name,
-                self.model_name,
-                self.model_path,
+                self.model_id,
+                self.model_id,
                 self.config.temperature,
             )
         elif not os.path.exists(self.test_results_file):
             self.test_results = TestResults(
                 self.test_name,
-                self.model_name,
-                self.model_path,
+                self.model_id,
+                self.model_id,
                 self.config.temperature,
             )
         else:
@@ -432,9 +271,7 @@ class ModelTester:
         # Save config for reproducibility
         config_data = self.config.to_dict()
         config_data["test_name"] = self.test_name
-        config_data["model_path"] = self.model_path
-        config_data["model_name"] = self.model_name
-        config_data["implementation"] = self.implementation
+        config_data["model"] = self.model_id
         config_data["git_commit"] = get_git_commit()
 
         with open(self.config_file, "w", encoding="utf-8") as f:
@@ -571,26 +408,21 @@ class ModelTester:
             if not self.replay and self.model is None:
                 try:
                     print(
-                        f"--= Loading model: {self.model_path} at temperature {self.config.temperature}"
+                        f"--= Loading model: {self.model_id} at temperature {self.config.temperature}"
                     )
 
-                    self.model = create_model_actor(
-                        model_path=self.model_path,
-                        model_name=self.model_name,
-                        on_aml=self.on_aml,
-                        temperature=self.config.temperature,
-                        max_completion_tokens=self.config.max_completion_tokens,
-                        implementation=self.implementation,
-                        expected_model_path=self.expected_model_path,
-                        run_metadata=self.run_metadata,
+                    self.model = OpenAIActor(
+                        self.model_id,
+                        self.config.temperature,
+                        self.config.max_completion_tokens,
                     )
 
                 except Exception as e:  # pylint: disable=broad-except
                     print(f"--= Exception initializing model: {e}")
                     Utils.print_color(
-                        c.Color.RED, f"!! Failed to initialize model: {self.model_path}"
+                        c.Color.RED, f"!! Failed to initialize model: {self.model_id}"
                     )
-                    sys.exit(1)  # Causes job to be marked Failed in AML
+                    sys.exit(1)
 
             # Clear out goal states
             test_plan.goal.reset_goals()
@@ -604,7 +436,7 @@ class ModelTester:
             Utils.print_color(c.Color.BLUE, "-----------------------------------------")
             Utils.print_color(
                 c.Color.BLUE,
-                f"Testing: [{i}/{total_dirs}] {self.model_name} {self.test_plan_dir} - {test_plan.name} - {self.config.temperature}",
+                f"Testing: [{i}/{total_dirs}] {self.model_id} {self.test_plan_dir} - {test_plan.name} - {self.config.temperature}",
             )
             Utils.print_color(c.Color.BLUE, "-----------------------------------------")
             completed_tests += 1
@@ -940,7 +772,7 @@ class ModelTester:
 
             Utils.print_color(
                 c.Color.YELLOW,
-                f"[{current_index}/{total}] {self.test_plan_dir} : {test_plan.name} : {self.model_path}: {self.config.temperature} : {config_str} | {time_info}",
+                f"[{current_index}/{total}] {self.test_plan_dir} : {test_plan.name} : {self.model_id}: {self.config.temperature} : {config_str} | {time_info}",
             )
 
             step_count += 1
@@ -1216,13 +1048,9 @@ class ModelTester:
 
 def run_tests(
     test_name: str,
-    model_path: str | None = None,
-    model_name: str | None = None,
+    model: str,
     rep_number: int = 1,
-    on_aml: bool = False,
     config: EvaluationConfig | None = None,
-    implementation: str | None = None,
-    expected_model_path: str | None = None,
     print_results: bool = False,
     print_all_results_auto: bool = False,
     check_completion: bool = False,
@@ -1232,32 +1060,20 @@ def run_tests(
     Example:
         from AsgardBench.Model.model_tester import run_tests
         run_tests(
-            test_name="test_new_positions_1",
-            model="Qwen/Qwen2.5-VL-7B-Instruct",
-            model_name="Qwen2.5-VL-7B-Instruct_BASE",
-            config=EvaluationConfig(temperature=0.6),
-            implementation="qwen",  # Optional: override default implementation
+            test_name="magt_benchmark_p1",
+            model="gpt-4o",
+            config=EvaluationConfig(temperature=0.0),
         )
     """
     print("--= Running tests =--")
-    model_path = model_path or QWEN_BASE_MODEL
+
+    assert config is not None, "config must be provided"
 
     if check_completion:
-        assert (
-            config is not None
-        ), "config must be provided when check_completion is True"
-        assert (
-            model_name is not None
-        ), "model_name must be provided when check_completion is True"
-
         tester = ModelTester(
             test_name,
-            model_path,
-            model_name=model_name,
+            model,
             config=config,
-            on_aml=on_aml,
-            implementation=implementation,
-            expected_model_path=expected_model_path,
             rep_number=rep_number,
         )
         is_complete = tester.check_completion()
@@ -1267,12 +1083,8 @@ def run_tests(
 
     model_tester = ModelTester(
         test_name,
-        model_path,
-        model_name=model_name,
+        model,
         config=config,
-        on_aml=on_aml,
-        implementation=implementation,
-        expected_model_path=expected_model_path,
         rep_number=rep_number,
     )
     model_tester.run()
@@ -1286,37 +1098,19 @@ def main():
         "--test",
         type=str,
         required=True,
-        help="Test set directory name (e.g., 'test_new_positions_1')",
+        help="Test set directory name (e.g., 'magt_benchmark_p1')",
     )
     parser.add_argument(
         "--model",
         type=str,
-        default=QWEN_BASE_MODEL,
-        help=f"Model path or name (default: {QWEN_BASE_MODEL})",
-    )
-    parser.add_argument(
-        "--model-name", type=str, help="Human-readable model name for display purposes"
+        required=True,
+        help="Model identifier (e.g., 'gpt-4o', 'claude-3-5-sonnet')",
     )
     parser.add_argument(
         "--rep",
         type=int,
         default=1,
         help="Repetition number for multiple runs of the same configuration (default: 1)",
-    )
-    parser.add_argument(
-        "--implementation",
-        type=str,
-        choices=list(MODEL_IMPLEMENTATIONS.keys()),
-        default=None,
-        help=f"Model implementation to use. Available: {', '.join(MODEL_IMPLEMENTATIONS.keys())}. "
-        "If not specified, auto-selects based on model path/name.",
-    )
-    parser.add_argument(
-        "--expected-model-path",
-        type=str,
-        default=None,
-        help="For vLLM: the expected model path on the remote server. "
-        "Used to validate that all endpoints serve the correct model.",
     )
 
     parser.add_argument(
@@ -1333,13 +1127,7 @@ def main():
     parser.add_argument(
         "--check-completion",
         action="store_true",
-        help="Check whether all eligible plans for this test/model-name are completed (prints True/False and exits)",
-    )
-    parser.add_argument(
-        "--aml",
-        action="store_true",
-        default=False,
-        help="Running on Azure ML (enables Azure ML specific features)",
+        help="Check whether all eligible plans for this test/model are completed (prints True/False and exits)",
     )
 
     # Let EvaluationConfig add its own arguments
@@ -1352,19 +1140,14 @@ def main():
 
     completion = run_tests(
         test_name=args.test,
-        model_path=args.model,
-        model_name=args.model_name,
+        model=args.model,
         rep_number=args.rep,
-        on_aml=args.aml,
         config=config,
-        implementation=args.implementation,
-        expected_model_path=args.expected_model_path,
         print_results=args.print_results,
         print_all_results_auto=args.print_all_results_auto,
         check_completion=args.check_completion,
     )
     if args.check_completion and completion is not None:
-        # AML behavior: exit code 0 if complete else 1
         sys.exit(0 if completion else 1)
 
 

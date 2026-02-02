@@ -93,40 +93,48 @@ Clean up the internal Magmathor benchmark codebase for public release as "Asgard
 - [x] Cleaned `.vscode/settings.json` - removed personal color settings
 - [x] Updated `.gitignore` - removed obsolete entries, updated cache path
 
-### Phase 4: Simplify Model API
+### Phase 4: Simplify Model API ✅ COMPLETE
 *Depends on Phase 2 (old actors still exist for reference while building new one)*
 
-#### 4a: Create unified OpenAI-compatible actor
-- [ ] Create new `openai_actor.py` - single generic client supporting all OpenAI-compatible APIs
-- [ ] Support environment variables:
+#### 4a: Create unified OpenAI-compatible actor ✅
+- [x] Create new `openai_actor.py` - single generic client supporting all OpenAI-compatible APIs
+- [x] Support environment variables:
   - `OPENAI_API_KEY` - API key for authentication
   - `OPENAI_BASE_URL` - Base URL (OpenAI, Azure, OpenRouter, VLLM, etc.)
   - `OPENAI_API_VERSION` - Optional, for Azure OpenAI
-- [ ] Works with: standard OpenAI, Azure OpenAI (API key), OpenRouter, VLLM, any compatible endpoint
-- [ ] Port prompt caching logic from OpenRouter actor:
+- [x] Works with: standard OpenAI, Azure OpenAI (API key), OpenRouter, VLLM, any compatible endpoint
+- [x] Port prompt caching logic from OpenRouter actor:
   - Keep `split_prompt_for_caching()` utility (already in prompt_templates.py)
   - Auto-detect provider (Anthropic/Gemini) from model name or base URL
   - Add `cache_control: {type: "ephemeral"}` only for providers that need it
   - Others (OpenAI, DeepSeek, etc.) use automatic prefix caching
 
-#### 4b: Remove specialized actors
+#### 4b: Remove specialized actors ✅
 *After new actor is working*
-- [ ] Delete `gpt_actor.py` (has complex Azure AD auth, credential rotation)
-- [ ] Delete `openrouter_actor.py` (now handled by unified client)
-- [ ] Delete `glm_actor.py` (specialized, can use unified client)
+- [x] Delete `gpt_actor.py` (has complex Azure AD auth, credential rotation)
+- [x] Keep `openrouter_actor.py` for reproducibility (added deprecation note)
+- [x] Delete `glm_actor.py` (specialized, can use unified client)
+- [x] Delete `vllm_actor.py` (VLLM exposes OpenAI-compatible API)
+- [x] Delete `qwenvl25_actor.py` (in-memory loading not needed for public benchmark)
 
-#### 4c: Update model_tester.py
-- [ ] Simplify to use only the new unified OpenAI actor
-- [ ] Set default configuration to baseline: `T0_Fs_H60_C0_I1_R1_S1`
-- [ ] Remove experiment_catalogue references
-- [ ] Ensure CLI is user-friendly
-- [ ] Document reproducibility: which BASE_URL for each provider
+#### 4c: Update model_tester.py ✅
+- [x] Simplify to use only the new unified OpenAI actor
+- [x] Removed `on_aml` parameter from ModelTester, create_model_actor, run_tests
+- [x] Removed `run_metadata` parameter (was for OpenRouter analytics)
+- [x] Removed `--aml` CLI argument
+- [x] Removed `MODEL_IMPLEMENTATIONS` dict entirely (only one actor now)
+- [x] Removed `--implementation` and `--expected-model-path` CLI arguments
+- [x] Made `--model` required (no default)
+- [x] Removed `create_model_actor()` - inlined OpenAIActor instantiation
+- [x] Consolidated `model_path`/`model_name` into single `model` parameter
+- [x] Ensure CLI is user-friendly
 
-#### 4d: Create new .env.example
-- [ ] Create `.env.example` with:
+#### 4d: Create new .env.example ✅
+- [x] Updated `.env.example` with:
   - `OPENAI_API_KEY`
   - `OPENAI_BASE_URL`
   - `OPENAI_API_VERSION` (optional)
+  - AsgardBench-specific config vars
 
 ### Phase 5: Dead Code & General Cleanup
 *After all deletions and refactoring - now we can see what's truly unused*

@@ -1,3 +1,17 @@
+"""
+DEPRECATED - Kept for reproducibility reference only.
+
+This is the original OpenRouter actor used for the AsgardBench paper experiments.
+It is preserved so users can see exactly what code was used to generate our results.
+
+For new evaluations, use `openai_actor.py` instead, which provides a unified
+OpenAI-compatible client that works with any provider (OpenAI, Azure, OpenRouter,
+VLLM, etc.) via standard environment variables.
+
+Note: This file has dependencies (keyvault.py) that have been removed from the
+public release, so it will not run without modification.
+"""
+
 # Required packages
 import base64
 import logging
