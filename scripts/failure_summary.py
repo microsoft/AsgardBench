@@ -6,13 +6,11 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 TEST_BASE = Path(__file__).parent.parent / "Test"
+
+# todo(atupini) will unify so change names
 BENCHMARKS = [
-    "magt_benchmark_p1",
-    "magt_benchmark_p2",
-    "magt_benchmark_p3",
-    "magt_benchmark_p4",
-    "magt_benchmark_p5",
-    "magt_benchmark_p6",
+    "magt_benchmark",
+    "magt_benchmark_sanity",
 ]
 
 

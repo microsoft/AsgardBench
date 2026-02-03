@@ -209,42 +209,42 @@ Kept useful scripts:
 ### Phase 7: Documentation
 *After all code changes are complete*
 
-#### 7a: README.md (main entry point)
-- [ ] Rewrite `README` → `README.md` with proper structure:
-  - [ ] Project description & motivation (what is AsgardBench?)
-  - [ ] Installation instructions (uv/pip)
-  - [ ] Quick start guide (minimal example to run evaluation)
-  - [ ] How to run benchmark on your model
-  - [ ] How to run with Docker (recommended for ease of use)
-  - [ ] Configuration options (ablation settings, temperature, etc.)
-  - [ ] Reproducibility: how to reproduce paper results
-  - [ ] Citation information
+#### 7a: README.md (main entry point) ✅
+- [x] Rewrite `README` → `README.md` with proper structure:
+  - [x] Project description & motivation (what is AsgardBench?)
+  - [x] Installation instructions (uv/pip)
+  - [x] Quick start guide (sanity check example)
+  - [x] How to run benchmark on your model
+  - [x] Docker usage section (placeholder for coming soon)
+  - [x] Configuration options (ablation settings, temperature, etc.)
+  - [x] Reproducibility: how to reproduce paper results
+  - [x] Citation information (placeholder BibTeX)
 
-#### 7b: Docker support
-- [ ] Create `Dockerfile` for easy setup
-- [ ] Document Docker usage in README
+#### 7b: Docker support ✅
+- [x] Create `Dockerfile` for easy setup
+- [x] Document Docker usage in README
 
-#### 7c: Data documentation
-- [ ] Document benchmark data structure (what's in each folder, JSON schema)
-- [ ] Document output data format (what results look like, schema of test_results.json)
-- [ ] Document how data generation works (plan_generator.py flow)
-- [ ] Document how to generate new tasks/scenarios (for extensibility)
+#### 7c: Data documentation ✅
+- [x] Document benchmark data structure in README (partitions, plan.json format)
+- [ ] Document output data format (test_results.json schema) - optional, can add later
+- [ ] Document data generation (plan_generator.py) - internal tool, not needed for users
 
-#### 7d: Prompt DSL documentation (optional, for advanced users)
-- [ ] Document the custom action language format
+#### 7d: Prompt DSL documentation
+- [ ] Document the custom action language format - optional for v1
 - [ ] Note: editing prompts not recommended for reproducibility
-- [ ] Include in separate doc file or appendix section
 
-#### 7e: Other docs
-- [ ] Update `CLAUDE.md` for public contributors
-- [ ] Add `LICENSE` file (MIT per MS guidelines)
-- [ ] Add `CITATION.cff` or citation info in README
+#### 7e: Other docs ✅
+- [x] Update `CLAUDE.md` for public contributors
+- [x] Add `LICENSE` file (MIT)
+- [x] Add citation info in README (placeholder BibTeX)
+- [ ] Add `CITATION.cff` - optional, can add when paper is published
 
 ### Phase 8: Final Validation
 - [ ] Run linters (`black`, `isort`)
 - [ ] Test that benchmark runs end-to-end with mock model
 - [ ] Verify all imports work after rename
 - [ ] Review final file list
+- [ ] Regenerate `uv.lock` after all changes
 
 ---
 

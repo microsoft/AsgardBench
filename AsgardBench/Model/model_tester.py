@@ -1067,7 +1067,7 @@ def run_tests(
     Example:
         from AsgardBench.Model.model_tester import run_tests
         run_tests(
-            test_name="magt_benchmark_p1",
+            test_name="magt_benchmark",
             model="gpt-4o",
             config=EvaluationConfig(temperature=0.0),
         )
@@ -1105,7 +1105,7 @@ def main():
         "--test",
         type=str,
         required=True,
-        help="Test set directory name (e.g., 'magt_benchmark_p1')",
+        help="Test set directory name (e.g., 'magt_benchmark')",
     )
     parser.add_argument(
         "--model",

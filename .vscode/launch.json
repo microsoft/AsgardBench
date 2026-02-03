@@ -49,30 +49,6 @@
             "justMyCode": true
         },
         {
-            "name": "Model Tester (WSL)",
-            "type": "debugpy",
-            "request": "launch",
-            "program": "${workspaceFolder}/AsgardBench/Model/model_tester.py",
-            "cwd": "${workspaceFolder}",
-            "env": {
-                "PYTHONPATH": "${workspaceFolder}"
-            },
-            "args": [
-                "--test", "magt_benchmark_p2",
-                "--previous_image", "none",
-                "--model", "gpt-4o",
-                "--model-name", "gpt-4o",
-                "--rep", "1",
-                "--temperature", "0.0",
-                "--max_completion_tokens", "4096",
-                "--feedback_type", "simple",
-                "--hand_transparency", "60",
-                "--full_steps"
-            ],
-            "console": "integratedTerminal",
-            "justMyCode": false
-        },
-        {
             "name": "Model Tester",
             "type": "debugpy",
             "request": "launch",
@@ -80,10 +56,9 @@
             "cwd": "${workspaceFolder}",
             "env": {
                 "PYTHONPATH": "${workspaceFolder}",
-                "CUDA_VISIBLE_DEVICES": "0,1,2,3"
             },
             "args": [
-                "--test", "magt_benchmark_p5",
+                "--test", "magt_benchmark_sanity",
                 "--include_common_sense",
                 "--model", "gpt-5.2-medium",
                 "--model-name", "gpt-5.2-medium-vscode",
