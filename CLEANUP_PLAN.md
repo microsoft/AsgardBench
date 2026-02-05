@@ -239,6 +239,19 @@ Kept useful scripts:
 - [x] Add citation info in README (placeholder BibTeX)
 - [ ] Add `CITATION.cff` - optional, can add when paper is published
 
+#### 7f: Extended Documentation (TODO)
+Additional docs for power users and contributors:
+
+- [ ] **Custom model implementations** - how to write your own actor if the OpenAI-compatible client doesn't work
+- [ ] **Plan Viewer guide** - how to use the Streamlit plan viewer to inspect results
+- [ ] **Report Generator guide** - how to generate and interpret reports
+- [ ] **Troubleshooting guide**:
+  - Debugging model outputs (parsing failures, invalid actions)
+  - API connection failures and retries
+  - AI2-THOR display/rendering issues
+  - Common failure modes and how to diagnose them
+- [ ] **Advanced configuration** - detailed explanation of all ablation flags
+
 ### Phase 8: Final Validation
 - [x] Run linters (`black`, `isort`)
 - [x] Test that benchmark runs end-to-end
@@ -249,6 +262,8 @@ Kept useful scripts:
 
 ### Phase 9: Report Generator Overhaul (TODO)
 The current `generate_reports.py` is tailored to internal use cases and needs significant work to be useful for public users:
+
+> **Note:** Consider a quick discussion to align on what metrics/format users actually need.
 
 - [ ] **Simplify output format** - current reports have many internal metrics; focus on key metrics users care about:
   - Pass rate per task category
@@ -263,7 +278,7 @@ The current `generate_reports.py` is tailored to internal use cases and needs si
 ### Phase 10: Improve Runtime Logging & Progress (TODO)
 The current logging output is verbose and hard to follow for end users:
 
-- [ ] **Add progress bar** - show clear progress through tasks (e.g., `[15/108] 14% ████░░░░░░░░░░░░`)
+- [ ] **Add progress bar with ETA** - show clear progress through tasks (e.g., `[15/108] 14% ████░░░░░░░░░░░░ ETA: 2h 30m`)
 - [ ] **Simplify per-task output** - reduce noise during normal runs:
   - Show task name, pass/fail status, time taken
   - Hide verbose step-by-step action logs by default
