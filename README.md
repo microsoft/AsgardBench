@@ -10,7 +10,7 @@ A benchmark for evaluating Vision-Language Models (VLMs) on embodied household t
 AsgardBench evaluates how well VLMs can act as embodied agents completing multi-step household tasks. Given a task description (e.g., "Make coffee") and egocentric visual observations, the model must output actions to accomplish the goal.
 
 **Key features:**
-- 🏠 108 household tasks across 29 scenes in AI2-THOR
+- 🏠 108 task instances across 12 task types and 3 scene types in AI2-THOR
 - 👁️ Egocentric visual observations
 - 🎯 Automatic success evaluation via goal checking
 - 🔧 Works with any OpenAI-compatible API endpoint
@@ -21,8 +21,7 @@ For detailed methodology, ablation studies, and results, please see our paper.
 
 ### Prerequisites
 
-- Python 3.10+
-- [uv](https://docs.astral.sh/uv/) (recommended) or pip
+- [uv](https://docs.astral.sh/uv/)
 - An OpenAI-compatible API endpoint (OpenAI, Azure OpenAI, OpenRouter, vLLM, etc.)
 - **Linux:** X11 display or Xvfb (for AI2-THOR rendering)
 
@@ -35,9 +34,6 @@ cd AsgardBench
 
 # Install dependencies
 uv sync
-
-# Or with pip
-pip install -e .
 ```
 
 ### Configuration
@@ -79,28 +75,24 @@ xvfb-run -a uv run python -m AsgardBench.Model.model_tester \
     --model gpt-4o
 ```
 
+See [Docker](#docker) for containerized execution. After running, see [Results](#results) to generate reports and view scores.
+
+
 ## Benchmark Structure
 
-The benchmark consists of 108 tasks plus a sanity check:
+The benchmark consists of 108 task instances across 12 task types:
 
 | Dataset | Tasks |
 |---------|-------|
 | `magt_benchmark` | 108 |
 | `magt_benchmark_sanity` | 2 (quick setup verification) |
 
-| Task Type | Count |
-|-----------|-------|
-| Cooking | 36 |
-| Object distribution | 27 |
-| Put away items | 21 |
-| Coffee making | 9 |
-| Table setting | 9 |
-| Cleaning | 3 |
-| Turn on TV | 3 |
+For a full list of task types and their variations, see our paper.
+
 
 ### Data Format
 
-Each task in `Generated/magt_benchmark_*/` contains a `plan.json` with:
+Each task in `Generated/magt_benchmark*/` contains a `plan.json` with:
 
 ```jsonc
 {
@@ -140,108 +132,48 @@ uv run python -m AsgardBench.Model.model_tester --test <test_set> --model <model
 | `--max_completion_tokens` | Maximum tokens for model response | 8192 |
 | `--rep` | Repetition number (for multiple runs) | 1 |
 
-### Full Configuration Example
+Run `--help` for the full list of parameters, including ablation flags. See our paper for details on the baseline configuration and ablation methodology.
 
-To override all configuration parameters:
 
-```bash
-uv run python -m AsgardBench.Model.model_tester \
-    --test magt_benchmark \
-    --model gpt-4o \
-    --temperature 0.6 \
-    --max_completion_tokens 4096 \
-    --feedback_type simple \
-    --hand_transparency 60 \
-    --previous_image color \
-    --use_memory \
-    --full_steps \
-    --no-text_only \
-    --no-include_common_sense
-```
+## Provider-Specific Configuration
 
-> **Note:** Boolean flags support `--flag` to enable and `--no-flag` to disable. Additional flags for ablation studies are available—see `--help` for details, or refer to our paper for ablation methodology.
+For Anthropic and Google APIs, set `OPENAI_CACHE_CONTROL=explicit` to enable prompt caching. Other providers (OpenAI, Azure, OpenRouter, vLLM, etc.) use automatic caching by default.
 
-## Using Different Model Providers
-
-### OpenAI
-
-```bash
-OPENAI_API_KEY=sk-...
-OPENAI_BASE_URL=https://api.openai.com/v1
-```
-
-### Azure OpenAI
-
-```bash
-OPENAI_API_KEY=your-azure-key
-OPENAI_BASE_URL=https://your-resource.openai.azure.com
-OPENAI_API_VERSION=2024-02-15-preview
-```
-
-### OpenRouter
-
-```bash
-OPENAI_API_KEY=sk-or-...
-OPENAI_BASE_URL=https://openrouter.ai/api/v1
-```
-
-### Anthropic (via OpenAI-compatible endpoint)
-
-```bash
-OPENAI_API_KEY=your-anthropic-key
-OPENAI_BASE_URL=https://api.anthropic.com/v1
-OPENAI_CACHE_CONTROL=explicit
-```
-
-### Google (via OpenAI-compatible endpoint)
-
-```bash
-OPENAI_API_KEY=your-google-key
-OPENAI_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai
-OPENAI_CACHE_CONTROL=explicit
-```
-
-### Local vLLM Server
-
-```bash
-OPENAI_API_KEY=dummy
-OPENAI_BASE_URL=http://localhost:8000/v1
-```
-
-### Cache Control
-
-The `OPENAI_CACHE_CONTROL` environment variable controls how prompt caching is handled:
-
-- `automatic` (default): The provider handles caching automatically. Use this for OpenAI, DeepSeek, and most other providers.
-- `explicit`: Adds explicit `cache_control` markers to messages. Required for Anthropic and Google APIs.
 
 ## Results
 
-Results are saved to `Test/<test_set>/<model>/`:
+Results are saved to `Test/<test_set>/<model>--<config>--<rep>/`:
 
 - `test_results.json` - Per-task success/failure data
 - `config.json` - Run configuration
 - `Plans/` - Detailed execution logs per task
 
-### Viewing Results
+### Generating Reports
+
+To generate aggregated results across all test runs:
 
 ```bash
-# Print results summary
-uv run python -m AsgardBench.Model.model_tester \
-    --test magt_benchmark \
-    --model gpt-4o \
-    --print-results
+uv run python -m AsgardBench.Model.generate_reports
 ```
 
-## Reproducibility
+This produces `Test/results.xlsx` with success rates, failure breakdowns, and per-plan performance statistics.
 
-For detailed reproducibility instructions and the exact configurations used in our experiments, please refer to our paper.
 
-The original OpenRouter actor used for paper experiments is preserved in `AsgardBench/Model/openrouter_actor.py` for reference.
+### Viewing Individual Task Executions
+
+To inspect step-by-step execution traces with images:
+
+```bash
+uv run streamlit run AsgardBench/plan_viewer.py
+```
+
+This launches a web UI for browsing task executions, viewing agent observations, and analyzing failures.
+
 
 ## Docker
 
 A Dockerfile is provided for containerized execution. The container includes Xvfb for headless rendering.
+
 
 ### Building the Image
 
@@ -270,71 +202,42 @@ docker run --rm \
 
 ### Networking Notes
 
-When connecting to a local API server (e.g., vLLM running on the host), use the host's actual IP address rather than `localhost`:
+When connecting to a local API server (e.g., vLLM running on the host on port `7000`), use `--network host`:
 
 ```bash
-# Find your host IP
-ip addr show | grep "inet " | grep -v 127.0.0.1
-
-# Use the host IP in the base URL
-docker run --rm \
+docker run --rm --network host \
     -e OPENAI_API_KEY=dummy \
-    -e OPENAI_BASE_URL=http://192.168.1.100:8000/v1 \
+    -e OPENAI_BASE_URL=http://host.docker.internal:7000/v1 \
     asgardbench \
     --test magt_benchmark_sanity --model your-model
 ```
 
-> **Note:** `localhost` and `host.docker.internal` may not work depending on your Docker configuration. Using the actual host IP address is the most reliable approach.
+## Responsible AI
 
-## Troubleshooting
+For information about intended uses, limitations, and best practices, see [RESPONSIBLE_AI_FAQ.md](RESPONSIBLE_AI_FAQ.md).
 
-### "No valid X display found" Error
 
-AI2-THOR requires an X11 display for rendering. On headless Linux systems:
+## Contributing
 
-```bash
-# Install Xvfb
-sudo apt-get install xvfb
+This project welcomes contributions and suggestions. Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
 
-# Run with xvfb-run
-xvfb-run -a uv run python -m AsgardBench.Model.model_tester --test magt_benchmark_sanity --model gpt-4o
-```
+When you submit a pull request, a CLA bot will automatically determine whether you need to provide a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions provided by the bot. You will only need to do this once across all repos using our CLA.
 
-### AI2-THOR Downloads on First Run
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact opencode@microsoft.com with any additional questions or comments.
 
-The first run downloads the AI2-THOR binary (~770MB). This is cached for subsequent runs:
-- **Local:** `~/.ai2thor/`
-- **Docker:** Downloaded each container run (consider mounting a cache volume)
+## Trademarks
 
-### "Connection error" in Docker
-
-If you see connection errors when using a local API server:
-1. Ensure the API server is binding to `0.0.0.0` (not just `127.0.0.1`)
-2. Use the host's actual IP address instead of `localhost`
-3. Check firewall rules allow Docker container access
+This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft trademarks or logos is subject to and must follow [Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general). Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship. Any use of third-party trademarks or logos are subject to those third-party's policies.
 
 ## Citation
 
 If you use AsgardBench in your research, please cite:
 
 ```bibtex
-@article{asgardbench2025,
+@article{asgardbench2026,
   title={AsgardBench: A Benchmark for Embodied Household Tasks},
   author={...},
   journal={...},
   year={2025}
 }
 ```
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Contributing
-
-We welcome contributions! Please see our contributing guidelines before submitting PRs.
-
-## Acknowledgments
-
-- [AI2-THOR](https://ai2thor.allenai.org/) for the simulation environment
-- [OpenAI](https://openai.com/) for the API client library
