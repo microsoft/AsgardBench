@@ -21,6 +21,8 @@ Generated/magt_benchmark_*/*/log.txt
 Generated/magt_benchmark_*/*/steps.txt
 Generated/magt_benchmark_*/*/steps_w_images.txt
 
+/PromptExamples
+
 Replay/
 Test/
 Tests/
