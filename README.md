@@ -172,7 +172,7 @@ This launches a web UI for browsing task executions, viewing agent observations,
 
 ## Docker
 
-A Dockerfile is provided for containerized execution. The container includes Xvfb for headless rendering.
+A Dockerfile is provided for containerized execution.
 
 
 ### Building the Image
