@@ -185,12 +185,35 @@ OPENAI_API_KEY=sk-or-...
 OPENAI_BASE_URL=https://openrouter.ai/api/v1
 ```
 
+### Anthropic (via OpenAI-compatible endpoint)
+
+```bash
+OPENAI_API_KEY=your-anthropic-key
+OPENAI_BASE_URL=https://api.anthropic.com/v1
+OPENAI_CACHE_CONTROL=explicit
+```
+
+### Google (via OpenAI-compatible endpoint)
+
+```bash
+OPENAI_API_KEY=your-google-key
+OPENAI_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai
+OPENAI_CACHE_CONTROL=explicit
+```
+
 ### Local vLLM Server
 
 ```bash
 OPENAI_API_KEY=dummy
 OPENAI_BASE_URL=http://localhost:8000/v1
 ```
+
+### Cache Control
+
+The `OPENAI_CACHE_CONTROL` environment variable controls how prompt caching is handled:
+
+- `automatic` (default): The provider handles caching automatically. Use this for OpenAI, DeepSeek, and most other providers.
+- `explicit`: Adds explicit `cache_control` markers to messages. Required for Anthropic and Google APIs.
 
 ## Results
 

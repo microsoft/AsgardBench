@@ -12,6 +12,7 @@ Configuration via environment variables:
 - OPENAI_API_KEY: API key for authentication
 - OPENAI_BASE_URL: Base URL for the API (default: https://api.openai.com/v1)
 - OPENAI_API_VERSION: Optional API version (for Azure OpenAI)
+- OPENAI_CACHE_CONTROL: Cache control behavior ("automatic" or "explicit")
 """
 
 import base64
@@ -21,7 +22,6 @@ import random
 import time
 from typing import Any, Final
 
-from dotenv import load_dotenv
 from openai import (
     APIConnectionError,
     APIStatusError,
@@ -33,36 +33,17 @@ from openai import (
 from AsgardBench.Model.prompt_templates import split_prompt_for_caching
 from AsgardBench.objects import ModelEmptyResponseError
 
-load_dotenv()
 
-
-def _detect_provider(model_name: str, base_url: str) -> str:
+def _needs_explicit_cache_control() -> bool:
     """
-    Detect the provider based on model name or base URL.
+    Check if explicit cache_control should be added to messages.
 
-    Returns one of: 'anthropic', 'google', 'openai', 'other'
+    Controlled by OPENAI_CACHE_CONTROL environment variable:
+    - "explicit": Add cache_control to messages (needed for Anthropic, Google)
+    - "automatic" (default): Provider handles caching automatically (OpenAI, DeepSeek, etc.)
     """
-    model_lower = model_name.lower()
-    url_lower = base_url.lower() if base_url else ""
-
-    if (
-        "anthropic" in model_lower
-        or "claude" in model_lower
-        or "anthropic" in url_lower
-    ):
-        return "anthropic"
-    if "google" in model_lower or "gemini" in model_lower or "google" in url_lower:
-        return "google"
-    if "openai" in url_lower or "api.openai.com" in url_lower:
-        return "openai"
-    return "other"
-
-
-def _needs_cache_control(provider: str) -> bool:
-    """Check if provider needs explicit cache_control for prompt caching."""
-    # Anthropic and Gemini need explicit cache_control
-    # OpenAI, DeepSeek, etc. use automatic prefix caching
-    return provider in ("anthropic", "google")
+    cache_control = os.getenv("OPENAI_CACHE_CONTROL", "automatic").lower()
+    return cache_control == "explicit"
 
 
 class OpenAIActor:
@@ -110,9 +91,8 @@ class OpenAIActor:
             "OPENAI_BASE_URL", "https://api.openai.com/v1"
         )
 
-        # Detect provider for cache_control handling
-        self._provider = _detect_provider(model_name, self.base_url)
-        self._needs_cache_control = _needs_cache_control(self._provider)
+        # Check if explicit cache_control is needed
+        self._needs_cache_control = _needs_explicit_cache_control()
 
         # Initialize OpenAI client
         self.client = OpenAI(
@@ -123,8 +103,9 @@ class OpenAIActor:
         print(f"Initialized OpenAI actor:")
         print(f"  Model: {model_name}")
         print(f"  Base URL: {self.base_url}")
-        print(f"  Provider: {self._provider}")
-        print(f"  Cache control: {self._needs_cache_control}")
+        print(
+            f"  Cache control: {'explicit' if self._needs_cache_control else 'automatic'}"
+        )
 
     def get_response(
         self,
