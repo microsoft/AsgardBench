@@ -240,11 +240,37 @@ Kept useful scripts:
 - [ ] Add `CITATION.cff` - optional, can add when paper is published
 
 ### Phase 8: Final Validation
-- [ ] Run linters (`black`, `isort`)
-- [ ] Test that benchmark runs end-to-end with mock model
-- [ ] Verify all imports work after rename
-- [ ] Review final file list
+- [x] Run linters (`black`, `isort`)
+- [x] Test that benchmark runs end-to-end
+- [x] Verify all imports work after rename
+- [x] Docker image builds and runs successfully
 - [ ] Regenerate `uv.lock` after all changes
+- [ ] Review final file list
+
+### Phase 9: Report Generator Overhaul (TODO)
+The current `generate_reports.py` is tailored to internal use cases and needs significant work to be useful for public users:
+
+- [ ] **Simplify output format** - current reports have many internal metrics; focus on key metrics users care about:
+  - Pass rate per task category
+  - Step efficiency (steps used vs expected)
+  - Common failure modes
+- [ ] **Remove internal baselines** - `BASELINE_CONFIG` and comparison logic assume internal experiment structure
+- [ ] **Add user-friendly CLI** - let users specify which test runs to include, output format (CSV/JSON/markdown)
+- [ ] **Add markdown/terminal output** - not everyone has Excel; add simple text summary
+- [ ] **Document usage** - add examples in README or help text
+- [ ] **Consider merging with `--print-results`** - the model_tester already has result printing; avoid duplication
+
+### Phase 10: Improve Runtime Logging & Progress (TODO)
+The current logging output is verbose and hard to follow for end users:
+
+- [ ] **Add progress bar** - show clear progress through tasks (e.g., `[15/108] 14% ████░░░░░░░░░░░░`)
+- [ ] **Simplify per-task output** - reduce noise during normal runs:
+  - Show task name, pass/fail status, time taken
+  - Hide verbose step-by-step action logs by default
+- [ ] **Add `--verbose` flag** - for debugging, show full action/response logs
+- [ ] **Add `--quiet` flag** - minimal output, just final summary
+- [ ] **Improve final summary** - clear table showing pass/fail by task category
+- [ ] **Consider using `rich` library** - for better terminal formatting (progress bars, tables, colors)
 
 ---
 

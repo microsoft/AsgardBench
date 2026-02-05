@@ -66,6 +66,7 @@ class Scenario:
         goal: Goal = None,
         record_video=False,  # Add recording option
         bad_object_names: List[str] = None,
+        initial_pose: dict = None,
     ):
         # Set current task for monitoring
         from AsgardBench.Utils.count_plans import set_current_task
@@ -224,6 +225,12 @@ class Scenario:
 
         # PepperShaker looks too similar to SaltShaker and causes confusion
         self.remove_bad_types(["PepperShaker"])
+
+        # Apply initial pose if provided (for benchmark evaluation)
+        if initial_pose:
+            self.agent_teleport(initial_pose, "")
+            # Update the view after teleport
+            self.controller.step(action="Pass")
 
     def remove_bad_types(self, bad_type_names: List[str]):
         """
@@ -6245,11 +6252,16 @@ class Scenario:
         if pose["horizon"] < -30:
             pose["horizon"] = -30
 
+        # Handle rotation - can be a single number (y rotation) or a dict
+        rotation = pose["rotation"]
+        if isinstance(rotation, (int, float)):
+            rotation = {"x": 0, "y": rotation, "z": 0}
+
         try:
             self.controller.step(
                 action="Teleport",
                 position=pose["position"],
-                rotation=pose["rotation"],
+                rotation=rotation,
                 horizon=pose["horizon"],
                 standing=pose["standing"],
             )

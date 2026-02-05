@@ -17,31 +17,31 @@ class EvaluationConfig:
     text_only: bool = False
     """Whether to use text-only mode (no images sent to model)"""
 
-    feedback_type: FeedbackType = FeedbackType.NONE
+    feedback_type: FeedbackType = FeedbackType.SIMPLE
     """Type of feedback to include in prompts"""
 
-    hand_transparency: int = 0
-    """Transparency level for hand rendering in images (0.0-1.0)"""
+    hand_transparency: int = 60
+    """Transparency level for hand rendering in images (0-100)"""
 
-    include_common_sense: bool = True
+    include_common_sense: bool = False
     """Whether to include common sense rules in prompts"""
 
     prompt_version: PromptVersion = PromptVersion.V2
     """Prompt template version (v1=original monolithic, v2=new modular)"""
 
-    previous_image: PreviousImageType = PreviousImageType.NONE
+    previous_image: PreviousImageType = PreviousImageType.COLOR
     """Type of previous image to include (none, color, grayscale)"""
 
     use_memory: bool = True
     """Whether to use memory for context persistence"""
 
-    full_steps: bool = False
+    full_steps: bool = True
     """Whether to generate full action sequence instead of single next action"""
 
-    temperature: float = 0.6
+    temperature: float = 0.0
     """Temperature for response generation"""
 
-    max_completion_tokens: int = 4096
+    max_completion_tokens: int = 8192
     """Maximum tokens for model completion"""
 
     def to_dict(self) -> dict:
@@ -210,9 +210,15 @@ class EvaluationConfig:
             # Get the actual type from type hints
             field_type = type_hints.get(field.name, field.type)
 
-            # Boolean fields become store_true actions
+            # Boolean fields: use BooleanOptionalAction to support both --flag and --no-flag
+            # This respects the dataclass default value
             if field_type == bool:
-                parser.add_argument(arg_name, action="store_true", help=help_text)
+                parser.add_argument(
+                    arg_name,
+                    action=argparse.BooleanOptionalAction,
+                    default=field.default,
+                    help=help_text,
+                )
             # Enum fields use choices and convert string to enum
             elif isinstance(field_type, type) and issubclass(field_type, Enum):
                 choices = [e.value for e in field_type]

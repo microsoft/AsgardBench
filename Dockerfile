@@ -5,12 +5,14 @@ FROM python:3.11-slim
 
 # Install system dependencies for AI2-THOR
 RUN apt-get update && apt-get install -y \
-    libgl1-mesa-glx \
+    libgl1-mesa-dri \
+    libgl1 \
     libglib2.0-0 \
     libsm6 \
     libxext6 \
     libxrender-dev \
     libgomp1 \
+    xvfb \
     wget \
     curl \
     git \
@@ -41,7 +43,8 @@ ENV OPENAI_BASE_URL="https://api.openai.com/v1"
 ENV ASGARDBENCH_TEST_DIR="/app/Test"
 
 # Default command: show help
-ENTRYPOINT ["uv", "run", "python", "-m", "AsgardBench.Model.model_tester"]
+# Use xvfb-run to provide virtual display for AI2-THOR
+ENTRYPOINT ["xvfb-run", "-a", "uv", "run", "python", "-m", "AsgardBench.Model.model_tester"]
 CMD ["--help"]
 
 # Example usage:

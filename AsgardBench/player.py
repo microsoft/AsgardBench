@@ -21,6 +21,7 @@ class Player:
         plan_type: PlanType,
         config: EvaluationConfig,
         save_directory: str = None,
+        initial_pose: dict = None,
     ):
         self.scenario = Scenario(
             task=test_plan.task_description,
@@ -33,6 +34,7 @@ class Player:
             goal=test_plan.goal,
             setup_actions=test_plan.setup_actions,
             randomization=test_plan.randomization,
+            initial_pose=initial_pose,
         )
         self.plan = copy.deepcopy(test_plan)
 

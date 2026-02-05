@@ -478,16 +478,9 @@ class ModelTester:
             )
             self.test_results.test_results.append(test_result)
 
-            # Save test results with proper encoding and Azure ML awareness
+            # Save test results with proper encoding
             with open(self.test_results_file, "w", encoding="utf-8") as file:
                 json.dump(self.test_results.to_dict(), file, indent=2)
-
-            # Log Azure ML info for debugging
-            azure_info = get_azure_ml_info()
-            if azure_info["is_azure_ml"]:
-                print(f"Azure ML: Saved results to {self.test_results_file}")
-                print(f"Azure ML Job ID: {azure_info['job_id']}")
-                print(f"Azure ML Experiment: {azure_info['experiment_name']}")
 
             if new_plan.task_failed:
                 Utils.print_color(
@@ -661,18 +654,19 @@ class ModelTester:
         processed_count: int,
     ) -> Plan | None:
 
-        player = Player(
-            test_plan,
-            plan_type=PlanType.REPLAY,
-            config=self.config,
-            save_directory=self.plan_folder,
-        )
-
         # Get initial pose from plan (works with both full and stripped formats)
         initial_pose = test_plan.initial_pose
         if initial_pose:
             initial_pose = initial_pose.copy()  # Don't modify the original
             initial_pose["standing"] = initial_pose.get("isStanding", True)
+
+        player = Player(
+            test_plan,
+            plan_type=PlanType.REPLAY,
+            config=self.config,
+            save_directory=self.plan_folder,
+            initial_pose=initial_pose,
+        )
 
         if not os.path.exists(f"{self.plan_folder}/{test_plan.name}"):
             os.makedirs(f"{self.plan_folder}/{test_plan.name}")

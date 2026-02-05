@@ -42,8 +42,8 @@ class Plan:
             raw_plan.failed_steps if raw_plan.failed_steps is not None else []
         )
         # For stripped plans without full steps array
-        self._step_count: int | None = raw_plan.step_count
-        self._initial_pose: dict | None = raw_plan.initial_pose
+        self._step_count: int | None = raw_plan._step_count
+        self._initial_pose: dict | None = raw_plan._initial_pose
 
     @property
     def step_count(self) -> int:
@@ -290,8 +290,8 @@ class RawPlan:
         self.failed_steps = failed_steps if failed_steps is not None else []
 
         # For stripped plans without full steps array
-        self.step_count = step_count
-        self.initial_pose = initial_pose
+        self._step_count = step_count
+        self._initial_pose = initial_pose
 
     def to_dict(self):
         return {
@@ -354,7 +354,15 @@ class RawPlan:
         link_parents(self.first_step)
 
     def step_count(self):
+        if self._step_count is not None:
+            return self._step_count
         return self.first_step.step_count()
+
+    def initial_pose(self):
+        if self._initial_pose is not None:
+            return self._initial_pose
+        # Could extract from first_step if needed
+        return None
 
     def plan_from_raw_plan(self, save_dir: str) -> Plan:
         """
