@@ -1,0 +1,145 @@
+{
+  "name": "turn_on_tv__FloorPlan203_V1",
+  "task_description": "Turn on the television",
+  "scene": "FloorPlan203",
+  "plan_type": "generated",
+  "task_failed": false,
+  "setup_actions": [],
+  "object_setup": {
+    "target_setup": {
+      "object_specifier": {
+        "names": null,
+        "types": [
+          "RemoteControl"
+        ],
+        "classes": null,
+        "secondary_names": null,
+        "secondary_types": null,
+        "preferred_name": null,
+        "all": false
+      },
+      "container_specifier": {
+        "names": null,
+        "types": [
+          "CoffeeTable",
+          "CounterTop",
+          "Floor",
+          "Shelf",
+          "SideTable"
+        ],
+        "classes": null,
+        "secondary_names": null,
+        "secondary_types": null,
+        "preferred_name": null,
+        "all": false
+      }
+    },
+    "distractor_setups": [
+      {
+        "object_specifier": {
+          "names": null,
+          "types": [
+            "Boots",
+            "Bowl",
+            "Box",
+            "Candle",
+            "HousePlant",
+            "Statue",
+            "TissueBox",
+            "WateringCan",
+            "Vase"
+          ],
+          "classes": null,
+          "secondary_names": null,
+          "secondary_types": null,
+          "preferred_name": null,
+          "all": false
+        },
+        "container_specifier": {
+          "names": null,
+          "types": [
+            "CounterTop",
+            "Floor",
+            "Shelf",
+            "SideTable",
+            "ShelvingUnit"
+          ],
+          "classes": null,
+          "secondary_names": null,
+          "secondary_types": null,
+          "preferred_name": null,
+          "all": false
+        }
+      },
+      {
+        "object_specifier": {
+          "names": null,
+          "types": [
+            "Book",
+            "CellPhone",
+            "CreditCard",
+            "KeyChain",
+            "Laptop",
+            "Newspaper",
+            "Pen",
+            "Pillow",
+            "Pencil",
+            "TissueBox",
+            "Watch"
+          ],
+          "classes": null,
+          "secondary_names": null,
+          "secondary_types": null,
+          "preferred_name": null,
+          "all": false
+        },
+        "container_specifier": {
+          "names": null,
+          "types": [
+            "CounterTop",
+            "Shelf",
+            "Sofa",
+            "SideTable",
+            "ShelvingUnit"
+          ],
+          "classes": null,
+          "secondary_names": null,
+          "secondary_types": null,
+          "preferred_name": null,
+          "all": false
+        }
+      }
+    ],
+    "employed_types": []
+  },
+  "goal": {
+    "location_goals": [],
+    "state_goals": [
+      {
+        "object_type": "Television",
+        "state": "isToggled",
+        "value": true,
+        "outcome": "success"
+      }
+    ],
+    "put_away_goals": [],
+    "action_goals": {},
+    "contents_goals": []
+  },
+  "randomization": {
+    "seed": 1221,
+    "error_injection": null,
+    "fail_action": null
+  },
+  "step_count": 4,
+  "initial_pose": {
+    "position": {
+      "x": -3.0,
+      "y": 0.9070531129837036,
+      "z": 2.75
+    },
+    "rotation": 133.0,
+    "isStanding": true,
+    "horizon": -0.0
+  }
+}

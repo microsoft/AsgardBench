@@ -1,0 +1,133 @@
+{
+  "name": "putaway__Silverware_FloorPlan6_V1-Spoon Fork Spatula",
+  "task_description": "Put away the Spoon, Fork and Spatula",
+  "scene": "FloorPlan6",
+  "plan_type": "generated",
+  "task_failed": false,
+  "setup_actions": [],
+  "object_setup": {
+    "target_setup": {
+      "object_specifier": {
+        "names": null,
+        "types": [
+          "DishSponge",
+          "Knife",
+          "Fork",
+          "Ladle",
+          "Spatula",
+          "Spoon",
+          "ButterKnife"
+        ],
+        "classes": null,
+        "secondary_names": null,
+        "secondary_types": null,
+        "preferred_name": null,
+        "all": false
+      },
+      "container_specifier": null
+    },
+    "distractor_setups": [
+      {
+        "object_specifier": {
+          "names": null,
+          "types": null,
+          "classes": [
+            "Kitchen",
+            "Bowl",
+            "Plate",
+            "Cup",
+            "Mug",
+            "Pot",
+            "Apple",
+            "Lettuce",
+            "Tomato",
+            "Bread",
+            "Potato",
+            "Egg"
+          ],
+          "secondary_names": null,
+          "secondary_types": null,
+          "preferred_name": null,
+          "all": false
+        },
+        "container_specifier": null
+      }
+    ],
+    "employed_types": [
+      "DishSponge"
+    ]
+  },
+  "goal": {
+    "location_goals": [],
+    "state_goals": [
+      {
+        "object_type": "CoffeeMachine",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Toaster",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "StoveKnob",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Microwave",
+        "state": "isOpen",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Fridge",
+        "state": "isOpen",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Faucet",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      }
+    ],
+    "put_away_goals": [
+      {
+        "object_type": "Spoon",
+        "outcome": "success"
+      },
+      {
+        "object_type": "Fork",
+        "outcome": "success"
+      },
+      {
+        "object_type": "Spatula",
+        "outcome": "success"
+      }
+    ],
+    "action_goals": {},
+    "contents_goals": []
+  },
+  "randomization": {
+    "seed": 5508,
+    "error_injection": null,
+    "fail_action": null
+  },
+  "step_count": 17,
+  "initial_pose": {
+    "position": {
+      "x": 0.0,
+      "y": 0.9009991884231567,
+      "z": -0.75
+    },
+    "rotation": 216.0,
+    "isStanding": true,
+    "horizon": 0.0
+  }
+}

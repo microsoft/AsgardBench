@@ -1,0 +1,137 @@
+{
+  "name": "putaway__Dishes_FloorPlan28_V1-Bowl Pot Mug Plate",
+  "task_description": "Put away the Bowl, Pot, Mug and Plate",
+  "scene": "FloorPlan28",
+  "plan_type": "generated",
+  "task_failed": false,
+  "setup_actions": [],
+  "object_setup": {
+    "target_setup": {
+      "object_specifier": {
+        "names": null,
+        "types": [
+          "DishSponge",
+          "Bowl",
+          "Plate",
+          "Cup",
+          "Mug",
+          "Pot"
+        ],
+        "classes": null,
+        "secondary_names": null,
+        "secondary_types": null,
+        "preferred_name": null,
+        "all": false
+      },
+      "container_specifier": null
+    },
+    "distractor_setups": [
+      {
+        "object_specifier": {
+          "names": null,
+          "types": null,
+          "classes": [
+            "Kitchen",
+            "Knife",
+            "Fork",
+            "Ladle",
+            "Spatula",
+            "Spoon",
+            "ButterKnife",
+            "Apple",
+            "Lettuce",
+            "Tomato",
+            "Bread",
+            "Potato",
+            "Egg"
+          ],
+          "secondary_names": null,
+          "secondary_types": null,
+          "preferred_name": null,
+          "all": false
+        },
+        "container_specifier": null
+      }
+    ],
+    "employed_types": [
+      "DishSponge"
+    ]
+  },
+  "goal": {
+    "location_goals": [],
+    "state_goals": [
+      {
+        "object_type": "CoffeeMachine",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Toaster",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "StoveKnob",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Microwave",
+        "state": "isOpen",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Fridge",
+        "state": "isOpen",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Faucet",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      }
+    ],
+    "put_away_goals": [
+      {
+        "object_type": "Bowl",
+        "outcome": "success"
+      },
+      {
+        "object_type": "Pot",
+        "outcome": "success"
+      },
+      {
+        "object_type": "Mug",
+        "outcome": "success"
+      },
+      {
+        "object_type": "Plate",
+        "outcome": "success"
+      }
+    ],
+    "action_goals": {},
+    "contents_goals": []
+  },
+  "randomization": {
+    "seed": 9353,
+    "error_injection": null,
+    "fail_action": null
+  },
+  "step_count": 16,
+  "initial_pose": {
+    "position": {
+      "x": -3.922590970993042,
+      "y": 0.9009982347488403,
+      "z": -1.1142200231552124
+    },
+    "rotation": 346.0262756347656,
+    "isStanding": false,
+    "horizon": 41.3881721496582
+  }
+}

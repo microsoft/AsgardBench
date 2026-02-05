@@ -1,0 +1,122 @@
+{
+  "name": "distribute__Apple_Plate_FloorPlan25_V1",
+  "task_description": "Slice the Apple and put a piece in the Plate",
+  "scene": "FloorPlan25",
+  "plan_type": "generated",
+  "task_failed": false,
+  "setup_actions": [],
+  "object_setup": {
+    "target_setup": {
+      "object_specifier": {
+        "names": null,
+        "types": [
+          "Apple",
+          "DishSponge",
+          "Knife",
+          "Pan",
+          "Plate",
+          "Bowl",
+          "Pot"
+        ],
+        "classes": null,
+        "secondary_names": null,
+        "secondary_types": null,
+        "preferred_name": null,
+        "all": false
+      },
+      "container_specifier": null
+    },
+    "distractor_setups": [
+      {
+        "object_specifier": {
+          "names": null,
+          "types": null,
+          "classes": [
+            "Kitchen",
+            "Silverware"
+          ],
+          "secondary_names": null,
+          "secondary_types": null,
+          "preferred_name": null,
+          "all": false
+        },
+        "container_specifier": null
+      }
+    ],
+    "employed_types": [
+      "Apple",
+      "DishSponge",
+      "Knife",
+      "Pan",
+      "Plate",
+      "Bowl",
+      "Pot"
+    ]
+  },
+  "goal": {
+    "location_goals": [
+      {
+        "object_type": "AppleSliced",
+        "destination_type": "Plate",
+        "outcome": "success"
+      }
+    ],
+    "state_goals": [
+      {
+        "object_type": "CoffeeMachine",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Toaster",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "StoveKnob",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Microwave",
+        "state": "isOpen",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Fridge",
+        "state": "isOpen",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Faucet",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      }
+    ],
+    "put_away_goals": [],
+    "action_goals": {},
+    "contents_goals": []
+  },
+  "randomization": {
+    "seed": 1538,
+    "error_injection": null,
+    "fail_action": null
+  },
+  "step_count": 9,
+  "initial_pose": {
+    "position": {
+      "x": -2.0,
+      "y": 0.9009992480278015,
+      "z": 1.0
+    },
+    "rotation": 298.0,
+    "isStanding": true,
+    "horizon": 0.0
+  }
+}

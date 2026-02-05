@@ -1,7 +1,7 @@
 [project]
-name = "magmathor"
+name = "asgardbench"
 version = "0.1.0"
-description = "AI2Thor-based embodied AI task planning system"
+description = "AsgardBench: An embodied AI benchmark for household task planning in AI2-THOR"
 requires-python = ">=3.10"
 dependencies = [
     "ai2thor",
@@ -20,21 +20,11 @@ dependencies = [
     "safetensors",
     "qwen-vl-utils",
     "openai",
-    "azure-identity",
-    "azure-keyvault-secrets",
-    "azureml-core",
     "python-dotenv>=1.2.1",
     "bokeh>=3.8.1",
     "typer>=0.20.0",
     "openpyxl>=3.1.5",
-    "debugpy>=1.8.18",
-    # experiment_runner dependencies
-    "rich>=13.0.0",
-    "prompt-toolkit>=3.0.0",
-    "httpx>=0.27.0",
     "pyyaml>=6.0",
-    "dacite>=1.8.0",
-    "csvkit>=2.2.0",
 ]
 
 [project.optional-dependencies]
@@ -49,7 +39,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["Magmathor"]
+packages = ["AsgardBench"]
 
 [tool.black]
 line-length = 88

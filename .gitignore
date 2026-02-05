@@ -1,27 +1,49 @@
-Generated/
+# Generated data - exclude most, but allow benchmark plan.json files
+# We include plan.json for each benchmark task (the only file needed for evaluation)
+Generated/*
+!Generated/magt_benchmark/
+!Generated/magt_benchmark_sanity/
+
+# Within benchmark folders, only keep plan.json
+Generated/magt_benchmark/*/*.png
+Generated/magt_benchmark/*/*.txt
+Generated/magt_benchmark/*/raw_plan.json
+Generated/magt_benchmark/*/log.txt
+Generated/magt_benchmark/*/steps.txt
+Generated/magt_benchmark/*/steps_w_images.txt
+
+
+# Within benchmark folders, only keep plan.json
+Generated/magt_benchmark_*/*/*.png
+Generated/magt_benchmark_*/*/*.txt
+Generated/magt_benchmark_*/*/raw_plan.json
+Generated/magt_benchmark_*/*/log.txt
+Generated/magt_benchmark_*/*/steps.txt
+Generated/magt_benchmark_*/*/steps_w_images.txt
+
+/PromptExamples
+
 Replay/
 Test/
 Tests/
 _Test/
 checkpoints/
-amlt/
-.amltconfig
 models/
 __pycache__
 
-/.env
+# Secrets - never commit these
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets.json
+credentials.json
 
 /.sync_tracker.db
 logs/
-PromptExamples/
 
-/experiment_runner/experiment_state.json
-Magmathor/cache/search_cache.json
-
-/experiment_runner/aml_jobs.json
-
+AsgardBench/cache/search_cache.json
 
 /copilot-reports/
-/experiment_runner__cs/
-/20251223__Test__pre_DOUBLE_CHECK/
 /*__Test__*/

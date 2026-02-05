@@ -1,4 +1,4 @@
-# Claude.md - Magmathor Repository Guide
+# Claude.md - AsgardBench Repository Guide
 
 ## Running Python
 
@@ -10,52 +10,36 @@ uv run python <script.py>
 
 ## Key Paths & Constants
 
-Important paths and constants are defined in `Magmathor/constants.py`:
+Important paths and constants are defined in `AsgardBench/constants.py`:
 
-- `TEST_DIR` - The test folder path (currently `20260115_Test` or mounted storage path)
-- `DATASET_DIR` - Where generated data is stored (`Generated/`)
-- `MOUNTED_STORAGE_PATH` - Path to mounted blob storage
-
-## Performance Warning
-
-The `./Test` folder (or the path defined in constants) is mounted via **blobfuse**. Large operations on this folder are **extremely slow**. Avoid:
-
-- Listing large directories
-- Bulk file operations
-- Recursive searches
-
-Prefer targeted operations on specific files when working with the Test folder.
+- `TEST_DIR` - Test output folder (default: `./Test`, configurable via `ASGARDBENCH_TEST_DIR`)
+- `DATASET_DIR` - Benchmark data folder (default: `./Generated`, configurable via `ASGARDBENCH_DATA_DIR`)
 
 ## Project Structure
 
-- `Magmathor/` - Main Python package
-- `Generated/` - Generated dataset files
-- `Test/` - Test data (blobfuse mounted)
-- `experiment_runner/` - Experiment automation
-- `scripts/` - Utility scripts
+```
+AsgardBench/
+├── AsgardBench/           # Main Python package
+│   ├── Model/             # Model testing & evaluation
+│   │   ├── model_tester.py    # Main entry point for evaluation
+│   │   ├── openai_actor.py    # Unified OpenAI-compatible client
+│   │   └── prompt_templates.py # Prompt generation
+│   ├── Utils/             # Utility tools
+│   └── ...                # Core simulation code
+├── Generated/             # Benchmark data (plan.json files)
+│   ├── magt_benchmark/    # Full benchmark (108 tasks)
+│   └── magt_benchmark_sanity/ # Quick sanity check (2 tasks)
+├── Test/                  # Output directory for results
+└── scripts/               # Analysis & debugging scripts
+```
 
 ## Model Providers
 
-Models are accessed through two different providers:
+Models are accessed through OpenAI-compatible APIs. Configure via environment variables:
 
-### Azure OpenAI (`Magmathor/Model/gpt_actor.py`)
-- **Models**: `gpt-4o`, `gpt-4.1`, `gpt-5`, `gpt-5.2`, `o1`, `o3`, `o3-mini`, `o4-mini`, `Llama-4-*`, `Mistral-Large-3`
-- Uses Azure AD authentication via managed identity (on AML) or Azure CLI (locally)
-- Resources configured in `_init_azure_rotation()` method
-
-### OpenRouter (`Magmathor/Model/openrouter_actor.py`)
-- **Models**: `anthropic/claude-*`, `google/gemini-*`, `qwen/*`, `z-ai/glm-*`, `deepseek/*`
-- Uses OpenRouter API key from Key Vault
-- Model names use `__` separator in configs (e.g., `google__gemini-3-pro-preview`)
-
-## Error Analysis Scripts
-
-Scripts for analyzing API failures and test results:
-
-- `scripts/extract_model_errors.py` - Extract `[MODEL ERROR]` messages from plan.json files
-- `scripts/failure_summary.py` - Summarize failure patterns across benchmarks
-- `scripts/check_retry_logs.py` - Search for retry warnings in logs
-- `scripts/remove_api_failures.py` - Remove API_Failure tasks from results
+- `OPENAI_API_KEY` - Your API key
+- `OPENAI_BASE_URL` - API endpoint (OpenAI, Azure, OpenRouter, vLLM, etc.)
+- `OPENAI_API_VERSION` - API version (required for Azure OpenAI)
 
 ## Common Commands
 
@@ -63,9 +47,24 @@ Scripts for analyzing API failures and test results:
 # Install dependencies
 uv sync
 
-# Run pre-commit hooks
+# Run pre-commit hooks (formatting)
 uv run pre-commit run --all-files
 
-# Run model evaluation
-uv run python Magmathor/Model/model_tester.py --test <test_name> --model <model_path>
+# Run sanity check
+uv run python -m AsgardBench.Model.model_tester --test magt_benchmark_sanity --model gpt-4o
+
+# Run full benchmark
+uv run python -m AsgardBench.Model.model_tester --test magt_benchmark --model gpt-4o
+
+# View results
+uv run python -m AsgardBench.Model.model_tester --test magt_benchmark --model gpt-4o --print-results
 ```
+
+## Key Files for Development
+
+- `AsgardBench/Model/model_tester.py` - Main evaluation loop
+- `AsgardBench/Model/openai_actor.py` - API client (supports all OpenAI-compatible endpoints)
+- `AsgardBench/plan.py` - Plan data structure
+- `AsgardBench/scenario.py` - AI2-THOR environment wrapper
+- `AsgardBench/player.py` - Agent execution logic
+- `AsgardBench/goal.py` - Success condition checking
