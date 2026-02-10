@@ -12,6 +12,39 @@ from AsgardBench.Model.test_results import FailType, StepExtension
 
 DEFAULT_OUTPUT_DIR = f"{c.DATASET_DIR}"
 
+# Allowed base directories for path sanitization
+_ALLOWED_BASE_DIRS: list[str] = []
+
+
+def _get_allowed_base_dirs() -> list[str]:
+    """Return the resolved allowed base directories, computed once."""
+    if not _ALLOWED_BASE_DIRS:
+        _ALLOWED_BASE_DIRS.extend(
+            [
+                os.path.realpath(os.path.abspath(str(c.DATASET_DIR))),
+                os.path.realpath(os.path.abspath(str(c.TEST_DIR))),
+                os.path.realpath(os.path.abspath("Test")),  # blob mount
+            ]
+        )
+    return _ALLOWED_BASE_DIRS
+
+
+def sanitize_path(user_path: str) -> str | None:
+    """
+    Sanitize a user-provided path to prevent path traversal attacks (CWE-22).
+
+    Resolves the path to its canonical form and verifies it falls within one of
+    the allowed base directories. Returns None if the path is unsafe.
+    """
+    if not user_path:
+        return None
+    resolved = os.path.realpath(os.path.abspath(user_path))
+    for base in _get_allowed_base_dirs():
+        if resolved == base or resolved.startswith(base + os.sep):
+            return resolved
+    return None
+
+
 # Debug flag to enable pose error analysis UI features
 PLAN_DEBUG = False
 
@@ -1002,7 +1035,10 @@ def _show_search_form_inline():
             use_container_width=True,
             disabled=search_disabled,
         ):
-            if not os.path.exists(new_search_root):
+            new_search_root = sanitize_path(new_search_root)  # noqa: F841
+            if new_search_root is None:
+                st.error("Invalid search path: must be within an allowed directory.")
+            elif not os.path.exists(new_search_root):
                 st.error(f"Directory not found: {new_search_root}")
             elif not os.path.isdir(new_search_root):
                 st.error(f"Not a directory: {new_search_root}")
@@ -1462,6 +1498,12 @@ def show_file_browser(current_output_dir):
             if direct_path:
                 # Clean up path (remove trailing slash if present)
                 direct_path = direct_path.rstrip("/")
+
+                # Sanitize to prevent path traversal (CWE-22)
+                direct_path = sanitize_path(direct_path)  # type: ignore[assignment]
+                if direct_path is None:
+                    st.error("Invalid path: must be within an allowed directory.")
+                    st.stop()
 
                 # Check if path exists, if not try adding underscore prefix to last component
                 if not os.path.exists(direct_path):
