@@ -1,0 +1,141 @@
+{
+  "name": "settable__empty_FloorPlan15_V1",
+  "task_description": "Clear the dining table and set it with a mug of coffee and slice of toast",
+  "scene": "FloorPlan15",
+  "plan_type": "generated",
+  "task_failed": false,
+  "setup_actions": [
+    {
+      "action": "empty",
+      "object_name": "Mug_15c21204",
+      "argument": null
+    }
+  ],
+  "object_setup": {
+    "target_setup": {
+      "object_specifier": {
+        "names": null,
+        "types": [
+          "DishSponge",
+          "Mug",
+          "Plate",
+          "Bread",
+          "Knife"
+        ],
+        "classes": null,
+        "secondary_names": null,
+        "secondary_types": null,
+        "preferred_name": null,
+        "all": false
+      },
+      "container_specifier": null
+    },
+    "distractor_setups": [
+      {
+        "object_specifier": {
+          "names": null,
+          "types": null,
+          "classes": [
+            "Kitchen",
+            "Silverware",
+            "Food"
+          ],
+          "secondary_names": null,
+          "secondary_types": null,
+          "preferred_name": null,
+          "all": false
+        },
+        "container_specifier": null
+      }
+    ],
+    "employed_types": [
+      "DishSponge",
+      "Mug",
+      "Plate",
+      "Bread",
+      "Knife"
+    ]
+  },
+  "goal": {
+    "location_goals": [
+      {
+        "object_type": "BreadSliced",
+        "destination_type": "Plate",
+        "outcome": "success"
+      }
+    ],
+    "state_goals": [
+      {
+        "object_type": "CoffeeMachine",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Toaster",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "StoveKnob",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Microwave",
+        "state": "isOpen",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Fridge",
+        "state": "isOpen",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Faucet",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Mug",
+        "state": "isFilledWithLiquid",
+        "value": true,
+        "outcome": "success"
+      }
+    ],
+    "put_away_goals": [],
+    "action_goals": {},
+    "contents_goals": [
+      {
+        "container_type": "DiningTable",
+        "contents": [
+          "Mug",
+          "Plate",
+          "BreadSliced"
+        ],
+        "outcome": "success"
+      }
+    ]
+  },
+  "randomization": {
+    "seed": 5895,
+    "error_injection": null,
+    "fail_action": null
+  },
+  "step_count": 65,
+  "initial_pose": {
+    "position": {
+      "x": -1.4849175214767456,
+      "y": 0.914953351020813,
+      "z": 1.750455379486084
+    },
+    "rotation": 176.541259765625,
+    "isStanding": true,
+    "horizon": 24.637451171875
+  }
+}

@@ -1,0 +1,173 @@
+## Purpose of this example:
+##  - Response to Failed action (DRINK)
+##
+## Condition Codes:
+##   T0 = image mode, T1 = text mode
+##   Fn = feedback none, Fs = feedback simple, Fd = feedback detailed
+##   R0 = no memory, R1 = use memory
+##   S0 = no full steps, S1 = full steps
+##   H0 = hand invisible, H1 = hand visible
+
+*       |
+*       | Example 1:
+*       | Your primary goal is: Drink a mug coffee then clean and put the mug away
+*       |
+*       | HISTORY OF ATTEMPTED ACTIONS:
+[--------
+Fn      | 0. FIND Mug
+        | 1. PICKUP Mug
+        | 2. DRINK Mug
+Fs      | 0. FIND Mug  Success
+        | 1. PICKUP Mug  Success
+        | 2. DRINK Mug  Failure
+Fd      | 0. FIND Mug  Success
+        | 1. PICKUP Mug  Success
+        | 2. DRINK Mug  Failure Mug is not filled with liquid.
+--------]
+
+[--------
+S1      |
+        | SUGGESTED PLAN SEQUENCE (from your previous response):
+        | 1. FIND SinkBasin
+        | 2. PUT SinkBasin
+        | 3. FIND DishSponge
+        | 4. PICKUP DishSponge
+        | 5. FIND SinkBasin
+        | 6. TOGGLE_ON Faucet
+        | 7. CLEAN Mug
+        | 8. TOGGLE_OFF Faucet
+        | 9. FIND CounterTop
+        | 10. PUT CounterTop
+        | 11. FIND Cabinet
+        | 12. OPEN Cabinet
+        | 13. FIND Mug
+        | 14. PICKUP Mug
+        | 15. FIND Cabinet
+        | 16. PUT Cabinet
+        | 17. CLOSE Cabinet
+--------]
+
+[--------
+A0 R1   |
+        | MEMORY FROM PREVIOUS STEP:
+        | - Completed: Found Mug ✓, Picked up Mug ✓
+        | - Current: Drink coffee
+        | - Remaining: Wash Mug, Store in Cabinet
+--------]
+
+*       |
+*       | Response:
+*       |
+*       | <think>
+
+[--------
+T0      | VISUAL OBSERVATIONS:
+        | - I see a CoffeeMachine sitting on the CounterTop.
+        | - I see a Fork on the CounterTop.
+        | - I see part of a Pan on the right edge of the CounterTop.
+        | - No Sink/SinkBasin/Faucet/Cabinet visible in this frame.
+--------]
+[--------
+T0 H1   | - I see a Mug held in the agent’s hand at the bottom center of the view (looks empty from this angle; no visible coffee surface).
+T0 H0   | - I see a Mug floating in mid-air at the bottom center of the view (looks empty from this angle; no visible coffee surface).
+--------]
+
+
+*       |
+*       | INVENTORY CHECK:
+[--------
+T1 Fs   | - HISTORY OF ATTEMPTED ACTIONS shows PICKUP Mug Success, and no subsequent PUT so I am holding the Mug
+T1 Fd   | - HISTORY OF ATTEMPTED ACTIONS shows PICKUP Mug Success, and no subsequent PUT so I am holding the Mug
+T1 Fn   | - HISTORY OF ATTEMPTED ACTIONS shows PICKUP Mug and no subsequent PUT so I assume I am holding the Mug
+--------]
+[--------
+T0 H1   | - I am holding the Mug (visible in hand).
+T0 H0   | - I am holding the Mug (visible floating in mid-air at the bottom center of the view).
+--------]
+
+*       |
+*       | LAST ACTION ASSESSMENT:
+[--------
+Fs      | - Last action was DRINK Mug, Mug is empty but HISTORY OF ATTEMPTED ACTIONS says it failed.
+Fd      | - Last action was DRINK Mug, Mug is empty but HISTORY OF ATTEMPTED ACTIONS says it failed.
+T0 Fn I1| - Last action was DRINK Mug and nothing has changed between the two images so it likely failed.
+T0 Fn I2| - Last action was DRINK Mug and nothing has changed between the two images so it likely failed.
+T0 Fn I0| - Last action was DRINK Mug
+T1 Fn   | - Last action was DRINK Mug
+--------]
+[--------
+T1 Fn   |
+Fd      | - HISTORY OF ATTEMPTED ACTIONS says it failed because Mug is not filled with liquid.
+*       | - Likely reason: the Mug does not currently contain coffee (or any drinkable liquid), so DRINK cannot proceed.
+--------]
+
+*       |
+*       | DOUBLE CHECK:
+[--------
+T0      | - I assume the Mug was found near the CoffeeMachine — I can see the CoffeeMachine in the current frame, this is consistent.
+        | - I assume the Mug was filled with coffee, this does not match my VISUAL OBSERVATIONS as the Mug appears to be empty
+T1 Fs   | - I assume I am holding an empty Mug — shows PICKUP Mug Success, and no subsequent PUT so the assumption is correct
+T1 Fd   | - I assume I am holding an empty Mug — shows PICKUP Mug Success, and no subsequent PUT so the assumption is correct
+T1 Fn   | - I assume I am holding an empty Mug — shows PICKUP Mug, and no subsequent PUT so I can only assume the assumption is correct
+--------]
+[--------
+T0 H1   | - I assume I am holding an empty Mug — this matches my VISUAL OBSERVATIONS (Mug visible in hand, appears empty).
+T0 H0   | - I assume I am holding an empty Mug — this matches my VISUAL OBSERVATIONS (Mug visible floating in mid-air, appears empty).
+--------]
+
+*       |
+*       | PLAN REASONING:
+[--------
+T0      | - To “drink a mug coffee,” I need the Mug to contain coffee. The CoffeeMachine is visible, so the next step is to PUT the Mug into the CoffeeMachine, then run it (TOGGLE_ON then TOGGLE_OFF), then PICKUP and DRINK.
+*       | - To “drink a mug coffee,” I need the Mug to contain coffee. The next step is to PUT the Mug into the CoffeeMachine, then run it (TOGGLE_ON then TOGGLE_OFF), then PICKUP and DRINK.
+--------]
+*       | - After drinking, I must wash the Mug in the sink using DishSponge + Faucet, then store it in the Cabinet (need to FIND those when ready).
+
+*       | </think>
+*       |
+*       | <answer>
+*       | THINGS TO REMEMBER:
+[--------
+T0      | - Completed: Found Mug ✓, Picked up Mug ✓, DRINK failed (Mug empty)
+        | - Current: Brew coffee in CoffeeMachine
+        | - Remaining: Drink, Wash Mug, Store in Cabinet
+T1 Fsd  | - Completed: Found Mug ✓, Picked up Mug ✓, DRINK failed (Mug empty)
+        | - Current: Brew coffee in CoffeeMachine
+        | - Remaining: Drink, Wash Mug, Store in Cabinet
+T1 Fn   | - Completed: Found Mug ✓, Picked up Mug ✓, DRINK attempted
+        | - Current: Brew coffee in CoffeeMachine
+        | - Remaining: Drink, Wash Mug, Store in Cabinet
+--------]
+
+*       |
+
+[--------
+S1      | SUGGESTED PLAN SEQUENCE:
+        | 1. FIND CoffeeMachine
+        | 2. PUT CoffeeMachine
+        | 3. TOGGLE_ON CoffeeMachine
+        | 4. TOGGLE_OFF CoffeeMachine
+        | 5. FIND Mug
+        | 6. PICKUP Mug
+        | 7. DRINK Mug
+        | 8. FIND SinkBasin
+        | 9. PUT SinkBasin
+        | 10. FIND DishSponge
+        | 11. PICKUP DishSponge
+        | 12. FIND SinkBasin
+        | 13. TOGGLE_ON Faucet
+        | 14. CLEAN Mug
+        | 15. TOGGLE_OFF Faucet
+        | 16. FIND CounterTop
+        | 17. PUT CounterTop
+        | 18. FIND Cabinet
+        | 19. OPEN Cabinet
+        | 20. FIND Mug
+        | 21. PICKUP Mug
+        | 22. FIND Cabinet
+        | 23. PUT Cabinet
+        | 24. CLOSE Cabinet
+--------]
+*       |
+*       | Action: PUT CoffeeMachine
+*       | </answer>

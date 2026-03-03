@@ -1,0 +1,62 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Model Tester",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/AsgardBench/Model/model_tester.py",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "args": [
+                "--test", "magt_benchmark_sanity",
+                "--model", "gpt-4o"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": false
+        },
+        {
+            "name": "Plan Viewer",
+            "type": "debugpy",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "run",
+                "--server.headless=true",
+                "${workspaceFolder}/AsgardBench/plan_viewer.py"
+            ],
+            "module": "streamlit"
+        },
+        {
+            "name": "Generate Reports",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/AsgardBench/Model/generate_reports.py",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Python Debugger: Remote Attach",
+            "type": "debugpy",
+            "request": "attach",
+            "connect": {
+                "host": "localhost",
+                "port": 5678
+            },
+            "justMyCode": false,
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}",
+                    "remoteRoot": "."
+                }
+            ]
+        }
+    ]
+}

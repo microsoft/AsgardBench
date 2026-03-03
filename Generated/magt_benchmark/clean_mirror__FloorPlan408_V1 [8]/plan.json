@@ -1,0 +1,102 @@
+{
+  "name": "clean_mirror__FloorPlan408_V1",
+  "task_description": "Clean the mirror",
+  "scene": "FloorPlan408",
+  "plan_type": "generated",
+  "task_failed": false,
+  "setup_actions": [
+    {
+      "action": "dirty",
+      "object_name": "Mirror_018e4104",
+      "argument": null
+    }
+  ],
+  "object_setup": {
+    "target_setup": {
+      "object_specifier": {
+        "names": null,
+        "types": [
+          "Cloth",
+          "SprayBottle"
+        ],
+        "classes": null,
+        "secondary_names": null,
+        "secondary_types": null,
+        "preferred_name": null,
+        "all": false
+      },
+      "container_specifier": null
+    },
+    "distractor_setups": [
+      {
+        "object_specifier": {
+          "names": null,
+          "types": [
+            "Candle",
+            "DishSponge",
+            "HousePlant",
+            "PaperTowelRoll",
+            "Plunger",
+            "ScrubBrush",
+            "SoapBar",
+            "SoapBottle"
+          ],
+          "classes": null,
+          "secondary_names": null,
+          "secondary_types": null,
+          "preferred_name": null,
+          "all": false
+        },
+        "container_specifier": {
+          "names": null,
+          "types": [
+            "CounterTop",
+            "Floor",
+            "Shelf"
+          ],
+          "classes": null,
+          "secondary_names": null,
+          "secondary_types": null,
+          "preferred_name": null,
+          "all": false
+        }
+      }
+    ],
+    "employed_types": [
+      "Cloth",
+      "SprayBottle"
+    ]
+  },
+  "goal": {
+    "location_goals": [],
+    "state_goals": [
+      {
+        "object_type": "Mirror",
+        "state": "isDirty",
+        "value": false,
+        "outcome": "success"
+      }
+    ],
+    "put_away_goals": [],
+    "action_goals": {
+      "Spray Mirror": true
+    },
+    "contents_goals": []
+  },
+  "randomization": {
+    "seed": 1820,
+    "error_injection": null,
+    "fail_action": null
+  },
+  "step_count": 8,
+  "initial_pose": {
+    "position": {
+      "x": -1.5,
+      "y": 0.902047336101532,
+      "z": -0.25
+    },
+    "rotation": 352.0,
+    "isStanding": true,
+    "horizon": 0.0
+  }
+}

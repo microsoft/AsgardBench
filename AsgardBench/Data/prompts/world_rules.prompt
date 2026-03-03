@@ -1,0 +1,146 @@
+## World Rules Template
+## Converted from world_rules.jinja2
+##
+## Condition Codes:
+##   T0 = image mode, T1 = text mode
+##   C1 = include common sense rules
+##   H0 = hand invisible, H1 = hand visible
+##   I0 = no previous image, I1 = color, I2 = grayscale
+##
+## Format: Use [ and ] to group alternative lines (only first match is used)
+
+*       | -------------------------------------
+*       | SECTION: WORLD RULES
+*       | --------------------------------------
+*       |
+*       | Follow these rules when reasoning or performing actions:
+*       |
+*       | # OBJECTS #
+*       |
+*       | CoffeeMachine:
+*       | - Mug must be clean and empty; wash dirty mugs, EMPTY mugs with liquid.
+C1      | - PUT Mug in CoffeeMachine.
+*       | - To make coffee, TOGGLE_ON and then TOGGLE_OFF, no need to wait.
+C1      | - After coffee is made, Mug contains coffee. PICKUP and DRINK.
+*       | - After drinking, clean the Mug before putting it away.
+*       |
+*       | Toaster:
+C1      | - Use it to toast BreadSliced.
+*       | - TOGGLE_ON to start, then TOGGLE_OFF, no need to wait.
+*       |
+*       | Microwave:
+C1      | - Microwave must be OPEN before PUT or PICKUP.
+C1      | - CLOSE it before TOGGLE_ON.
+*       | - To cook, TOGGLE_ON and then TOGGLE_OFF, no need to wait.
+*       | - CLOSE it after removing the cooked item.
+*       |
+*       | StoveBurner:
+*       | - Items to cook must be in a Pan
+C1      | - Pan must be on the StoveBurner
+*       | - To cook, TOGGLE_ON and then TOGGLE_OFF, no need to wait.
+*       |
+*       | Fridge:
+C1      | - The fridge must be OPEN before you PUT or PICKUP an object.
+*       | - Unless being used for your task, when putting food items away, place them inside the fridge
+C1      | - After use, ensure you CLOSE the fridge
+*       |
+*       | Television:
+C1      | - Must be holding a RemoteControl
+*       | - To TOGGLE_ON or TOGGLE_OFF Television use the RemoteControl.
+C1      | - PICKUP RemoteControl, then TOGGLE_ON to turn on the Television.
+*       |
+*       | Cabinet and Drawer:
+C1      | - Must be OPEN before PICKUP or PUT.
+*       | - You must CLOSE the Cabinet or Drawer after completing PICKUP or PUT.
+*       |
+*       | Egg:
+C1      | - An Egg must be turned into an EggCracked before it can be cooked
+*       | - Use SLICE to turn an Egg into an EggCracked (it does NOT require a knife)
+*       | - The Egg must be PUT on a Pan before you use SLICE
+*       | - To cook an EggCracked it must be in a Pan
+*       | - A cooked EggCracked must be served on a Plate
+*       |
+*       | Potato:
+*       | - Whole Potatoes are cooked in the Microwave
+*       | - A cooked Potato must be served in a Bowl
+*       |
+*       | PotatoSliced:
+C1      | - Use SLICE to turn a Potato into an PotatoSliced (you MUST be holding the Knife)
+*       | - To cook a PotatoSliced it must be PUT in a Pan
+*       | - A PotatoSliced is served on a Plate
+*       |
+*       | Mirror:
+*       | - To clean the Mirror, first SPRAY Mirror with SprayBottle, then CLEAN while holding the Cloth.
+*       |
+*       | # ACTIONS #
+*       |
+*       | SLICE:
+*       | - You must be holding the Knife to SLICE an object (except for Eggs, which can be SLICED without a Knife).
+*       | - You cannot SLICE an object that you are holding
+*       | - Valid objects to SLICE: Apple, Bread, Egg, Lettuce, Potato, Tomato.
+*       | - SLICE actions produce new objects (e.g., Bread → BreadSliced) that may move out of view.
+*       | - Item must be on a flat surface, CounterTop, DiningTable, etc. (or a Pan for Eggs) to SLICE.
+*       | - Items on lower shelves must be moved before you can SLICE them.
+*       |
+*       | PUT:
+C1      | - You must be holding an object to PUT it.
+*       | - The container must be clean
+*       | - Specify destination when PUTTING (e.g., PUT SinkBasin).
+C1      | - You cannot PUT objects into closed containers.
+*       |
+*       | PICKUP:
+[--------
+T0 C1   | - You can only PICKUP an object once you have confirmed it is visible in {img_ref}.
+T1 C1   | - You can only PICKUP an object once you have confirmed it is present in the scene.
+--------]
+*       | - You can only be holding *one* item at a time. You cannot PICKUP a new object while holding another; PUT the held object first.
+C1      | - You cannot PICKUP objects that are inside closed containers.
+C1      | - If PICKUP fails, reassess visibility and container states. You may need to FIND the object, or OPEN a container first.
+*       |
+*       | Serving Food:
+*       | - PotatoSliced, EggCracked, BreadSliced, TomatoSliced, AppleSliced are served on a Plate.
+*       | - Potato, LettuceSliced are served in a Bowl.
+*       |
+*       | Cooking:
+*       | - Pan must be placed on StoveBurner before you can TOGGLE_ON the StoveBurner.
+*       | - Using TOGGLE_ON will cook the item in the Pan.
+*       | - After it is cooked, TOGGLE_OFF the StoveBurner.
+C1      | - Only cook with Pans that are on StoveBurners.
+*       |
+*       | Storage:
+*       | - Fruit and vegetables → Fridge
+*       | - Silverware (Knife, Fork, Spoon, ButterKnife, Spatula, Ladle) → Drawer
+*       | - Dishes (Bowl, Plate, Mug) → Cabinet
+*       | - Cookware (Pan, Pot, Kettle) → CounterTop
+*       |
+*       | Washing Items:
+*       | - The Faucet can only be turned on if the SinkBasin is empty OR contains only dishes/cookware.
+*       | - Other items like food, or utensils will block the Faucet from turning on.
+C1      | - To clear items from SinkBasin: PICKUP each item and PUT it elsewhere (EMPTY does not work — it only pours liquids).
+*       | - Before TOGGLE_ON Faucet, ensure SinkBasin contains only the item you want to wash.
+*       | 1. PUT the object in the SinkBasin.
+*       | 2. PICKUP the DishSponge.
+*       | 3. TOGGLE_ON the Faucet.
+*       | 4. CLEAN the object (must be holding the DishSponge and the object must be in the sink).
+*       | 5. TOGGLE_OFF the Faucet.
+*       |
+[--------
+T0 C1   | Detecting cleanliness:
+        | - Objects appear dirty if they have visible stains, spots, or discoloration.
+        | - Clean objects appear pristine without any visible marks or residue.
+        | - Always visually inspect objects in {img_ref} before deciding if they are clean or dirty.
+T1 C1   | Action Failures:
+        | - An action might fail if:
+        |     - The item is dirty
+        |     - The sink basin has other objects in it
+        |     - An object like a drawer is not open
+--------]
+*       |
+*       | General:
+[--------
+T0 C1   | - Items MUST be visible in {img_ref} to interact with them (e.g., PICKUP, PUT, CLEAN).
+T1 C1   | - Items MUST be present in the scene to interact with them (e.g., PICKUP, PUT, CLEAN).
+--------]
+*       | - Any dirty items MUST be cleaned before being PUT away.
+*       | - If a container (Bowl, Plate, Pot) or item is dirty, it MUST be washed before you can PUT items inside it.
+*       | - If an action on object_name fails then you may have mis-identified it or you need to FIND it first.

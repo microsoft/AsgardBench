@@ -1,0 +1,183 @@
+## Purpose of this example:
+##  - Respond to new information (something in sink)
+
+## Example 2: Different scenarios by feedback type
+## - Fs/Fd: Slice Tomato and put in Bowl/Pot (PUT fails due to dirty container)
+## - Fn: Drink coffee and clean the mug (SinkBasin needs clearing)
+##
+## Condition Codes:
+##   T0 = image mode, T1 = text mode
+##   Fn = feedback none, Fs = feedback simple, Fd = feedback detailed
+##   R0 = no memory, R1 = use memory
+##   S0 = no full steps, S1 = full steps
+##   H0 = hand invisible, H1 = hand visible
+
+*       |
+*       | Example 2:
+*       | Your primary goal is: Slice an Apple and serve it on a Plate
+
+*       |
+*       | HISTORY OF ATTEMPTED ACTIONS:
+[--------
+Fn      | 0. FIND Plate
+        | 1. PICKUP Plate
+        | 2. FIND SinkBasin
+Fsd     | 0. FIND Plate  Success
+        | 1. PICKUP Plate  Success
+        | 2. FIND SinkBasin  Success
+--------]
+
+[--------
+S1      |
+        | SUGGESTED PLAN SEQUENCE (from your previous response):
+        | 1. PUT SinkBasin
+        | 2. FIND DishSponge
+        | 3. PICKUP DishSponge
+        | 4. FIND SinkBasin
+        | 5. TOGGLE_ON Faucet
+        | 6. CLEAN Plate
+        | 7. TOGGLE_OFF Faucet
+        | 8. FIND CounterTop
+        | 9. PUT CounterTop
+        | 10. FIND Plate
+        | 11. PICKUP Plate
+        | 12. FIND CounterTop
+        | 13. PUT CounterTop
+        | 14. FIND Knife
+        | 15. PICKUP Knife
+        | 16. FIND Apple
+        | 17. SLICE Apple
+        | 18. FIND CounterTop
+        | 19. PUT CounterTop
+        | 20. FIND AppleSliced
+        | 21. PICKUP AppleSliced
+        | 22. FIND Plate
+        | 23. PUT Plate
+--------]
+
+[--------
+A0 R1   |
+        | MEMORY FROM PREVIOUS STEP:
+        | - Completed: Found Plate ✓, Picked up Plate ✓
+        | - Current: Wash Plate
+        | - Remaining: Find Knife, Slice Apple, Serve on Plate
+--------]
+
+*       |
+*       | Response:
+*       |
+*       | <think>
+
+[--------
+T0      | VISUAL OBSERVATIONS:
+        | - I see: SinkBasin, Faucet, SoapBottle on the sink edge, SaltShaker on the counter, CounterTop
+        | - Inside SinkBasin: Lettuce, Pencil, an Egg, and a DishSponge
+        | - I do NOT see the Plate in the sink or on the counter in this view
+--------]
+
+*       |
+*       | INVENTORY CHECK:
+[--------
+T1 Fs   | - HISTORY OF ATTEMPTED ACTIONS shows PICKUP Plate Success, and no subsequent PUT so I am holding the Plate
+T1 Fd   | - HISTORY OF ATTEMPTED ACTIONS shows PICKUP Plate Success, and no subsequent PUT so I am holding the Plate
+T1 Fn   | - HISTORY OF ATTEMPTED ACTIONS shows PICKUP Plate and no subsequent PUT so I assume I am holding the Plate
+--------]
+[--------
+T0 H1   | - I see my hand holding a round flat object at the bottom center; based on shape and task context, I am holding the Plate
+T0 H0   | - I see the Plate floating at the bottom center; based on shape and task context, I am holding the Plate
+--------]
+
+
+*       |
+*       | LAST ACTION ASSESSMENT:
+[--------
+T0 Fn   | - Last action was FIND SinkBasin and I see the SinkBasin, so it succeeded
+T0 Fsd  | - Last action was FIND SinkBasin, I see the SinkBasin and HISTORY OF ATTEMPTED ACTIONS says it succeeded
+T1 Fn   | - Last action was FIND SinkBasin
+T1 Fsd  | - Last action was FIND SinkBasin, HISTORY OF ATTEMPTED ACTIONS says it succeeded
+--------]
+
+
+*       |
+*       | DOUBLE CHECK:
+*       | - I assume I am holding a dirty Plate — this matches INVENTORY CHECK (holding Plate) and it still needs cleaning.
+[--------
+T0      | - I assume Plate was found on CounterTop — I don't see where it was, but I do have it, so this is consistent.
+        | - I assume to clean Plate in SinkBasin — still valid, I can see the SinkBasin now.
+        | - I assume I need Apple and Knife — I don't see them in current view, will need to FIND them after cleaning.
+        | - NEW OBSERVATION: SinkBasin has blocking items (Lettuce, Pencil, Egg) that must be cleared before I can use the faucet.
+T1      | - I assume to clean Plate in SinkBasin — still valid
+        | - I assume I need Apple and Knife, will need to FIND them after cleaning.
+--------]
+
+*       |
+*       | PLAN REASONING:
+*       | - To clean the Plate, it must be in the SinkBasin, and the faucet can only be turned on if the SinkBasin contains only dishes/cookware.
+[--------
+T0      | - Currently there are food/utensil items (Lettuce, Pencil, Egg) in the SinkBasin, which would block the faucet.
+        | - I need to remove the Lettuce, Pencil and Egg from the SinkBasin
+        | - Since I'm holding the Plate, the next step is to put the Plate on the CounterTop, then clear the other blocking items out before washing.
+--------]
+
+*       | </think>
+*       |
+*       | <answer>
+*       | THINGS TO REMEMBER:
+[--------
+T0      | - Completed: Found Plate ✓, Picked up Plate ✓, Found SinkBasin ✓
+        | - Current: Clear sink blocking items (to wash Plate)
+        | - Remaining: Wash Plate, Find Knife, Slice Apple, Serve on Plate
+        | - BLOCKER: SinkBasin contains Lettuce, Pencil, Egg
+T1      | - Completed: Found Plate ✓, Picked up Plate ✓, Found SinkBasin ✓
+        | - Current: Wash Plate
+        | - Remaining: Find Knife, Slice Apple, Serve on Plate
+--------]
+
+*       |
+
+[--------
+S1      | SUGGESTED PLAN SEQUENCE:
+        | 1. FIND CounterTop
+        | 2. PUT CounterTop
+        | 3. FIND Lettuce
+        | 4. PICKUP Lettuce
+        | 5. FIND CounterTop
+        | 6. PUT CounterTop
+        | 7. FIND Pencil
+        | 8. PICKUP Pencil
+        | 9. FIND CounterTop
+        | 10. PUT CounterTop
+        | 11. FIND Egg
+        | 12. PICKUP Egg
+        | 13. FIND CounterTop
+        | 14. PUT CounterTop
+        | 15. FIND Plate
+        | 16. PICKUP Plate
+        | 17. FIND SinkBasin
+        | 18. PUT SinkBasin
+        | 19. FIND DishSponge
+        | 20. PICKUP DishSponge
+        | 21. FIND SinkBasin
+        | 22. TOGGLE_ON Faucet
+        | 23. CLEAN Plate
+        | 24. TOGGLE_OFF Faucet
+        | 25. FIND CounterTop
+        | 26. PUT CounterTop
+        | 27. FIND Plate
+        | 28. PICKUP Plate
+        | 29. FIND CounterTop
+        | 30. PUT CounterTop
+        | 31. FIND Knife
+        | 32. PICKUP Knife
+        | 33. FIND Apple
+        | 34. SLICE Apple
+        | 35. FIND CounterTop
+        | 36. PUT CounterTop
+        | 37. FIND AppleSliced
+        | 38. PICKUP AppleSliced
+        | 39. FIND Plate
+        | 40. PUT Plate
+--------]
+*       |
+*       | Action: PUT CounterTop
+*       | </answer>

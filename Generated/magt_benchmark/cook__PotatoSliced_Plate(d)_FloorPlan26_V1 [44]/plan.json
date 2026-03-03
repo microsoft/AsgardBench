@@ -1,0 +1,139 @@
+{
+  "name": "cook__PotatoSliced_Plate(d)_FloorPlan26_V1",
+  "task_description": "Fry a potato slice and serve it on a plate",
+  "scene": "FloorPlan26",
+  "plan_type": "generated",
+  "task_failed": false,
+  "setup_actions": [
+    {
+      "action": "dirty",
+      "object_name": "Plate_24f0b140",
+      "argument": null
+    }
+  ],
+  "object_setup": {
+    "target_setup": {
+      "object_specifier": {
+        "names": null,
+        "types": [
+          "Potato",
+          "DishSponge",
+          "Pan",
+          "Plate",
+          "Bowl",
+          "Knife"
+        ],
+        "classes": null,
+        "secondary_names": null,
+        "secondary_types": null,
+        "preferred_name": null,
+        "all": false
+      },
+      "container_specifier": null
+    },
+    "distractor_setups": [
+      {
+        "object_specifier": {
+          "names": null,
+          "types": null,
+          "classes": [
+            "Kitchen",
+            "Silverware",
+            "Food"
+          ],
+          "secondary_names": null,
+          "secondary_types": null,
+          "preferred_name": null,
+          "all": false
+        },
+        "container_specifier": null
+      }
+    ],
+    "employed_types": [
+      "Potato",
+      "DishSponge",
+      "Pan",
+      "Plate",
+      "Bowl",
+      "Knife"
+    ]
+  },
+  "goal": {
+    "location_goals": [
+      {
+        "object_type": "PotatoSliced",
+        "destination_type": "Plate",
+        "outcome": "success"
+      }
+    ],
+    "state_goals": [
+      {
+        "object_type": "CoffeeMachine",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Toaster",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "StoveKnob",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Microwave",
+        "state": "isOpen",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Fridge",
+        "state": "isOpen",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Faucet",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "PotatoSliced",
+        "state": "isCooked",
+        "value": true,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Plate",
+        "state": "isDirty",
+        "value": false,
+        "outcome": "success"
+      }
+    ],
+    "put_away_goals": [],
+    "action_goals": {},
+    "contents_goals": []
+  },
+  "randomization": {
+    "seed": 562,
+    "error_injection": null,
+    "fail_action": null
+  },
+  "step_count": 44,
+  "initial_pose": {
+    "position": {
+      "x": -1.0,
+      "y": 0.9015908241271973,
+      "z": 1.5
+    },
+    "rotation": 75.0,
+    "isStanding": true,
+    "horizon": -0.0
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "name": "coffee__empty_FloorPlan19_V1",
+  "task_description": "Prepare a mug of coffee, drink it, then wash and store the mug.",
+  "scene": "FloorPlan19",
+  "plan_type": "generated",
+  "task_failed": false,
+  "setup_actions": [
+    {
+      "action": "empty",
+      "object_name": "Mug_61ceff58",
+      "argument": null
+    }
+  ],
+  "object_setup": {
+    "target_setup": {
+      "object_specifier": {
+        "names": null,
+        "types": [
+          "Mug",
+          "DishSponge"
+        ],
+        "classes": null,
+        "secondary_names": null,
+        "secondary_types": null,
+        "preferred_name": null,
+        "all": false
+      },
+      "container_specifier": null
+    },
+    "distractor_setups": [
+      {
+        "object_specifier": {
+          "names": null,
+          "types": null,
+          "classes": [
+            "Kitchen",
+            "Silverware",
+            "Food"
+          ],
+          "secondary_names": null,
+          "secondary_types": null,
+          "preferred_name": null,
+          "all": false
+        },
+        "container_specifier": null
+      }
+    ],
+    "employed_types": [
+      "DishSponge"
+    ]
+  },
+  "goal": {
+    "location_goals": [],
+    "state_goals": [
+      {
+        "object_type": "CoffeeMachine",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Toaster",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "StoveKnob",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Microwave",
+        "state": "isOpen",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Fridge",
+        "state": "isOpen",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Faucet",
+        "state": "isToggled",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Mug",
+        "state": "isDirty",
+        "value": false,
+        "outcome": "success"
+      },
+      {
+        "object_type": "Mug",
+        "state": "isFilledWithLiquid",
+        "value": false,
+        "outcome": "success"
+      }
+    ],
+    "put_away_goals": [
+      {
+        "object_type": "Mug",
+        "outcome": "success"
+      }
+    ],
+    "action_goals": {
+      "Drink Coffee": true
+    },
+    "contents_goals": []
+  },
+  "randomization": {
+    "seed": 252,
+    "error_injection": null,
+    "fail_action": null
+  },
+  "step_count": 44,
+  "initial_pose": {
+    "position": {
+      "x": -0.8713552355766296,
+      "y": 0.9023619890213013,
+      "z": -2.5765397548675537
+    },
+    "rotation": 118.72038269042969,
+    "isStanding": true,
+    "horizon": 36.410987854003906
+  }
+}
