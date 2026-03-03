@@ -9,6 +9,8 @@
 
   /* --- top bar --- */
   .top-bar { background: #fff; border-bottom: 1px solid #ddd; padding: 8px 16px; display: flex; align-items: center; gap: 12px; }
+  .back-link { font-size: 13px; text-decoration: none; color: #3b82f6; display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+  .back-link:hover { text-decoration: underline; }
   .top-bar h1 { font-size: 15px; white-space: nowrap; }
   .plan-nav { display: flex; align-items: center; gap: 8px; margin-left: auto; flex-shrink: 0; }
   .top-bar select { font-size: 14px; padding: 4px 6px; max-width: 420px; }
@@ -38,6 +40,7 @@
 <body>
 
 <div class="top-bar">
+  <a href="index.html" class="back-link">&#9664; Home</a>
   <h1 id="title"></h1>
   <div class="plan-nav">
     <button class="nav-btn" onclick="prevPlan()" title="Previous plan (Left arrow)">&#9664;</button>

@@ -11,6 +11,14 @@
         margin: 0;
         padding: 0;
       }
+      .back-link {
+        position: fixed; top: 12px; left: 16px; z-index: 9999;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-size: 14px; text-decoration: none; color: #3b82f6;
+        background: rgba(255,255,255,0.9); padding: 6px 12px; border-radius: 6px;
+        border: 1px solid #ddd; box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      }
+      .back-link:hover { text-decoration: underline; background: #fff; }
     </style>
 <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-3.8.1.min.js"></script>
 <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.8.1.min.js"></script>
@@ -19,6 +27,7 @@ Bokeh.set_log_level("info");
 </script>
   </head>
   <body>
+    <a href="index.html" class="back-link">&#9664; Home</a>
     <div id="aaafe496-7369-4d11-a369-b03ffc1221f6" data-root-id="p1155" style="display: contents;"></div>
   
     <script type="application/json" id="ee169468-f929-4da3-985f-6a93be62a84a">
