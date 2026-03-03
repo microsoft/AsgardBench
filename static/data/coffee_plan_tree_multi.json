@@ -1,0 +1,7308 @@
+{
+ "92": {
+  "nodes": [
+   {
+    "id": 0,
+    "action_desc": "Find Mug",
+    "count": 92,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Mug"
+    ],
+    "is_final": false,
+    "x": 0.0,
+    "y": 40.5
+   },
+   {
+    "id": 1,
+    "action_desc": "Pickup Mug",
+    "count": 76,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Pickup Mug"
+    ],
+    "is_final": false,
+    "x": 1.0,
+    "y": 32.5
+   },
+   {
+    "id": 2,
+    "action_desc": "Find SinkBasin",
+    "count": 18,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SinkBasin"
+    ],
+    "is_final": false,
+    "x": 2.0,
+    "y": 8.5
+   },
+   {
+    "id": 3,
+    "action_desc": "Put Mug",
+    "count": 17,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 3.0,
+    "y": 8.0
+   },
+   {
+    "id": 4,
+    "action_desc": "Find DishSponge",
+    "count": 3,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find DishSponge"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 1.5
+   },
+   {
+    "id": 5,
+    "action_desc": "Pickup DishSponge \u2192 Put DishSponge",
+    "count": 3,
+    "is_collapsed": true,
+    "chain_length": 2,
+    "chain_actions": [
+     "Pickup DishSponge",
+     "Put DishSponge"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 1.5
+   },
+   {
+    "id": 7,
+    "action_desc": "Find Apple",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Apple"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 0.5
+   },
+   {
+    "id": 8,
+    "action_desc": "Pickup Apple \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Apple \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 37,
+    "chain_actions": [
+     "Pickup Apple",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Apple",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 0.5
+   },
+   {
+    "id": 45,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 8.0,
+    "y": 0.5
+   },
+   {
+    "id": 46,
+    "action_desc": "Find Potato",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Potato"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 1.5
+   },
+   {
+    "id": 47,
+    "action_desc": "Pickup Potato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Potato \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 37,
+    "chain_actions": [
+     "Pickup Potato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Potato",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 1.5
+   },
+   {
+    "id": 84,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 8.0,
+    "y": 1.5
+   },
+   {
+    "id": 85,
+    "action_desc": "Find WineBottle",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find WineBottle"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 2.5
+   },
+   {
+    "id": 86,
+    "action_desc": "Pickup WineBottle \u2192 Put WineBottle \u2192 Find Tomato \u2192 Pickup Tomato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Tomato \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 40,
+    "chain_actions": [
+     "Pickup WineBottle",
+     "Put WineBottle",
+     "Find Tomato",
+     "Pickup Tomato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Tomato",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 2.5
+   },
+   {
+    "id": 126,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 8.0,
+    "y": 2.5
+   },
+   {
+    "id": 127,
+    "action_desc": "Find SoapBottle",
+    "count": 5,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SoapBottle"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 5.0
+   },
+   {
+    "id": 128,
+    "action_desc": "Pickup SoapBottle \u2192 Put SoapBottle",
+    "count": 5,
+    "is_collapsed": true,
+    "chain_length": 2,
+    "chain_actions": [
+     "Pickup SoapBottle",
+     "Put SoapBottle"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 5.0
+   },
+   {
+    "id": 130,
+    "action_desc": "Find SinkBasin",
+    "count": 2,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SinkBasin"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 3.5
+   },
+   {
+    "id": 131,
+    "action_desc": "Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 2,
+    "is_collapsed": true,
+    "chain_length": 31,
+    "chain_actions": [
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 3.5
+   },
+   {
+    "id": 162,
+    "action_desc": "Close Cabinet",
+    "count": 2,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 8.0,
+    "y": 3.5
+   },
+   {
+    "id": 163,
+    "action_desc": "Find Apple",
+    "count": 2,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Apple"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 5.0
+   },
+   {
+    "id": 164,
+    "action_desc": "Pickup Apple \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Apple \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge",
+    "count": 2,
+    "is_collapsed": true,
+    "chain_length": 12,
+    "chain_actions": [
+     "Pickup Apple",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Apple",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 5.0
+   },
+   {
+    "id": 176,
+    "action_desc": "Find Faucet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Faucet"
+    ],
+    "is_final": false,
+    "x": 8.0,
+    "y": 4.5
+   },
+   {
+    "id": 177,
+    "action_desc": "Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 25,
+    "chain_actions": [
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 9.0,
+    "y": 4.5
+   },
+   {
+    "id": 202,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 10.0,
+    "y": 4.5
+   },
+   {
+    "id": 203,
+    "action_desc": "Turn on Faucet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Turn on Faucet"
+    ],
+    "is_final": false,
+    "x": 8.0,
+    "y": 5.5
+   },
+   {
+    "id": 204,
+    "action_desc": "Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 24,
+    "chain_actions": [
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 9.0,
+    "y": 5.5
+   },
+   {
+    "id": 228,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 10.0,
+    "y": 5.5
+   },
+   {
+    "id": 229,
+    "action_desc": "Find Tomato",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Tomato"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 6.5
+   },
+   {
+    "id": 230,
+    "action_desc": "Pickup Tomato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Tomato \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 37,
+    "chain_actions": [
+     "Pickup Tomato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Tomato",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 6.5
+   },
+   {
+    "id": 267,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 8.0,
+    "y": 6.5
+   },
+   {
+    "id": 268,
+    "action_desc": "Find SaltShaker",
+    "count": 3,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SaltShaker"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 8.5
+   },
+   {
+    "id": 269,
+    "action_desc": "Pickup SaltShaker \u2192 Put SaltShaker",
+    "count": 3,
+    "is_collapsed": true,
+    "chain_length": 2,
+    "chain_actions": [
+     "Pickup SaltShaker",
+     "Put SaltShaker"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 8.5
+   },
+   {
+    "id": 271,
+    "action_desc": "Find Tomato",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Tomato"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 7.5
+   },
+   {
+    "id": 272,
+    "action_desc": "Pickup Tomato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Tomato \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 37,
+    "chain_actions": [
+     "Pickup Tomato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Tomato",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 7.5
+   },
+   {
+    "id": 309,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 8.0,
+    "y": 7.5
+   },
+   {
+    "id": 310,
+    "action_desc": "Find SoapBottle",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SoapBottle"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 8.5
+   },
+   {
+    "id": 311,
+    "action_desc": "Pickup SoapBottle \u2192 Put SoapBottle \u2192 Find Potato \u2192 Pickup Potato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Potato \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 40,
+    "chain_actions": [
+     "Pickup SoapBottle",
+     "Put SoapBottle",
+     "Find Potato",
+     "Pickup Potato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Potato",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 8.5
+   },
+   {
+    "id": 351,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 8.0,
+    "y": 8.5
+   },
+   {
+    "id": 352,
+    "action_desc": "Find SinkBasin",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SinkBasin"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 9.5
+   },
+   {
+    "id": 353,
+    "action_desc": "Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 31,
+    "chain_actions": [
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 9.5
+   },
+   {
+    "id": 384,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 8.0,
+    "y": 9.5
+   },
+   {
+    "id": 385,
+    "action_desc": "Find Egg",
+    "count": 2,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Egg"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 11.0
+   },
+   {
+    "id": 386,
+    "action_desc": "Pickup Egg \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Egg \u2192 Close Fridge",
+    "count": 2,
+    "is_collapsed": true,
+    "chain_length": 5,
+    "chain_actions": [
+     "Pickup Egg",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Egg",
+     "Close Fridge"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 11.0
+   },
+   {
+    "id": 391,
+    "action_desc": "Find SinkBasin",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SinkBasin"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 10.5
+   },
+   {
+    "id": 392,
+    "action_desc": "Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 31,
+    "chain_actions": [
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 10.5
+   },
+   {
+    "id": 423,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 8.0,
+    "y": 10.5
+   },
+   {
+    "id": 424,
+    "action_desc": "Find WineBottle",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find WineBottle"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 11.5
+   },
+   {
+    "id": 425,
+    "action_desc": "Pickup WineBottle \u2192 Put WineBottle \u2192 Find SoapBottle \u2192 Pickup SoapBottle \u2192 Put SoapBottle \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Put DishSponge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 40,
+    "chain_actions": [
+     "Pickup WineBottle",
+     "Put WineBottle",
+     "Find SoapBottle",
+     "Pickup SoapBottle",
+     "Put SoapBottle",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Put DishSponge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 11.5
+   },
+   {
+    "id": 465,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 8.0,
+    "y": 11.5
+   },
+   {
+    "id": 466,
+    "action_desc": "Find Potato",
+    "count": 2,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Potato"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 13.0
+   },
+   {
+    "id": 467,
+    "action_desc": "Pickup Potato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Potato \u2192 Close Fridge",
+    "count": 2,
+    "is_collapsed": true,
+    "chain_length": 5,
+    "chain_actions": [
+     "Pickup Potato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Potato",
+     "Close Fridge"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 13.0
+   },
+   {
+    "id": 472,
+    "action_desc": "Find SinkBasin",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SinkBasin"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 12.5
+   },
+   {
+    "id": 473,
+    "action_desc": "Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 31,
+    "chain_actions": [
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 12.5
+   },
+   {
+    "id": 504,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 8.0,
+    "y": 12.5
+   },
+   {
+    "id": 505,
+    "action_desc": "Find Tomato",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Tomato"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 13.5
+   },
+   {
+    "id": 506,
+    "action_desc": "Pickup Tomato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Tomato \u2192 Close Fridge \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Put DishSponge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 40,
+    "chain_actions": [
+     "Pickup Tomato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Tomato",
+     "Close Fridge",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Put DishSponge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 13.5
+   },
+   {
+    "id": 546,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 8.0,
+    "y": 13.5
+   },
+   {
+    "id": 547,
+    "action_desc": "Find Tomato",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Tomato"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 14.5
+   },
+   {
+    "id": 548,
+    "action_desc": "Pickup Tomato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Tomato \u2192 Close Fridge \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Put DishSponge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 40,
+    "chain_actions": [
+     "Pickup Tomato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Tomato",
+     "Close Fridge",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Put DishSponge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 14.5
+   },
+   {
+    "id": 588,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 6.0,
+    "y": 14.5
+   },
+   {
+    "id": 589,
+    "action_desc": "Find WineBottle",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find WineBottle"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 15.5
+   },
+   {
+    "id": 590,
+    "action_desc": "Pickup WineBottle \u2192 Put WineBottle \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Put DishSponge \u2192 Find Tomato \u2192 Pickup Tomato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Tomato \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 43,
+    "chain_actions": [
+     "Pickup WineBottle",
+     "Put WineBottle",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Put DishSponge",
+     "Find Tomato",
+     "Pickup Tomato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Tomato",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 15.5
+   },
+   {
+    "id": 633,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 6.0,
+    "y": 15.5
+   },
+   {
+    "id": 634,
+    "action_desc": "Put Mug",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 3.0,
+    "y": 16.5
+   },
+   {
+    "id": 635,
+    "action_desc": "Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 27,
+    "chain_actions": [
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 16.5
+   },
+   {
+    "id": 662,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 5.0,
+    "y": 16.5
+   },
+   {
+    "id": 663,
+    "action_desc": "Put Mug",
+    "count": 6,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 2.0,
+    "y": 20.0
+   },
+   {
+    "id": 664,
+    "action_desc": "Find SoapBottle",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SoapBottle"
+    ],
+    "is_final": false,
+    "x": 3.0,
+    "y": 17.5
+   },
+   {
+    "id": 665,
+    "action_desc": "Pickup SoapBottle \u2192 Put SoapBottle \u2192 Find SaltShaker \u2192 Pickup SaltShaker \u2192 Put SaltShaker \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 37,
+    "chain_actions": [
+     "Pickup SoapBottle",
+     "Put SoapBottle",
+     "Find SaltShaker",
+     "Pickup SaltShaker",
+     "Put SaltShaker",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 17.5
+   },
+   {
+    "id": 702,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 5.0,
+    "y": 17.5
+   },
+   {
+    "id": 703,
+    "action_desc": "Find Potato",
+    "count": 2,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Potato"
+    ],
+    "is_final": false,
+    "x": 3.0,
+    "y": 19.0
+   },
+   {
+    "id": 704,
+    "action_desc": "Pickup Potato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Potato \u2192 Close Fridge",
+    "count": 2,
+    "is_collapsed": true,
+    "chain_length": 5,
+    "chain_actions": [
+     "Pickup Potato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Potato",
+     "Close Fridge"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 19.0
+   },
+   {
+    "id": 709,
+    "action_desc": "Find Egg",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Egg"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 18.5
+   },
+   {
+    "id": 710,
+    "action_desc": "Pickup Egg \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Egg \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 37,
+    "chain_actions": [
+     "Pickup Egg",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Egg",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 18.5
+   },
+   {
+    "id": 747,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 7.0,
+    "y": 18.5
+   },
+   {
+    "id": 748,
+    "action_desc": "Find WineBottle",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find WineBottle"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 19.5
+   },
+   {
+    "id": 749,
+    "action_desc": "Pickup WineBottle \u2192 Put WineBottle \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 34,
+    "chain_actions": [
+     "Pickup WineBottle",
+     "Put WineBottle",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 19.5
+   },
+   {
+    "id": 783,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 7.0,
+    "y": 19.5
+   },
+   {
+    "id": 784,
+    "action_desc": "Find Apple",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Apple"
+    ],
+    "is_final": false,
+    "x": 3.0,
+    "y": 20.5
+   },
+   {
+    "id": 785,
+    "action_desc": "Pickup Apple \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Apple \u2192 Close Fridge \u2192 Find Tomato \u2192 Pickup Tomato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Tomato \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 43,
+    "chain_actions": [
+     "Pickup Apple",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Apple",
+     "Close Fridge",
+     "Find Tomato",
+     "Pickup Tomato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Tomato",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 20.5
+   },
+   {
+    "id": 828,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 5.0,
+    "y": 20.5
+   },
+   {
+    "id": 829,
+    "action_desc": "Find Egg",
+    "count": 2,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Egg"
+    ],
+    "is_final": false,
+    "x": 3.0,
+    "y": 22.0
+   },
+   {
+    "id": 830,
+    "action_desc": "Pickup Egg \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Egg \u2192 Close Fridge",
+    "count": 2,
+    "is_collapsed": true,
+    "chain_length": 5,
+    "chain_actions": [
+     "Pickup Egg",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Egg",
+     "Close Fridge"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 22.0
+   },
+   {
+    "id": 835,
+    "action_desc": "Find SinkBasin",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SinkBasin"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 21.5
+   },
+   {
+    "id": 836,
+    "action_desc": "Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 31,
+    "chain_actions": [
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 21.5
+   },
+   {
+    "id": 867,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 7.0,
+    "y": 21.5
+   },
+   {
+    "id": 868,
+    "action_desc": "Find DishSponge",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find DishSponge"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 22.5
+   },
+   {
+    "id": 869,
+    "action_desc": "Pickup DishSponge \u2192 Put DishSponge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 34,
+    "chain_actions": [
+     "Pickup DishSponge",
+     "Put DishSponge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 22.5
+   },
+   {
+    "id": 903,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 7.0,
+    "y": 22.5
+   },
+   {
+    "id": 904,
+    "action_desc": "Put Mug",
+    "count": 5,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 2.0,
+    "y": 25.0
+   },
+   {
+    "id": 905,
+    "action_desc": "Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin",
+    "count": 5,
+    "is_collapsed": true,
+    "chain_length": 5,
+    "chain_actions": [
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin"
+    ],
+    "is_final": false,
+    "x": 3.0,
+    "y": 25.0
+   },
+   {
+    "id": 910,
+    "action_desc": "Find CoffeeMachine",
+    "count": 4,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find CoffeeMachine"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 24.5
+   },
+   {
+    "id": 911,
+    "action_desc": "Put Mug",
+    "count": 4,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 24.5
+   },
+   {
+    "id": 912,
+    "action_desc": "Find Egg",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Egg"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 23.5
+   },
+   {
+    "id": 913,
+    "action_desc": "Pickup Egg \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Egg \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 21,
+    "chain_actions": [
+     "Pickup Egg",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Egg",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 23.5
+   },
+   {
+    "id": 934,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 8.0,
+    "y": 23.5
+   },
+   {
+    "id": 935,
+    "action_desc": "Find DishSponge",
+    "count": 3,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find DishSponge"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 25.0
+   },
+   {
+    "id": 936,
+    "action_desc": "Pickup DishSponge \u2192 Put DishSponge",
+    "count": 3,
+    "is_collapsed": true,
+    "chain_length": 2,
+    "chain_actions": [
+     "Pickup DishSponge",
+     "Put DishSponge"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 25.0
+   },
+   {
+    "id": 938,
+    "action_desc": "Find SinkBasin",
+    "count": 2,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SinkBasin"
+    ],
+    "is_final": false,
+    "x": 8.0,
+    "y": 24.5
+   },
+   {
+    "id": 939,
+    "action_desc": "Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 2,
+    "is_collapsed": true,
+    "chain_length": 15,
+    "chain_actions": [
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 9.0,
+    "y": 24.5
+   },
+   {
+    "id": 954,
+    "action_desc": "Close Cabinet",
+    "count": 2,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 10.0,
+    "y": 24.5
+   },
+   {
+    "id": 955,
+    "action_desc": "Find Potato",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Potato"
+    ],
+    "is_final": false,
+    "x": 8.0,
+    "y": 25.5
+   },
+   {
+    "id": 956,
+    "action_desc": "Pickup Potato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Potato \u2192 Close Fridge \u2192 Find SoapBottle \u2192 Pickup SoapBottle \u2192 Put SoapBottle \u2192 Find Tomato \u2192 Pickup Tomato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Tomato \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 30,
+    "chain_actions": [
+     "Pickup Potato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Potato",
+     "Close Fridge",
+     "Find SoapBottle",
+     "Pickup SoapBottle",
+     "Put SoapBottle",
+     "Find Tomato",
+     "Pickup Tomato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Tomato",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 9.0,
+    "y": 25.5
+   },
+   {
+    "id": 986,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 10.0,
+    "y": 25.5
+   },
+   {
+    "id": 987,
+    "action_desc": "Put Mug",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 26.5
+   },
+   {
+    "id": 988,
+    "action_desc": "Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 11,
+    "chain_actions": [
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 26.5
+   },
+   {
+    "id": 999,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 6.0,
+    "y": 26.5
+   },
+   {
+    "id": 1000,
+    "action_desc": "Find CoffeeMachine",
+    "count": 24,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find CoffeeMachine"
+    ],
+    "is_final": false,
+    "x": 2.0,
+    "y": 35.5
+   },
+   {
+    "id": 1001,
+    "action_desc": "Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin",
+    "count": 24,
+    "is_collapsed": true,
+    "chain_length": 6,
+    "chain_actions": [
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin"
+    ],
+    "is_final": false,
+    "x": 3.0,
+    "y": 35.5
+   },
+   {
+    "id": 1007,
+    "action_desc": "Find CoffeeMachine",
+    "count": 22,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find CoffeeMachine"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 35.0
+   },
+   {
+    "id": 1008,
+    "action_desc": "Put Mug",
+    "count": 22,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 35.0
+   },
+   {
+    "id": 1009,
+    "action_desc": "Find Potato",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Potato"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 27.5
+   },
+   {
+    "id": 1010,
+    "action_desc": "Pickup Potato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Potato \u2192 Close Fridge \u2192 Find SaltShaker \u2192 Pickup SaltShaker \u2192 Put SaltShaker \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 24,
+    "chain_actions": [
+     "Pickup Potato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Potato",
+     "Close Fridge",
+     "Find SaltShaker",
+     "Pickup SaltShaker",
+     "Put SaltShaker",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 27.5
+   },
+   {
+    "id": 1034,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 8.0,
+    "y": 27.5
+   },
+   {
+    "id": 1035,
+    "action_desc": "Find DishSponge",
+    "count": 3,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find DishSponge"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 28.5
+   },
+   {
+    "id": 1036,
+    "action_desc": "Pickup DishSponge \u2192 Put DishSponge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 3,
+    "is_collapsed": true,
+    "chain_length": 18,
+    "chain_actions": [
+     "Pickup DishSponge",
+     "Put DishSponge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 28.5
+   },
+   {
+    "id": 1054,
+    "action_desc": "Close Cabinet",
+    "count": 3,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 8.0,
+    "y": 28.5
+   },
+   {
+    "id": 1055,
+    "action_desc": "Find WineBottle",
+    "count": 4,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find WineBottle"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 31.0
+   },
+   {
+    "id": 1056,
+    "action_desc": "Pickup WineBottle \u2192 Put WineBottle",
+    "count": 4,
+    "is_collapsed": true,
+    "chain_length": 2,
+    "chain_actions": [
+     "Pickup WineBottle",
+     "Put WineBottle"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 31.0
+   },
+   {
+    "id": 1058,
+    "action_desc": "Find Egg",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Egg"
+    ],
+    "is_final": false,
+    "x": 8.0,
+    "y": 29.5
+   },
+   {
+    "id": 1059,
+    "action_desc": "Pickup Egg \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Egg \u2192 Close Fridge \u2192 Find SaltShaker \u2192 Pickup SaltShaker \u2192 Put SaltShaker \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 24,
+    "chain_actions": [
+     "Pickup Egg",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Egg",
+     "Close Fridge",
+     "Find SaltShaker",
+     "Pickup SaltShaker",
+     "Put SaltShaker",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 9.0,
+    "y": 29.5
+   },
+   {
+    "id": 1083,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 10.0,
+    "y": 29.5
+   },
+   {
+    "id": 1084,
+    "action_desc": "Find SaltShaker",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SaltShaker"
+    ],
+    "is_final": false,
+    "x": 8.0,
+    "y": 30.5
+   },
+   {
+    "id": 1085,
+    "action_desc": "Pickup SaltShaker \u2192 Put SaltShaker \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 18,
+    "chain_actions": [
+     "Pickup SaltShaker",
+     "Put SaltShaker",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 9.0,
+    "y": 30.5
+   },
+   {
+    "id": 1103,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 10.0,
+    "y": 30.5
+   },
+   {
+    "id": 1104,
+    "action_desc": "Find DishSponge",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find DishSponge"
+    ],
+    "is_final": false,
+    "x": 8.0,
+    "y": 31.5
+   },
+   {
+    "id": 1105,
+    "action_desc": "Pickup DishSponge \u2192 Put DishSponge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 18,
+    "chain_actions": [
+     "Pickup DishSponge",
+     "Put DishSponge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 9.0,
+    "y": 31.5
+   },
+   {
+    "id": 1123,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 10.0,
+    "y": 31.5
+   },
+   {
+    "id": 1124,
+    "action_desc": "Find Tomato",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Tomato"
+    ],
+    "is_final": false,
+    "x": 8.0,
+    "y": 32.5
+   },
+   {
+    "id": 1125,
+    "action_desc": "Pickup Tomato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Tomato \u2192 Close Fridge \u2192 Find SaltShaker \u2192 Pickup SaltShaker \u2192 Put SaltShaker \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 24,
+    "chain_actions": [
+     "Pickup Tomato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Tomato",
+     "Close Fridge",
+     "Find SaltShaker",
+     "Pickup SaltShaker",
+     "Put SaltShaker",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 9.0,
+    "y": 32.5
+   },
+   {
+    "id": 1149,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 10.0,
+    "y": 32.5
+   },
+   {
+    "id": 1150,
+    "action_desc": "Find Egg",
+    "count": 2,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Egg"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 34.0
+   },
+   {
+    "id": 1151,
+    "action_desc": "Pickup Egg \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Egg \u2192 Close Fridge",
+    "count": 2,
+    "is_collapsed": true,
+    "chain_length": 5,
+    "chain_actions": [
+     "Pickup Egg",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Egg",
+     "Close Fridge"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 34.0
+   },
+   {
+    "id": 1156,
+    "action_desc": "Find Bread",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Bread"
+    ],
+    "is_final": false,
+    "x": 8.0,
+    "y": 33.5
+   },
+   {
+    "id": 1157,
+    "action_desc": "Pickup Bread \u2192 Put Bread \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup SaltShaker \u2192 Put SaltShaker \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 20,
+    "chain_actions": [
+     "Pickup Bread",
+     "Put Bread",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup SaltShaker",
+     "Put SaltShaker",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 9.0,
+    "y": 33.5
+   },
+   {
+    "id": 1177,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 10.0,
+    "y": 33.5
+   },
+   {
+    "id": 1178,
+    "action_desc": "Find WineBottle",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find WineBottle"
+    ],
+    "is_final": false,
+    "x": 8.0,
+    "y": 34.5
+   },
+   {
+    "id": 1179,
+    "action_desc": "Pickup WineBottle \u2192 Put WineBottle \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 18,
+    "chain_actions": [
+     "Pickup WineBottle",
+     "Put WineBottle",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 9.0,
+    "y": 34.5
+   },
+   {
+    "id": 1197,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 10.0,
+    "y": 34.5
+   },
+   {
+    "id": 1198,
+    "action_desc": "Find Apple",
+    "count": 3,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Apple"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 36.0
+   },
+   {
+    "id": 1199,
+    "action_desc": "Pickup Apple \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Apple \u2192 Close Fridge",
+    "count": 3,
+    "is_collapsed": true,
+    "chain_length": 5,
+    "chain_actions": [
+     "Pickup Apple",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Apple",
+     "Close Fridge"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 36.0
+   },
+   {
+    "id": 1204,
+    "action_desc": "Find Egg",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Egg"
+    ],
+    "is_final": false,
+    "x": 8.0,
+    "y": 35.5
+   },
+   {
+    "id": 1205,
+    "action_desc": "Pickup Egg \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Egg \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 21,
+    "chain_actions": [
+     "Pickup Egg",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Egg",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 9.0,
+    "y": 35.5
+   },
+   {
+    "id": 1226,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 10.0,
+    "y": 35.5
+   },
+   {
+    "id": 1227,
+    "action_desc": "Find SinkBasin",
+    "count": 2,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SinkBasin"
+    ],
+    "is_final": false,
+    "x": 8.0,
+    "y": 36.5
+   },
+   {
+    "id": 1228,
+    "action_desc": "Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 2,
+    "is_collapsed": true,
+    "chain_length": 15,
+    "chain_actions": [
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 9.0,
+    "y": 36.5
+   },
+   {
+    "id": 1243,
+    "action_desc": "Close Cabinet",
+    "count": 2,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 10.0,
+    "y": 36.5
+   },
+   {
+    "id": 1244,
+    "action_desc": "Find SoapBottle",
+    "count": 2,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SoapBottle"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 37.5
+   },
+   {
+    "id": 1245,
+    "action_desc": "Pickup SoapBottle \u2192 Put SoapBottle \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 2,
+    "is_collapsed": true,
+    "chain_length": 18,
+    "chain_actions": [
+     "Pickup SoapBottle",
+     "Put SoapBottle",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 37.5
+   },
+   {
+    "id": 1263,
+    "action_desc": "Close Cabinet",
+    "count": 2,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 8.0,
+    "y": 37.5
+   },
+   {
+    "id": 1264,
+    "action_desc": "Find Tomato",
+    "count": 3,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Tomato"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 38.5
+   },
+   {
+    "id": 1265,
+    "action_desc": "Pickup Tomato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Tomato \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 3,
+    "is_collapsed": true,
+    "chain_length": 21,
+    "chain_actions": [
+     "Pickup Tomato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Tomato",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 38.5
+   },
+   {
+    "id": 1286,
+    "action_desc": "Close Cabinet",
+    "count": 3,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 8.0,
+    "y": 38.5
+   },
+   {
+    "id": 1287,
+    "action_desc": "Find SaltShaker",
+    "count": 3,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SaltShaker"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 40.5
+   },
+   {
+    "id": 1288,
+    "action_desc": "Pickup SaltShaker \u2192 Put SaltShaker",
+    "count": 3,
+    "is_collapsed": true,
+    "chain_length": 2,
+    "chain_actions": [
+     "Pickup SaltShaker",
+     "Put SaltShaker"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 40.5
+   },
+   {
+    "id": 1290,
+    "action_desc": "Find SoapBottle",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SoapBottle"
+    ],
+    "is_final": false,
+    "x": 8.0,
+    "y": 39.5
+   },
+   {
+    "id": 1291,
+    "action_desc": "Pickup SoapBottle \u2192 Put SoapBottle \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 18,
+    "chain_actions": [
+     "Pickup SoapBottle",
+     "Put SoapBottle",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 9.0,
+    "y": 39.5
+   },
+   {
+    "id": 1309,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 10.0,
+    "y": 39.5
+   },
+   {
+    "id": 1310,
+    "action_desc": "Find WineBottle",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find WineBottle"
+    ],
+    "is_final": false,
+    "x": 8.0,
+    "y": 40.5
+   },
+   {
+    "id": 1311,
+    "action_desc": "Pickup WineBottle \u2192 Put WineBottle \u2192 Find SoapBottle \u2192 Pickup SoapBottle \u2192 Put SoapBottle \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 21,
+    "chain_actions": [
+     "Pickup WineBottle",
+     "Put WineBottle",
+     "Find SoapBottle",
+     "Pickup SoapBottle",
+     "Put SoapBottle",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 9.0,
+    "y": 40.5
+   },
+   {
+    "id": 1332,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 10.0,
+    "y": 40.5
+   },
+   {
+    "id": 1333,
+    "action_desc": "Find Potato",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Potato"
+    ],
+    "is_final": false,
+    "x": 8.0,
+    "y": 41.5
+   },
+   {
+    "id": 1334,
+    "action_desc": "Pickup Potato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Potato \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 21,
+    "chain_actions": [
+     "Pickup Potato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Potato",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 9.0,
+    "y": 41.5
+   },
+   {
+    "id": 1355,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 10.0,
+    "y": 41.5
+   },
+   {
+    "id": 1356,
+    "action_desc": "Find Lettuce",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Lettuce"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 42.5
+   },
+   {
+    "id": 1357,
+    "action_desc": "Pickup Lettuce \u2192 Put Lettuce \u2192 Find Potato \u2192 Pickup Potato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Potato \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 24,
+    "chain_actions": [
+     "Pickup Lettuce",
+     "Put Lettuce",
+     "Find Potato",
+     "Pickup Potato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Potato",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 42.5
+   },
+   {
+    "id": 1381,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 8.0,
+    "y": 42.5
+   },
+   {
+    "id": 1382,
+    "action_desc": "Put Mug",
+    "count": 2,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 43.5
+   },
+   {
+    "id": 1383,
+    "action_desc": "Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 2,
+    "is_collapsed": true,
+    "chain_length": 11,
+    "chain_actions": [
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 43.5
+   },
+   {
+    "id": 1394,
+    "action_desc": "Close Cabinet",
+    "count": 2,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 6.0,
+    "y": 43.5
+   },
+   {
+    "id": 1395,
+    "action_desc": "Drink Mug",
+    "count": 23,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Drink Mug"
+    ],
+    "is_final": false,
+    "x": 2.0,
+    "y": 54.5
+   },
+   {
+    "id": 1396,
+    "action_desc": "Put Mug",
+    "count": 6,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 3.0,
+    "y": 47.0
+   },
+   {
+    "id": 1397,
+    "action_desc": "Find Tomato",
+    "count": 2,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Tomato"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 45.0
+   },
+   {
+    "id": 1398,
+    "action_desc": "Pickup Tomato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Tomato \u2192 Close Fridge",
+    "count": 2,
+    "is_collapsed": true,
+    "chain_length": 5,
+    "chain_actions": [
+     "Pickup Tomato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Tomato",
+     "Close Fridge"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 45.0
+   },
+   {
+    "id": 1403,
+    "action_desc": "Find SaltShaker",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SaltShaker"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 44.5
+   },
+   {
+    "id": 1404,
+    "action_desc": "Pickup SaltShaker \u2192 Put SaltShaker \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 18,
+    "chain_actions": [
+     "Pickup SaltShaker",
+     "Put SaltShaker",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 44.5
+   },
+   {
+    "id": 1422,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 8.0,
+    "y": 44.5
+   },
+   {
+    "id": 1423,
+    "action_desc": "Find DishSponge",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find DishSponge"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 45.5
+   },
+   {
+    "id": 1424,
+    "action_desc": "Pickup DishSponge \u2192 Put DishSponge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 18,
+    "chain_actions": [
+     "Pickup DishSponge",
+     "Put DishSponge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 45.5
+   },
+   {
+    "id": 1442,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 8.0,
+    "y": 45.5
+   },
+   {
+    "id": 1443,
+    "action_desc": "Find SoapBottle",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SoapBottle"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 46.5
+   },
+   {
+    "id": 1444,
+    "action_desc": "Pickup SoapBottle \u2192 Put SoapBottle \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 18,
+    "chain_actions": [
+     "Pickup SoapBottle",
+     "Put SoapBottle",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 46.5
+   },
+   {
+    "id": 1462,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 6.0,
+    "y": 46.5
+   },
+   {
+    "id": 1463,
+    "action_desc": "Find DishSponge",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find DishSponge"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 47.5
+   },
+   {
+    "id": 1464,
+    "action_desc": "Pickup DishSponge \u2192 Put DishSponge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 18,
+    "chain_actions": [
+     "Pickup DishSponge",
+     "Put DishSponge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 47.5
+   },
+   {
+    "id": 1482,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 6.0,
+    "y": 47.5
+   },
+   {
+    "id": 1483,
+    "action_desc": "Find Egg",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Egg"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 48.5
+   },
+   {
+    "id": 1484,
+    "action_desc": "Pickup Egg \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Egg \u2192 Close Fridge \u2192 Find Potato \u2192 Pickup Potato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Potato \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 27,
+    "chain_actions": [
+     "Pickup Egg",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Egg",
+     "Close Fridge",
+     "Find Potato",
+     "Pickup Potato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Potato",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 48.5
+   },
+   {
+    "id": 1511,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 6.0,
+    "y": 48.5
+   },
+   {
+    "id": 1512,
+    "action_desc": "Find Apple",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Apple"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 49.5
+   },
+   {
+    "id": 1513,
+    "action_desc": "Pickup Apple \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Apple \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 21,
+    "chain_actions": [
+     "Pickup Apple",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Apple",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 49.5
+   },
+   {
+    "id": 1534,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 6.0,
+    "y": 49.5
+   },
+   {
+    "id": 1535,
+    "action_desc": "Find SinkBasin",
+    "count": 15,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SinkBasin"
+    ],
+    "is_final": false,
+    "x": 3.0,
+    "y": 57.0
+   },
+   {
+    "id": 1536,
+    "action_desc": "Put Mug",
+    "count": 15,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 57.0
+   },
+   {
+    "id": 1537,
+    "action_desc": "Find WineBottle",
+    "count": 6,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find WineBottle"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 52.5
+   },
+   {
+    "id": 1538,
+    "action_desc": "Pickup WineBottle \u2192 Put WineBottle",
+    "count": 6,
+    "is_collapsed": true,
+    "chain_length": 2,
+    "chain_actions": [
+     "Pickup WineBottle",
+     "Put WineBottle"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 52.5
+   },
+   {
+    "id": 1540,
+    "action_desc": "Find Egg",
+    "count": 4,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Egg"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 51.5
+   },
+   {
+    "id": 1541,
+    "action_desc": "Pickup Egg \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Egg \u2192 Close Fridge",
+    "count": 4,
+    "is_collapsed": true,
+    "chain_length": 5,
+    "chain_actions": [
+     "Pickup Egg",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Egg",
+     "Close Fridge"
+    ],
+    "is_final": false,
+    "x": 8.0,
+    "y": 51.5
+   },
+   {
+    "id": 1546,
+    "action_desc": "Find DishSponge",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find DishSponge"
+    ],
+    "is_final": false,
+    "x": 9.0,
+    "y": 50.5
+   },
+   {
+    "id": 1547,
+    "action_desc": "Pickup DishSponge \u2192 Put DishSponge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 18,
+    "chain_actions": [
+     "Pickup DishSponge",
+     "Put DishSponge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 10.0,
+    "y": 50.5
+   },
+   {
+    "id": 1565,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 11.0,
+    "y": 50.5
+   },
+   {
+    "id": 1566,
+    "action_desc": "Find SinkBasin",
+    "count": 2,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SinkBasin"
+    ],
+    "is_final": false,
+    "x": 9.0,
+    "y": 51.5
+   },
+   {
+    "id": 1567,
+    "action_desc": "Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 2,
+    "is_collapsed": true,
+    "chain_length": 15,
+    "chain_actions": [
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 10.0,
+    "y": 51.5
+   },
+   {
+    "id": 1582,
+    "action_desc": "Close Cabinet",
+    "count": 2,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 11.0,
+    "y": 51.5
+   },
+   {
+    "id": 1583,
+    "action_desc": "Find Tomato",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Tomato"
+    ],
+    "is_final": false,
+    "x": 9.0,
+    "y": 52.5
+   },
+   {
+    "id": 1584,
+    "action_desc": "Pickup Tomato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Tomato \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 21,
+    "chain_actions": [
+     "Pickup Tomato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Tomato",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 10.0,
+    "y": 52.5
+   },
+   {
+    "id": 1605,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 11.0,
+    "y": 52.5
+   },
+   {
+    "id": 1606,
+    "action_desc": "Find Lettuce",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Lettuce"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 53.5
+   },
+   {
+    "id": 1607,
+    "action_desc": "Pickup Lettuce \u2192 Put Lettuce \u2192 Find Potato \u2192 Pickup Potato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Potato \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 24,
+    "chain_actions": [
+     "Pickup Lettuce",
+     "Put Lettuce",
+     "Find Potato",
+     "Pickup Potato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Potato",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 8.0,
+    "y": 53.5
+   },
+   {
+    "id": 1631,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 9.0,
+    "y": 53.5
+   },
+   {
+    "id": 1632,
+    "action_desc": "Find SinkBasin",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SinkBasin"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 54.5
+   },
+   {
+    "id": 1633,
+    "action_desc": "Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 15,
+    "chain_actions": [
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 8.0,
+    "y": 54.5
+   },
+   {
+    "id": 1648,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 9.0,
+    "y": 54.5
+   },
+   {
+    "id": 1649,
+    "action_desc": "Find Egg",
+    "count": 3,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Egg"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 56.5
+   },
+   {
+    "id": 1650,
+    "action_desc": "Pickup Egg \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Egg \u2192 Close Fridge",
+    "count": 3,
+    "is_collapsed": true,
+    "chain_length": 5,
+    "chain_actions": [
+     "Pickup Egg",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Egg",
+     "Close Fridge"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 56.5
+   },
+   {
+    "id": 1655,
+    "action_desc": "Find SaltShaker",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SaltShaker"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 55.5
+   },
+   {
+    "id": 1656,
+    "action_desc": "Pickup SaltShaker \u2192 Put SaltShaker \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 18,
+    "chain_actions": [
+     "Pickup SaltShaker",
+     "Put SaltShaker",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 8.0,
+    "y": 55.5
+   },
+   {
+    "id": 1674,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 9.0,
+    "y": 55.5
+   },
+   {
+    "id": 1675,
+    "action_desc": "Find DishSponge",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find DishSponge"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 56.5
+   },
+   {
+    "id": 1676,
+    "action_desc": "Pickup DishSponge \u2192 Put DishSponge \u2192 Find Potato \u2192 Pickup Potato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Potato \u2192 Close Fridge \u2192 Find Bread \u2192 Pickup Bread \u2192 Put Bread \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 27,
+    "chain_actions": [
+     "Pickup DishSponge",
+     "Put DishSponge",
+     "Find Potato",
+     "Pickup Potato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Potato",
+     "Close Fridge",
+     "Find Bread",
+     "Pickup Bread",
+     "Put Bread",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 8.0,
+    "y": 56.5
+   },
+   {
+    "id": 1703,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 9.0,
+    "y": 56.5
+   },
+   {
+    "id": 1704,
+    "action_desc": "Find SinkBasin",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SinkBasin"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 57.5
+   },
+   {
+    "id": 1705,
+    "action_desc": "Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 15,
+    "chain_actions": [
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 8.0,
+    "y": 57.5
+   },
+   {
+    "id": 1720,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 9.0,
+    "y": 57.5
+   },
+   {
+    "id": 1721,
+    "action_desc": "Find SaltShaker",
+    "count": 3,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SaltShaker"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 59.5
+   },
+   {
+    "id": 1722,
+    "action_desc": "Pickup SaltShaker \u2192 Put SaltShaker",
+    "count": 3,
+    "is_collapsed": true,
+    "chain_length": 2,
+    "chain_actions": [
+     "Pickup SaltShaker",
+     "Put SaltShaker"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 59.5
+   },
+   {
+    "id": 1724,
+    "action_desc": "Find SinkBasin",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SinkBasin"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 58.5
+   },
+   {
+    "id": 1725,
+    "action_desc": "Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 15,
+    "chain_actions": [
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 8.0,
+    "y": 58.5
+   },
+   {
+    "id": 1740,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 9.0,
+    "y": 58.5
+   },
+   {
+    "id": 1741,
+    "action_desc": "Find WineBottle",
+    "count": 2,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find WineBottle"
+    ],
+    "is_final": false,
+    "x": 7.0,
+    "y": 60.0
+   },
+   {
+    "id": 1742,
+    "action_desc": "Pickup WineBottle \u2192 Put WineBottle",
+    "count": 2,
+    "is_collapsed": true,
+    "chain_length": 2,
+    "chain_actions": [
+     "Pickup WineBottle",
+     "Put WineBottle"
+    ],
+    "is_final": false,
+    "x": 8.0,
+    "y": 60.0
+   },
+   {
+    "id": 1744,
+    "action_desc": "Find SinkBasin",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SinkBasin"
+    ],
+    "is_final": false,
+    "x": 9.0,
+    "y": 59.5
+   },
+   {
+    "id": 1745,
+    "action_desc": "Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 15,
+    "chain_actions": [
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 10.0,
+    "y": 59.5
+   },
+   {
+    "id": 1760,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 11.0,
+    "y": 59.5
+   },
+   {
+    "id": 1761,
+    "action_desc": "Find Egg",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Egg"
+    ],
+    "is_final": false,
+    "x": 9.0,
+    "y": 60.5
+   },
+   {
+    "id": 1762,
+    "action_desc": "Pickup Egg \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Egg \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 21,
+    "chain_actions": [
+     "Pickup Egg",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Egg",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 10.0,
+    "y": 60.5
+   },
+   {
+    "id": 1783,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 11.0,
+    "y": 60.5
+   },
+   {
+    "id": 1784,
+    "action_desc": "Find Bread",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Bread"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 61.5
+   },
+   {
+    "id": 1785,
+    "action_desc": "Pickup Bread \u2192 Put Bread \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 18,
+    "chain_actions": [
+     "Pickup Bread",
+     "Put Bread",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 61.5
+   },
+   {
+    "id": 1803,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 7.0,
+    "y": 61.5
+   },
+   {
+    "id": 1804,
+    "action_desc": "Find DishSponge",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find DishSponge"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 62.5
+   },
+   {
+    "id": 1805,
+    "action_desc": "Pickup DishSponge \u2192 Put DishSponge \u2192 Find SaltShaker \u2192 Pickup SaltShaker \u2192 Put SaltShaker \u2192 Find Bread \u2192 Pickup Bread \u2192 Find SinkBasin \u2192 Put Bread \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 23,
+    "chain_actions": [
+     "Pickup DishSponge",
+     "Put DishSponge",
+     "Find SaltShaker",
+     "Pickup SaltShaker",
+     "Put SaltShaker",
+     "Find Bread",
+     "Pickup Bread",
+     "Find SinkBasin",
+     "Put Bread",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 62.5
+   },
+   {
+    "id": 1828,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 7.0,
+    "y": 62.5
+   },
+   {
+    "id": 1829,
+    "action_desc": "Find Apple",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Apple"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 63.5
+   },
+   {
+    "id": 1830,
+    "action_desc": "Pickup Apple \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Apple \u2192 Close Fridge \u2192 Find Egg \u2192 Pickup Egg \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Egg \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 27,
+    "chain_actions": [
+     "Pickup Apple",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Apple",
+     "Close Fridge",
+     "Find Egg",
+     "Pickup Egg",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Egg",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 63.5
+   },
+   {
+    "id": 1857,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 7.0,
+    "y": 63.5
+   },
+   {
+    "id": 1858,
+    "action_desc": "Put Mug",
+    "count": 2,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 3.0,
+    "y": 64.5
+   },
+   {
+    "id": 1859,
+    "action_desc": "Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 2,
+    "is_collapsed": true,
+    "chain_length": 11,
+    "chain_actions": [
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 64.5
+   },
+   {
+    "id": 1870,
+    "action_desc": "Close Cabinet",
+    "count": 2,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 5.0,
+    "y": 64.5
+   },
+   {
+    "id": 1871,
+    "action_desc": "Find SinkBasin",
+    "count": 7,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SinkBasin"
+    ],
+    "is_final": false,
+    "x": 1.0,
+    "y": 68.5
+   },
+   {
+    "id": 1872,
+    "action_desc": "Put Mug",
+    "count": 5,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 2.0,
+    "y": 67.5
+   },
+   {
+    "id": 1873,
+    "action_desc": "Find WineBottle",
+    "count": 2,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find WineBottle"
+    ],
+    "is_final": false,
+    "x": 3.0,
+    "y": 66.0
+   },
+   {
+    "id": 1874,
+    "action_desc": "Pickup WineBottle \u2192 Put WineBottle",
+    "count": 2,
+    "is_collapsed": true,
+    "chain_length": 2,
+    "chain_actions": [
+     "Pickup WineBottle",
+     "Put WineBottle"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 66.0
+   },
+   {
+    "id": 1876,
+    "action_desc": "Find SinkBasin",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SinkBasin"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 65.5
+   },
+   {
+    "id": 1877,
+    "action_desc": "Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 31,
+    "chain_actions": [
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 65.5
+   },
+   {
+    "id": 1908,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 7.0,
+    "y": 65.5
+   },
+   {
+    "id": 1909,
+    "action_desc": "Find DishSponge",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find DishSponge"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 66.5
+   },
+   {
+    "id": 1910,
+    "action_desc": "Pickup DishSponge \u2192 Put DishSponge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 34,
+    "chain_actions": [
+     "Pickup DishSponge",
+     "Put DishSponge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 66.5
+   },
+   {
+    "id": 1944,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 7.0,
+    "y": 66.5
+   },
+   {
+    "id": 1945,
+    "action_desc": "Find Tomato",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Tomato"
+    ],
+    "is_final": false,
+    "x": 3.0,
+    "y": 67.5
+   },
+   {
+    "id": 1946,
+    "action_desc": "Pickup Tomato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Tomato \u2192 Close Fridge \u2192 Find SaltShaker \u2192 Pickup SaltShaker \u2192 Put SaltShaker \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 40,
+    "chain_actions": [
+     "Pickup Tomato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Tomato",
+     "Close Fridge",
+     "Find SaltShaker",
+     "Pickup SaltShaker",
+     "Put SaltShaker",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 67.5
+   },
+   {
+    "id": 1986,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 5.0,
+    "y": 67.5
+   },
+   {
+    "id": 1987,
+    "action_desc": "Find SaltShaker",
+    "count": 2,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SaltShaker"
+    ],
+    "is_final": false,
+    "x": 3.0,
+    "y": 69.0
+   },
+   {
+    "id": 1988,
+    "action_desc": "Pickup SaltShaker \u2192 Put SaltShaker",
+    "count": 2,
+    "is_collapsed": true,
+    "chain_length": 2,
+    "chain_actions": [
+     "Pickup SaltShaker",
+     "Put SaltShaker"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 69.0
+   },
+   {
+    "id": 1990,
+    "action_desc": "Find SoapBottle",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SoapBottle"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 68.5
+   },
+   {
+    "id": 1991,
+    "action_desc": "Pickup SoapBottle \u2192 Put SoapBottle \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Put DishSponge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 37,
+    "chain_actions": [
+     "Pickup SoapBottle",
+     "Put SoapBottle",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Put DishSponge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 68.5
+   },
+   {
+    "id": 2028,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 7.0,
+    "y": 68.5
+   },
+   {
+    "id": 2029,
+    "action_desc": "Find Potato",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Potato"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 69.5
+   },
+   {
+    "id": 2030,
+    "action_desc": "Pickup Potato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Potato \u2192 Close Fridge \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Put DishSponge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 40,
+    "chain_actions": [
+     "Pickup Potato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Potato",
+     "Close Fridge",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Put DishSponge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 69.5
+   },
+   {
+    "id": 2070,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 7.0,
+    "y": 69.5
+   },
+   {
+    "id": 2071,
+    "action_desc": "Put Mug",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 2.0,
+    "y": 70.5
+   },
+   {
+    "id": 2072,
+    "action_desc": "Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 27,
+    "chain_actions": [
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 3.0,
+    "y": 70.5
+   },
+   {
+    "id": 2099,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 4.0,
+    "y": 70.5
+   },
+   {
+    "id": 2100,
+    "action_desc": "Put Bread",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Put Bread"
+    ],
+    "is_final": false,
+    "x": 2.0,
+    "y": 71.5
+   },
+   {
+    "id": 2101,
+    "action_desc": "Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 14,
+    "chain_actions": [
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 3.0,
+    "y": 71.5
+   },
+   {
+    "id": 2115,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 4.0,
+    "y": 71.5
+   },
+   {
+    "id": 2116,
+    "action_desc": "Find CoffeeMachine",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find CoffeeMachine"
+    ],
+    "is_final": false,
+    "x": 1.0,
+    "y": 72.5
+   },
+   {
+    "id": 2117,
+    "action_desc": "Put Mug \u2192 Turn on CoffeeMachine \u2192 Turn off CoffeeMachine \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Find CoffeeMachine \u2192 Put Mug \u2192 Find SaltShaker \u2192 Pickup SaltShaker \u2192 Put SaltShaker \u2192 Find WineBottle \u2192 Pickup WineBottle \u2192 Put WineBottle \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Put DishSponge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 33,
+    "chain_actions": [
+     "Put Mug",
+     "Turn on CoffeeMachine",
+     "Turn off CoffeeMachine",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Find CoffeeMachine",
+     "Put Mug",
+     "Find SaltShaker",
+     "Pickup SaltShaker",
+     "Put SaltShaker",
+     "Find WineBottle",
+     "Pickup WineBottle",
+     "Put WineBottle",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Put DishSponge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 2.0,
+    "y": 72.5
+   },
+   {
+    "id": 2150,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 3.0,
+    "y": 72.5
+   },
+   {
+    "id": 2151,
+    "action_desc": "Put Lettuce",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Put Lettuce"
+    ],
+    "is_final": false,
+    "x": 1.0,
+    "y": 73.5
+   },
+   {
+    "id": 2152,
+    "action_desc": "Find Potato \u2192 Pickup Potato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Potato \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 22,
+    "chain_actions": [
+     "Find Potato",
+     "Pickup Potato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Potato",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 2.0,
+    "y": 73.5
+   },
+   {
+    "id": 2174,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 3.0,
+    "y": 73.5
+   },
+   {
+    "id": 2175,
+    "action_desc": "Put Bread",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Put Bread"
+    ],
+    "is_final": false,
+    "x": 1.0,
+    "y": 74.5
+   },
+   {
+    "id": 2176,
+    "action_desc": "Find Mug \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find SoapBottle \u2192 Pickup SoapBottle \u2192 Put SoapBottle \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Put DishSponge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 27,
+    "chain_actions": [
+     "Find Mug",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find SoapBottle",
+     "Pickup SoapBottle",
+     "Put SoapBottle",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Put DishSponge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 2.0,
+    "y": 74.5
+   },
+   {
+    "id": 2203,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 3.0,
+    "y": 74.5
+   },
+   {
+    "id": 2204,
+    "action_desc": "Drink Mug",
+    "count": 5,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Drink Mug"
+    ],
+    "is_final": false,
+    "x": 1.0,
+    "y": 77.5
+   },
+   {
+    "id": 2205,
+    "action_desc": "Find SinkBasin \u2192 Put Mug",
+    "count": 5,
+    "is_collapsed": true,
+    "chain_length": 2,
+    "chain_actions": [
+     "Find SinkBasin",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 2.0,
+    "y": 77.5
+   },
+   {
+    "id": 2207,
+    "action_desc": "Find WineBottle",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find WineBottle"
+    ],
+    "is_final": false,
+    "x": 3.0,
+    "y": 75.5
+   },
+   {
+    "id": 2208,
+    "action_desc": "Pickup WineBottle \u2192 Put WineBottle \u2192 Find SoapBottle \u2192 Pickup SoapBottle \u2192 Put SoapBottle \u2192 Find Potato \u2192 Pickup Potato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Potato \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 27,
+    "chain_actions": [
+     "Pickup WineBottle",
+     "Put WineBottle",
+     "Find SoapBottle",
+     "Pickup SoapBottle",
+     "Put SoapBottle",
+     "Find Potato",
+     "Pickup Potato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Potato",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 75.5
+   },
+   {
+    "id": 2235,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 5.0,
+    "y": 75.5
+   },
+   {
+    "id": 2236,
+    "action_desc": "Find Lettuce",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Lettuce"
+    ],
+    "is_final": false,
+    "x": 3.0,
+    "y": 76.5
+   },
+   {
+    "id": 2237,
+    "action_desc": "Pickup Lettuce \u2192 Put Lettuce \u2192 Find Potato \u2192 Pickup Potato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Potato \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 24,
+    "chain_actions": [
+     "Pickup Lettuce",
+     "Put Lettuce",
+     "Find Potato",
+     "Pickup Potato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Potato",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 76.5
+   },
+   {
+    "id": 2261,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 5.0,
+    "y": 76.5
+   },
+   {
+    "id": 2262,
+    "action_desc": "Find Tomato",
+    "count": 2,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Tomato"
+    ],
+    "is_final": false,
+    "x": 3.0,
+    "y": 78.0
+   },
+   {
+    "id": 2263,
+    "action_desc": "Pickup Tomato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Tomato \u2192 Close Fridge",
+    "count": 2,
+    "is_collapsed": true,
+    "chain_length": 5,
+    "chain_actions": [
+     "Pickup Tomato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Tomato",
+     "Close Fridge"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 78.0
+   },
+   {
+    "id": 2268,
+    "action_desc": "Find SinkBasin",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SinkBasin"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 77.5
+   },
+   {
+    "id": 2269,
+    "action_desc": "Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 15,
+    "chain_actions": [
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 77.5
+   },
+   {
+    "id": 2284,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 7.0,
+    "y": 77.5
+   },
+   {
+    "id": 2285,
+    "action_desc": "Find SaltShaker",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find SaltShaker"
+    ],
+    "is_final": false,
+    "x": 5.0,
+    "y": 78.5
+   },
+   {
+    "id": 2286,
+    "action_desc": "Pickup SaltShaker \u2192 Put SaltShaker \u2192 Find Potato \u2192 Pickup Potato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Potato \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 24,
+    "chain_actions": [
+     "Pickup SaltShaker",
+     "Put SaltShaker",
+     "Find Potato",
+     "Pickup Potato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Potato",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 6.0,
+    "y": 78.5
+   },
+   {
+    "id": 2310,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 7.0,
+    "y": 78.5
+   },
+   {
+    "id": 2311,
+    "action_desc": "Find Egg",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Find Egg"
+    ],
+    "is_final": false,
+    "x": 3.0,
+    "y": 79.5
+   },
+   {
+    "id": 2312,
+    "action_desc": "Pickup Egg \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Egg \u2192 Close Fridge \u2192 Find SaltShaker \u2192 Pickup SaltShaker \u2192 Put SaltShaker \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Put DishSponge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 27,
+    "chain_actions": [
+     "Pickup Egg",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Egg",
+     "Close Fridge",
+     "Find SaltShaker",
+     "Pickup SaltShaker",
+     "Put SaltShaker",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Put DishSponge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 4.0,
+    "y": 79.5
+   },
+   {
+    "id": 2339,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 5.0,
+    "y": 79.5
+   },
+   {
+    "id": 2340,
+    "action_desc": "Pickup Bread",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Pickup Bread"
+    ],
+    "is_final": false,
+    "x": 1.0,
+    "y": 80.5
+   },
+   {
+    "id": 2341,
+    "action_desc": "Put Bread \u2192 Find Mug \u2192 Pickup Mug \u2192 Drink Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find Potato \u2192 Pickup Potato \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Potato \u2192 Close Fridge \u2192 Find Egg \u2192 Pickup Egg \u2192 Find Fridge \u2192 Open Fridge \u2192 Put Egg \u2192 Close Fridge \u2192 Find SinkBasin \u2192 Find Mug \u2192 Pickup Mug \u2192 Find SinkBasin \u2192 Put Mug \u2192 Find DishSponge \u2192 Pickup DishSponge \u2192 Turn on Faucet \u2192 Clean Mug \u2192 Turn off Faucet \u2192 Put DishSponge \u2192 Find Mug \u2192 Pickup Mug \u2192 Find Cabinet \u2192 Open Cabinet \u2192 Put Mug",
+    "count": 1,
+    "is_collapsed": true,
+    "chain_length": 34,
+    "chain_actions": [
+     "Put Bread",
+     "Find Mug",
+     "Pickup Mug",
+     "Drink Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find Potato",
+     "Pickup Potato",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Potato",
+     "Close Fridge",
+     "Find Egg",
+     "Pickup Egg",
+     "Find Fridge",
+     "Open Fridge",
+     "Put Egg",
+     "Close Fridge",
+     "Find SinkBasin",
+     "Find Mug",
+     "Pickup Mug",
+     "Find SinkBasin",
+     "Put Mug",
+     "Find DishSponge",
+     "Pickup DishSponge",
+     "Turn on Faucet",
+     "Clean Mug",
+     "Turn off Faucet",
+     "Put DishSponge",
+     "Find Mug",
+     "Pickup Mug",
+     "Find Cabinet",
+     "Open Cabinet",
+     "Put Mug"
+    ],
+    "is_final": false,
+    "x": 2.0,
+    "y": 80.5
+   },
+   {
+    "id": 2375,
+    "action_desc": "Close Cabinet",
+    "count": 1,
+    "is_collapsed": false,
+    "chain_length": 1,
+    "chain_actions": [
+     "Close Cabinet"
+    ],
+    "is_final": true,
+    "x": 3.0,
+    "y": 80.5
+   }
+  ],
+  "edges": [
+   {
+    "source": 0,
+    "target": 1
+   },
+   {
+    "source": 1,
+    "target": 2
+   },
+   {
+    "source": 2,
+    "target": 3
+   },
+   {
+    "source": 3,
+    "target": 4
+   },
+   {
+    "source": 4,
+    "target": 5
+   },
+   {
+    "source": 5,
+    "target": 7
+   },
+   {
+    "source": 7,
+    "target": 8
+   },
+   {
+    "source": 8,
+    "target": 45
+   },
+   {
+    "source": 5,
+    "target": 46
+   },
+   {
+    "source": 46,
+    "target": 47
+   },
+   {
+    "source": 47,
+    "target": 84
+   },
+   {
+    "source": 5,
+    "target": 85
+   },
+   {
+    "source": 85,
+    "target": 86
+   },
+   {
+    "source": 86,
+    "target": 126
+   },
+   {
+    "source": 3,
+    "target": 127
+   },
+   {
+    "source": 127,
+    "target": 128
+   },
+   {
+    "source": 128,
+    "target": 130
+   },
+   {
+    "source": 130,
+    "target": 131
+   },
+   {
+    "source": 131,
+    "target": 162
+   },
+   {
+    "source": 128,
+    "target": 163
+   },
+   {
+    "source": 163,
+    "target": 164
+   },
+   {
+    "source": 164,
+    "target": 176
+   },
+   {
+    "source": 176,
+    "target": 177
+   },
+   {
+    "source": 177,
+    "target": 202
+   },
+   {
+    "source": 164,
+    "target": 203
+   },
+   {
+    "source": 203,
+    "target": 204
+   },
+   {
+    "source": 204,
+    "target": 228
+   },
+   {
+    "source": 128,
+    "target": 229
+   },
+   {
+    "source": 229,
+    "target": 230
+   },
+   {
+    "source": 230,
+    "target": 267
+   },
+   {
+    "source": 3,
+    "target": 268
+   },
+   {
+    "source": 268,
+    "target": 269
+   },
+   {
+    "source": 269,
+    "target": 271
+   },
+   {
+    "source": 271,
+    "target": 272
+   },
+   {
+    "source": 272,
+    "target": 309
+   },
+   {
+    "source": 269,
+    "target": 310
+   },
+   {
+    "source": 310,
+    "target": 311
+   },
+   {
+    "source": 311,
+    "target": 351
+   },
+   {
+    "source": 269,
+    "target": 352
+   },
+   {
+    "source": 352,
+    "target": 353
+   },
+   {
+    "source": 353,
+    "target": 384
+   },
+   {
+    "source": 3,
+    "target": 385
+   },
+   {
+    "source": 385,
+    "target": 386
+   },
+   {
+    "source": 386,
+    "target": 391
+   },
+   {
+    "source": 391,
+    "target": 392
+   },
+   {
+    "source": 392,
+    "target": 423
+   },
+   {
+    "source": 386,
+    "target": 424
+   },
+   {
+    "source": 424,
+    "target": 425
+   },
+   {
+    "source": 425,
+    "target": 465
+   },
+   {
+    "source": 3,
+    "target": 466
+   },
+   {
+    "source": 466,
+    "target": 467
+   },
+   {
+    "source": 467,
+    "target": 472
+   },
+   {
+    "source": 472,
+    "target": 473
+   },
+   {
+    "source": 473,
+    "target": 504
+   },
+   {
+    "source": 467,
+    "target": 505
+   },
+   {
+    "source": 505,
+    "target": 506
+   },
+   {
+    "source": 506,
+    "target": 546
+   },
+   {
+    "source": 3,
+    "target": 547
+   },
+   {
+    "source": 547,
+    "target": 548
+   },
+   {
+    "source": 548,
+    "target": 588
+   },
+   {
+    "source": 3,
+    "target": 589
+   },
+   {
+    "source": 589,
+    "target": 590
+   },
+   {
+    "source": 590,
+    "target": 633
+   },
+   {
+    "source": 2,
+    "target": 634
+   },
+   {
+    "source": 634,
+    "target": 635
+   },
+   {
+    "source": 635,
+    "target": 662
+   },
+   {
+    "source": 1,
+    "target": 663
+   },
+   {
+    "source": 663,
+    "target": 664
+   },
+   {
+    "source": 664,
+    "target": 665
+   },
+   {
+    "source": 665,
+    "target": 702
+   },
+   {
+    "source": 663,
+    "target": 703
+   },
+   {
+    "source": 703,
+    "target": 704
+   },
+   {
+    "source": 704,
+    "target": 709
+   },
+   {
+    "source": 709,
+    "target": 710
+   },
+   {
+    "source": 710,
+    "target": 747
+   },
+   {
+    "source": 704,
+    "target": 748
+   },
+   {
+    "source": 748,
+    "target": 749
+   },
+   {
+    "source": 749,
+    "target": 783
+   },
+   {
+    "source": 663,
+    "target": 784
+   },
+   {
+    "source": 784,
+    "target": 785
+   },
+   {
+    "source": 785,
+    "target": 828
+   },
+   {
+    "source": 663,
+    "target": 829
+   },
+   {
+    "source": 829,
+    "target": 830
+   },
+   {
+    "source": 830,
+    "target": 835
+   },
+   {
+    "source": 835,
+    "target": 836
+   },
+   {
+    "source": 836,
+    "target": 867
+   },
+   {
+    "source": 830,
+    "target": 868
+   },
+   {
+    "source": 868,
+    "target": 869
+   },
+   {
+    "source": 869,
+    "target": 903
+   },
+   {
+    "source": 1,
+    "target": 904
+   },
+   {
+    "source": 904,
+    "target": 905
+   },
+   {
+    "source": 905,
+    "target": 910
+   },
+   {
+    "source": 910,
+    "target": 911
+   },
+   {
+    "source": 911,
+    "target": 912
+   },
+   {
+    "source": 912,
+    "target": 913
+   },
+   {
+    "source": 913,
+    "target": 934
+   },
+   {
+    "source": 911,
+    "target": 935
+   },
+   {
+    "source": 935,
+    "target": 936
+   },
+   {
+    "source": 936,
+    "target": 938
+   },
+   {
+    "source": 938,
+    "target": 939
+   },
+   {
+    "source": 939,
+    "target": 954
+   },
+   {
+    "source": 936,
+    "target": 955
+   },
+   {
+    "source": 955,
+    "target": 956
+   },
+   {
+    "source": 956,
+    "target": 986
+   },
+   {
+    "source": 905,
+    "target": 987
+   },
+   {
+    "source": 987,
+    "target": 988
+   },
+   {
+    "source": 988,
+    "target": 999
+   },
+   {
+    "source": 1,
+    "target": 1000
+   },
+   {
+    "source": 1000,
+    "target": 1001
+   },
+   {
+    "source": 1001,
+    "target": 1007
+   },
+   {
+    "source": 1007,
+    "target": 1008
+   },
+   {
+    "source": 1008,
+    "target": 1009
+   },
+   {
+    "source": 1009,
+    "target": 1010
+   },
+   {
+    "source": 1010,
+    "target": 1034
+   },
+   {
+    "source": 1008,
+    "target": 1035
+   },
+   {
+    "source": 1035,
+    "target": 1036
+   },
+   {
+    "source": 1036,
+    "target": 1054
+   },
+   {
+    "source": 1008,
+    "target": 1055
+   },
+   {
+    "source": 1055,
+    "target": 1056
+   },
+   {
+    "source": 1056,
+    "target": 1058
+   },
+   {
+    "source": 1058,
+    "target": 1059
+   },
+   {
+    "source": 1059,
+    "target": 1083
+   },
+   {
+    "source": 1056,
+    "target": 1084
+   },
+   {
+    "source": 1084,
+    "target": 1085
+   },
+   {
+    "source": 1085,
+    "target": 1103
+   },
+   {
+    "source": 1056,
+    "target": 1104
+   },
+   {
+    "source": 1104,
+    "target": 1105
+   },
+   {
+    "source": 1105,
+    "target": 1123
+   },
+   {
+    "source": 1056,
+    "target": 1124
+   },
+   {
+    "source": 1124,
+    "target": 1125
+   },
+   {
+    "source": 1125,
+    "target": 1149
+   },
+   {
+    "source": 1008,
+    "target": 1150
+   },
+   {
+    "source": 1150,
+    "target": 1151
+   },
+   {
+    "source": 1151,
+    "target": 1156
+   },
+   {
+    "source": 1156,
+    "target": 1157
+   },
+   {
+    "source": 1157,
+    "target": 1177
+   },
+   {
+    "source": 1151,
+    "target": 1178
+   },
+   {
+    "source": 1178,
+    "target": 1179
+   },
+   {
+    "source": 1179,
+    "target": 1197
+   },
+   {
+    "source": 1008,
+    "target": 1198
+   },
+   {
+    "source": 1198,
+    "target": 1199
+   },
+   {
+    "source": 1199,
+    "target": 1204
+   },
+   {
+    "source": 1204,
+    "target": 1205
+   },
+   {
+    "source": 1205,
+    "target": 1226
+   },
+   {
+    "source": 1199,
+    "target": 1227
+   },
+   {
+    "source": 1227,
+    "target": 1228
+   },
+   {
+    "source": 1228,
+    "target": 1243
+   },
+   {
+    "source": 1008,
+    "target": 1244
+   },
+   {
+    "source": 1244,
+    "target": 1245
+   },
+   {
+    "source": 1245,
+    "target": 1263
+   },
+   {
+    "source": 1008,
+    "target": 1264
+   },
+   {
+    "source": 1264,
+    "target": 1265
+   },
+   {
+    "source": 1265,
+    "target": 1286
+   },
+   {
+    "source": 1008,
+    "target": 1287
+   },
+   {
+    "source": 1287,
+    "target": 1288
+   },
+   {
+    "source": 1288,
+    "target": 1290
+   },
+   {
+    "source": 1290,
+    "target": 1291
+   },
+   {
+    "source": 1291,
+    "target": 1309
+   },
+   {
+    "source": 1288,
+    "target": 1310
+   },
+   {
+    "source": 1310,
+    "target": 1311
+   },
+   {
+    "source": 1311,
+    "target": 1332
+   },
+   {
+    "source": 1288,
+    "target": 1333
+   },
+   {
+    "source": 1333,
+    "target": 1334
+   },
+   {
+    "source": 1334,
+    "target": 1355
+   },
+   {
+    "source": 1008,
+    "target": 1356
+   },
+   {
+    "source": 1356,
+    "target": 1357
+   },
+   {
+    "source": 1357,
+    "target": 1381
+   },
+   {
+    "source": 1001,
+    "target": 1382
+   },
+   {
+    "source": 1382,
+    "target": 1383
+   },
+   {
+    "source": 1383,
+    "target": 1394
+   },
+   {
+    "source": 1,
+    "target": 1395
+   },
+   {
+    "source": 1395,
+    "target": 1396
+   },
+   {
+    "source": 1396,
+    "target": 1397
+   },
+   {
+    "source": 1397,
+    "target": 1398
+   },
+   {
+    "source": 1398,
+    "target": 1403
+   },
+   {
+    "source": 1403,
+    "target": 1404
+   },
+   {
+    "source": 1404,
+    "target": 1422
+   },
+   {
+    "source": 1398,
+    "target": 1423
+   },
+   {
+    "source": 1423,
+    "target": 1424
+   },
+   {
+    "source": 1424,
+    "target": 1442
+   },
+   {
+    "source": 1396,
+    "target": 1443
+   },
+   {
+    "source": 1443,
+    "target": 1444
+   },
+   {
+    "source": 1444,
+    "target": 1462
+   },
+   {
+    "source": 1396,
+    "target": 1463
+   },
+   {
+    "source": 1463,
+    "target": 1464
+   },
+   {
+    "source": 1464,
+    "target": 1482
+   },
+   {
+    "source": 1396,
+    "target": 1483
+   },
+   {
+    "source": 1483,
+    "target": 1484
+   },
+   {
+    "source": 1484,
+    "target": 1511
+   },
+   {
+    "source": 1396,
+    "target": 1512
+   },
+   {
+    "source": 1512,
+    "target": 1513
+   },
+   {
+    "source": 1513,
+    "target": 1534
+   },
+   {
+    "source": 1395,
+    "target": 1535
+   },
+   {
+    "source": 1535,
+    "target": 1536
+   },
+   {
+    "source": 1536,
+    "target": 1537
+   },
+   {
+    "source": 1537,
+    "target": 1538
+   },
+   {
+    "source": 1538,
+    "target": 1540
+   },
+   {
+    "source": 1540,
+    "target": 1541
+   },
+   {
+    "source": 1541,
+    "target": 1546
+   },
+   {
+    "source": 1546,
+    "target": 1547
+   },
+   {
+    "source": 1547,
+    "target": 1565
+   },
+   {
+    "source": 1541,
+    "target": 1566
+   },
+   {
+    "source": 1566,
+    "target": 1567
+   },
+   {
+    "source": 1567,
+    "target": 1582
+   },
+   {
+    "source": 1541,
+    "target": 1583
+   },
+   {
+    "source": 1583,
+    "target": 1584
+   },
+   {
+    "source": 1584,
+    "target": 1605
+   },
+   {
+    "source": 1538,
+    "target": 1606
+   },
+   {
+    "source": 1606,
+    "target": 1607
+   },
+   {
+    "source": 1607,
+    "target": 1631
+   },
+   {
+    "source": 1538,
+    "target": 1632
+   },
+   {
+    "source": 1632,
+    "target": 1633
+   },
+   {
+    "source": 1633,
+    "target": 1648
+   },
+   {
+    "source": 1536,
+    "target": 1649
+   },
+   {
+    "source": 1649,
+    "target": 1650
+   },
+   {
+    "source": 1650,
+    "target": 1655
+   },
+   {
+    "source": 1655,
+    "target": 1656
+   },
+   {
+    "source": 1656,
+    "target": 1674
+   },
+   {
+    "source": 1650,
+    "target": 1675
+   },
+   {
+    "source": 1675,
+    "target": 1676
+   },
+   {
+    "source": 1676,
+    "target": 1703
+   },
+   {
+    "source": 1650,
+    "target": 1704
+   },
+   {
+    "source": 1704,
+    "target": 1705
+   },
+   {
+    "source": 1705,
+    "target": 1720
+   },
+   {
+    "source": 1536,
+    "target": 1721
+   },
+   {
+    "source": 1721,
+    "target": 1722
+   },
+   {
+    "source": 1722,
+    "target": 1724
+   },
+   {
+    "source": 1724,
+    "target": 1725
+   },
+   {
+    "source": 1725,
+    "target": 1740
+   },
+   {
+    "source": 1722,
+    "target": 1741
+   },
+   {
+    "source": 1741,
+    "target": 1742
+   },
+   {
+    "source": 1742,
+    "target": 1744
+   },
+   {
+    "source": 1744,
+    "target": 1745
+   },
+   {
+    "source": 1745,
+    "target": 1760
+   },
+   {
+    "source": 1742,
+    "target": 1761
+   },
+   {
+    "source": 1761,
+    "target": 1762
+   },
+   {
+    "source": 1762,
+    "target": 1783
+   },
+   {
+    "source": 1536,
+    "target": 1784
+   },
+   {
+    "source": 1784,
+    "target": 1785
+   },
+   {
+    "source": 1785,
+    "target": 1803
+   },
+   {
+    "source": 1536,
+    "target": 1804
+   },
+   {
+    "source": 1804,
+    "target": 1805
+   },
+   {
+    "source": 1805,
+    "target": 1828
+   },
+   {
+    "source": 1536,
+    "target": 1829
+   },
+   {
+    "source": 1829,
+    "target": 1830
+   },
+   {
+    "source": 1830,
+    "target": 1857
+   },
+   {
+    "source": 1395,
+    "target": 1858
+   },
+   {
+    "source": 1858,
+    "target": 1859
+   },
+   {
+    "source": 1859,
+    "target": 1870
+   },
+   {
+    "source": 0,
+    "target": 1871
+   },
+   {
+    "source": 1871,
+    "target": 1872
+   },
+   {
+    "source": 1872,
+    "target": 1873
+   },
+   {
+    "source": 1873,
+    "target": 1874
+   },
+   {
+    "source": 1874,
+    "target": 1876
+   },
+   {
+    "source": 1876,
+    "target": 1877
+   },
+   {
+    "source": 1877,
+    "target": 1908
+   },
+   {
+    "source": 1874,
+    "target": 1909
+   },
+   {
+    "source": 1909,
+    "target": 1910
+   },
+   {
+    "source": 1910,
+    "target": 1944
+   },
+   {
+    "source": 1872,
+    "target": 1945
+   },
+   {
+    "source": 1945,
+    "target": 1946
+   },
+   {
+    "source": 1946,
+    "target": 1986
+   },
+   {
+    "source": 1872,
+    "target": 1987
+   },
+   {
+    "source": 1987,
+    "target": 1988
+   },
+   {
+    "source": 1988,
+    "target": 1990
+   },
+   {
+    "source": 1990,
+    "target": 1991
+   },
+   {
+    "source": 1991,
+    "target": 2028
+   },
+   {
+    "source": 1988,
+    "target": 2029
+   },
+   {
+    "source": 2029,
+    "target": 2030
+   },
+   {
+    "source": 2030,
+    "target": 2070
+   },
+   {
+    "source": 1871,
+    "target": 2071
+   },
+   {
+    "source": 2071,
+    "target": 2072
+   },
+   {
+    "source": 2072,
+    "target": 2099
+   },
+   {
+    "source": 1871,
+    "target": 2100
+   },
+   {
+    "source": 2100,
+    "target": 2101
+   },
+   {
+    "source": 2101,
+    "target": 2115
+   },
+   {
+    "source": 0,
+    "target": 2116
+   },
+   {
+    "source": 2116,
+    "target": 2117
+   },
+   {
+    "source": 2117,
+    "target": 2150
+   },
+   {
+    "source": 0,
+    "target": 2151
+   },
+   {
+    "source": 2151,
+    "target": 2152
+   },
+   {
+    "source": 2152,
+    "target": 2174
+   },
+   {
+    "source": 0,
+    "target": 2175
+   },
+   {
+    "source": 2175,
+    "target": 2176
+   },
+   {
+    "source": 2176,
+    "target": 2203
+   },
+   {
+    "source": 0,
+    "target": 2204
+   },
+   {
+    "source": 2204,
+    "target": 2205
+   },
+   {
+    "source": 2205,
+    "target": 2207
+   },
+   {
+    "source": 2207,
+    "target": 2208
+   },
+   {
+    "source": 2208,
+    "target": 2235
+   },
+   {
+    "source": 2205,
+    "target": 2236
+   },
+   {
+    "source": 2236,
+    "target": 2237
+   },
+   {
+    "source": 2237,
+    "target": 2261
+   },
+   {
+    "source": 2205,
+    "target": 2262
+   },
+   {
+    "source": 2262,
+    "target": 2263
+   },
+   {
+    "source": 2263,
+    "target": 2268
+   },
+   {
+    "source": 2268,
+    "target": 2269
+   },
+   {
+    "source": 2269,
+    "target": 2284
+   },
+   {
+    "source": 2263,
+    "target": 2285
+   },
+   {
+    "source": 2285,
+    "target": 2286
+   },
+   {
+    "source": 2286,
+    "target": 2310
+   },
+   {
+    "source": 2205,
+    "target": 2311
+   },
+   {
+    "source": 2311,
+    "target": 2312
+   },
+   {
+    "source": 2312,
+    "target": 2339
+   },
+   {
+    "source": 0,
+    "target": 2340
+   },
+   {
+    "source": 2340,
+    "target": 2341
+   },
+   {
+    "source": 2341,
+    "target": 2375
+   }
+  ]
+ }
+}

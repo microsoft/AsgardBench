@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="AsgardBench: Evaluating Visually Grounded Interactive Planning Under Minimal Feedback. A benchmark for testing whether vision-language models can adapt plans based on visual observations.">
+  <meta name="keywords" content="AsgardBench, benchmark, embodied AI, interactive planning, vision-language models, AI2-THOR, plan adaptation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="AsgardBench — Visually Grounded Interactive Planning">
+  <meta property="og:description" content="Can vision-language models adapt plans based on what they see? AsgardBench evaluates interactive planning under minimal feedback.">
+  <meta property="og:image" content="https://microsoft.github.io/AsgardBench/static/images/teaser-initial-plan.jpg">
+  <meta property="og:url" content="https://microsoft.github.io/AsgardBench/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AsgardBench — Visually Grounded Interactive Planning">
+  <meta name="twitter:description" content="Can vision-language models adapt plans based on what they see?">
+  <meta name="twitter:image" content="https://microsoft.github.io/AsgardBench/static/images/teaser-initial-plan.jpg">
+
+  <title>AsgardBench — Visually Grounded Interactive Planning</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500,700,900|Noto+Sans:400,400i,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+</head>
+<body>
+
+<!-- ═══════════════════ NAVBAR ═══════════════════ -->
+<nav class="navbar is-fixed-top is-light" role="navigation" aria-label="main navigation">
+  <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item has-text-weight-bold" href="#">AsgardBench</a>
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div id="navMenu" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#overview">Overview</a>
+        <a class="navbar-item" href="#results">Results</a>
+        <a class="navbar-item" href="#failures">Where Models Fail</a>
+        <a class="navbar-item" href="#findings">Findings</a>
+        <a class="navbar-item" href="#bibtex">BibTeX</a>
+        <a class="navbar-item" href="plan_viewer.html">
+          <span class="icon"><i class="fas fa-eye"></i></span>
+          <span>Plan Viewer</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero" style="padding-top: 3rem;">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">
+            AsgardBench
+          </h1>
+          <h2 class="subtitle is-4" style="margin-top: -0.5rem; color: #555;">
+            Evaluating Visually Grounded Interactive Planning Under Minimal Feedback
+          </h2>
+
+          <div class="is-size-5 publication-authors" style="margin-top: 1rem;">
+            <span class="author-block">Andrea Tupini,</span>
+            <span class="author-block">Lars Liden,</span>
+            <span class="author-block">Reuben Tan,</span>
+            <span class="author-block">Yu Wang,</span>
+            <span class="author-block">Jianfeng Gao</span>
+          </div>
+          <div class="is-size-6 publication-authors" style="margin-top: 0.25rem;">
+            <span class="author-block">Microsoft Research</span>
+          </div>
+
+          <p class="tagline">Can vision-language models adapt plans based on what they see?</p>
+
+          <div class="column has-text-centered" style="margin-top: 1rem;">
+            <div class="publication-links">
+              <!-- Paper Link -->
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Code Link -->
+              <span class="link-block">
+                <a href="https://github.com/microsoft/AsgardBench" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ TEASER STEPPER ═══════════════════ -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="teaser-stepper">
+
+        <!-- Tabs -->
+        <div class="stepper-tabs">
+          <button class="stepper-tab is-active">1. Initial Observation</button>
+          <button class="stepper-tab">2. Discover Cup Is Dirty</button>
+          <button class="stepper-tab">3. Discover Sink Is Blocked</button>
+        </div>
+
+        <!-- Panel 1 -->
+        <div class="stepper-panel is-active columns is-vcentered">
+          <div class="column is-5 stepper-image-col">
+            <img src="./static/images/teaser-initial-plan.jpg" alt="Kitchen scene - initial observation">
+          </div>
+          <div class="column is-7">
+            <div class="stepper-plan">
+              <div>1. FIND Mug</div>
+              <div>2. PICKUP Mug</div>
+              <div>3. FIND CoffeeMachine</div>
+              <div>4. PUT CoffeeMachine</div>
+              <div>5. TOGGLE_ON CoffeeMachine</div>
+              <div>6. TOGGLE_OFF CoffeeMachine</div>
+              <div>7. PICKUP Mug</div>
+              <div>8. DRINK Mug</div>
+              <div>9. FIND SinkBasin</div>
+              <div>10. PUT SinkBasin</div>
+              <div style="color:#999;">...</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 2 -->
+        <div class="stepper-panel columns is-vcentered">
+          <div class="column is-5 stepper-image-col">
+            <img src="./static/images/teaser-observe-cup.jpg" alt="Kitchen scene - mug is dirty">
+          </div>
+          <div class="column is-7">
+            <div class="stepper-plan">
+              <div class="step-done">1. FIND Mug (DONE)</div>
+              <div class="step-changed">2. PICKUP Mug</div>
+              <div class="step-changed">3. FIND SinkBasin</div>
+              <div class="step-changed">4. PUT SinkBasin</div>
+              <div class="step-new">5. FIND DishSponge</div>
+              <div class="step-new">6. PICKUP DishSponge</div>
+              <div class="step-new">7. FIND SinkBasin</div>
+              <div class="step-new">8. TOGGLE_ON Faucet</div>
+              <div class="step-new">9. CLEAN Mug</div>
+              <div style="color:#999;">... then make coffee</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 3 -->
+        <div class="stepper-panel columns is-vcentered">
+          <div class="column is-5 stepper-image-col">
+            <img src="./static/images/teaser-observe-sink.jpg" alt="Kitchen scene - items blocking sink">
+          </div>
+          <div class="column is-7">
+            <div class="stepper-plan">
+              <div class="step-done">1. FIND Mug (DONE)</div>
+              <div class="step-done">2. PICKUP Mug (DONE)</div>
+              <div class="step-done">3. FIND SinkBasin (DONE)</div>
+              <div class="step-changed">4. PUT CounterTop</div>
+              <div class="step-new">5. PICKUP WineBottle</div>
+              <div class="step-new">6. PUT CounterTop</div>
+              <div class="step-new">7. FIND Potato</div>
+              <div class="step-new">8. PICKUP Potato</div>
+              <div class="step-new">9. FIND CounterTop</div>
+              <div style="color:#999;">... finish clearing sink, then clean mug, then make coffee</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Progress dots -->
+        <div class="stepper-progress">
+          <div class="stepper-dot is-active"></div>
+          <div class="stepper-dot"></div>
+          <div class="stepper-dot"></div>
+        </div>
+
+      </div>
+
+      <p class="has-text-centered" style="margin-top: 1rem; font-size: 0.9rem; color: #888;">
+        <em>The agent adapts its plan at every step based on new visual observations. A dirty mug triggers a cleaning detour; a blocked sink triggers clearing objects first.</em>
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ ABSTRACT ═══════════════════ -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            <strong>AsgardBench</strong> evaluates visually grounded interactive planning &mdash; the ability of vision-language models to generate and <em>adapt</em> action sequences based on visual observations during execution, rather than following fixed plans.
+            Unlike prior embodied AI benchmarks that conflate reasoning with navigation or provide rich corrective feedback, AsgardBench restricts agent input to images, action history, and lightweight success/failure signals.
+          </p>
+          <p>
+            The benchmark contains <strong>108 task instances</strong> spanning <strong>12 task types</strong> across kitchens, living rooms, and bathrooms, each systematically varied through object state, placement, and scene configuration. These variations create conditional branches where a single instruction can require entirely different action sequences depending on what the agent observes.
+          </p>
+          <p>
+            Our evaluations of leading vision-language models show that <strong>performance drops sharply without visual input</strong>, revealing weaknesses in visual grounding and state tracking that undermine interactive planning. Can a model actually use what it sees to adapt a plan when things don't go as expected?
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ HOW IT WORKS ═══════════════════ -->
+<section class="section" id="overview">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">How It Works</h2>
+
+    <!-- Pipeline Diagram -->
+    <div class="pipeline-diagram">
+      <div class="pipeline-step">
+        <div><div class="pipeline-label">Instruction</div>
+        <div class="pipeline-sublabel">"Make coffee"</div></div>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step">
+        <div><div class="pipeline-label">Observe Scene</div>
+        <div class="pipeline-sublabel">RGB image</div></div>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step">
+        <div><div class="pipeline-label">Generate Plan</div>
+        <div class="pipeline-sublabel">Action sequence</div></div>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step">
+        <div><div class="pipeline-label">Execute Action</div>
+        <div class="pipeline-sublabel">Top action</div></div>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step">
+        <div><div class="pipeline-label">Feedback</div>
+        <div class="pipeline-sublabel">Success / Fail</div></div>
+      </div>
+    </div>
+    <p class="pipeline-loop-arrow">↻ Repeat until all goals are met or termination conditions are reached</p>
+
+    <!-- Description -->
+    <div class="columns is-centered" style="margin-top: 1rem;">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            AsgardBench is built on <strong>AI2-THOR</strong>, a 3D simulator providing photorealistic indoor environments. Navigation is abstracted away &mdash; a <code>FIND</code> action teleports the agent to objects &mdash; isolating the planning challenge from low-level control.
+            The agent receives only <strong>two images</strong> (current and previous observation), its <strong>action history</strong>, and a <strong>binary success/failure signal</strong> after each action. No textual descriptions of the scene, no detailed error messages.
+          </p>
+          <p>
+            Task variations alter object cleanliness, fill state, and placement to create <strong>conditional branches</strong>. For example, the instruction "Prepare a mug of coffee" can require completely different action sequences depending on whether the mug is clean or dirty, whether the sink is clear or blocked, and where objects are located:
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- close .container for full-width tree -->
+
+  <!-- Conditional Branching – Interactive Tree (full-width, Bokeh) -->
+  <div class="plan-tree-fullwidth">
+    <div class="plan-tree-scroll" id="plan-tree-scroll">
+      <iframe src="plan_tree_coworker.html" id="plan-tree-iframe" frameborder="0" style="width: 100%; height: 700px; border: none;"></iframe>
+    </div>
+    <p class="figure-caption" style="max-width: 960px; margin: 0.75rem auto 0;">92 plans for a single instruction ("Prepare coffee") branch into different execution paths depending on mug state, scene layout, and obstacles. Scroll and hover over nodes for details.</p>
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════ RESULTS / LEADERBOARD ═══════════════════ -->
+<section class="section" id="results">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Results</h2>
+
+    <!-- Headline Callout -->
+    <div class="result-callout">
+      <div class="columns is-vcentered">
+        <div class="column is-narrow">
+          <div class="result-number">75.9%</div>
+        </div>
+        <div class="column">
+          <div class="result-detail">
+            <strong>Best model: Claude Opus 4.5</strong> with visual input.<br>
+            Without images, it drops to <strong>36.1%</strong> &mdash; visual input more than <strong>doubles</strong> performance for most models.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Performance Chart -->
+    <div class="columns is-centered" style="margin-top: 1.5rem;">
+      <div class="column is-10">
+        <div class="figure-container">
+          <img src="./static/images/graph-baseline-vs-textonly.png" alt="Baseline (with images) vs text-only performance across all models">
+          <p class="figure-caption">Success rate comparison: image-based (baseline) vs. text-only across 9 frontier and near-frontier vision-language models.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Leaderboard Table -->
+    <div class="columns is-centered" style="margin-top: 1.5rem;">
+      <div class="column is-10">
+        <h3 class="title is-5">Leaderboard</h3>
+        <div style="overflow-x: auto;">
+          <table class="leaderboard-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Model</th>
+                <th>With Images</th>
+                <th>Text-Only</th>
+                <th>Δ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Claude Opus 4.5</td>
+                <td><strong>75.9%</strong></td>
+                <td>36.1%</td>
+                <td class="delta-positive">+39.8%</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Gemini 3 Pro</td>
+                <td>73.1%</td>
+                <td>35.2%</td>
+                <td class="delta-positive">+37.9%</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>GPT-5.2</td>
+                <td>71.3%</td>
+                <td>25.0%</td>
+                <td class="delta-positive">+46.3%</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Kimi-K2.5</td>
+                <td>68.5%</td>
+                <td>22.2%</td>
+                <td class="delta-positive">+46.3%</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Qwen3-VL-235B</td>
+                <td>32.4%</td>
+                <td>13.9%</td>
+                <td class="delta-positive">+18.5%</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>GLM-4.6V</td>
+                <td>30.6%</td>
+                <td>8.3%</td>
+                <td class="delta-positive">+22.3%</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>GPT-4o</td>
+                <td>21.3%</td>
+                <td>4.15%</td>
+                <td class="delta-positive">+17.15%</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>Mistral-Large-3</td>
+                <td>6.5%</td>
+                <td>7.9%</td>
+                <td class="delta-negative">−1.4%</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>Llama-4 Maverick</td>
+                <td>5.6%</td>
+                <td>6.5%</td>
+                <td class="delta-negative">−0.9%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feedback Chart -->
+    <div class="columns is-centered" style="margin-top: 2rem;">
+      <div class="column is-10">
+        <h3 class="title is-5">Effect of Feedback Type</h3>
+        <div class="content has-text-justified">
+          <p>
+            We test three feedback conditions: <strong>No Feedback</strong>, <strong>Baseline</strong> (success/failure), and <strong>Detailed Feedback</strong> (textual descriptions of why actions failed).
+            Detailed feedback substantially reduces the need for visual grounding by providing explicit corrective information that could, in principle, guide the agent toward the correct action sequence.
+            For some models &mdash; notably Qwen3-VL, Mistral-Large-3, and Maverick &mdash; text-only with detailed feedback can match or exceed the image-based baseline.
+            However, for the strongest vision-capable models (e.g., Kimi-K2.5, GPT-4o), image-based performance remains substantially higher, suggesting that visual grounding provides information beyond what corrective feedback alone can supply.
+          </p>
+        </div>
+        <div class="figure-container">
+          <img src="./static/images/graph-feedback.png" alt="Performance comparison across feedback conditions">
+          <p class="figure-caption">Performance under different feedback conditions. Detailed feedback significantly boosts both image-based and text-only agents.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════ WHERE MODELS FAIL ═══════════════════ -->
+<section class="section" id="failures">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Where Models Fail</h2>
+    <p class="has-text-centered" style="margin-bottom: 1.5rem; color: #666;">
+      Even the strongest models make striking visual errors. Here are real examples from our evaluations:
+    </p>
+
+    <div class="failure-gallery">
+      <!-- Card 1 -->
+      <div class="failure-card">
+        <img src="./static/images/error-burning-pan.png" alt="Model confuses reflections for flames">
+        <div class="failure-card-body">
+          <div class="model-says">"I see flames — the pan is burning on the stove!"</div>
+          <p class="ground-truth"><strong>Reality:</strong> Warm lighting reflections on a clean stainless steel pan. No fire present.</p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="failure-card">
+        <img src="./static/images/error-invisible-mug.jpg" alt="Model cannot see the mug">
+        <div class="failure-card-body">
+          <div class="model-says">"I see a mug in the sink."</div>
+          <p class="ground-truth"><strong>Reality:</strong> There's no mug in the sink. The model confuses the reflection for one.</p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="failure-card">
+        <img src="./static/images/error-assumes-mug-full.png" alt="Model assumes mug is already full">
+        <div class="failure-card-body">
+          <div class="model-says">"The mug appears to already be filled with coffee."</div>
+          <p class="ground-truth"><strong>Reality:</strong> The mug is empty. The bottom of the mug is misinterpreted as liquid content.</p>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="failure-card">
+        <img src="./static/images/error-mistakes-for-stool.png" alt="Model misidentifies object">
+        <div class="failure-card-body">
+          <div class="model-says">"I see a stool near the counter."</div>
+          <p class="ground-truth"><strong>Reality:</strong> There is no stool — the model is misidentifying the held DishSponce as one.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="has-text-centered" style="margin-top: 0.5rem; font-size: 0.85rem; color: #aaa;">
+      ← Scroll for more examples →
+    </p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ KEY FINDINGS (ABLATIONS) ═══════════════════ -->
+<section class="section" id="findings">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Key Findings</h2>
+
+    <div class="ablation-tabs">
+      <div class="tabs is-centered is-boxed">
+        <ul>
+          <li class="is-active"><a class="ablation-tab-link" data-target="tab-hand">Hand Overlay</a></li>
+          <li><a class="ablation-tab-link" data-target="tab-history">Visual History</a></li>
+          <li><a class="ablation-tab-link" data-target="tab-memory">Memory Scaffold</a></li>
+        </ul>
+      </div>
+
+      <!-- Hand Overlay Tab -->
+      <div id="tab-hand" class="ablation-tab-content is-active">
+        <div class="columns is-centered">
+          <div class="column is-10">
+            <div class="content has-text-justified">
+              <p>
+                AsgardBench renders a <strong>translucent hand overlay</strong> when the agent is holding an object, providing a visual cue about object possession. Removing this overlay causes <strong>universal performance drops</strong> across all models &mdash; agents struggle to determine whether objects are being held or resting on surfaces.
+              </p>
+            </div>
+            <div class="ablation-comparison">
+              <div style="text-align: center;">
+                <img src="./static/images/saltshaker-with-hand.jpg" alt="Saltshaker with hand overlay visible">
+                <p style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>With hand overlay</strong><br>Agent knows it's holding the saltshaker</p>
+              </div>
+              <div style="font-size: 2rem; color: #ccc; align-self: center;">vs</div>
+              <div style="text-align: center;">
+                <img src="./static/images/saltshaker-without-hand.jpg" alt="Saltshaker without hand overlay">
+                <p style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>Without hand overlay</strong><br>Is the saltshaker on the table or being held?</p>
+              </div>
+            </div>
+            <div class="figure-container" style="margin-top: 1.5rem;">
+              <img src="./static/images/graph-hand-ablation.png" alt="Performance with and without hand overlay" style="max-width: 600px;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual History Tab -->
+      <div id="tab-history" class="ablation-tab-content">
+        <div class="columns is-centered">
+          <div class="column is-10">
+            <div class="content has-text-justified">
+              <p>
+                The baseline configuration provides the agent with <strong>two images</strong>: the current observation and the previous observation. Removing the previous image leads to <strong>consistent performance degradation</strong>. Models use the image pair to detect <em>state changes</em> resulting from their actions &mdash; for instance, verifying that a faucet was actually turned on, or that an object was successfully placed.
+              </p>
+            </div>
+            <div class="figure-container">
+              <img src="./static/images/graph-image-ablation.png" alt="Performance with two images vs. current image only" style="max-width: 600px;">
+              <p class="figure-caption">Removing the previous observation image degrades performance across models, confirming that agents use temporal visual context for state tracking.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Memory Scaffold Tab -->
+      <div id="tab-memory" class="ablation-tab-content">
+        <div class="columns is-centered">
+          <div class="column is-10">
+            <div class="content has-text-justified">
+              <p>
+                AsgardBench allows models to maintain a <strong>"Things to Remember"</strong> scratch pad &mdash; a free-form text field the model can update each turn to track state, record observations, and plan ahead. Results are <strong>mixed</strong>: stronger models benefit from this memory scaffold, while weaker models see little impact or even performance decreases. This suggests that effective use of external memory requires a baseline level of planning capability.
+              </p>
+            </div>
+            <div class="figure-container">
+              <img src="./static/images/graph-memory-ablation.png" alt="Performance with and without memory scaffold" style="max-width: 600px;">
+              <p class="figure-caption">The memory scaffold helps strong models but provides inconsistent benefits for weaker ones.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ BIBTEX ═══════════════════ -->
+<section class="section" id="bibtex">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3 has-text-centered">BibTeX</h2>
+    <div class="bibtex-block">
+      <button class="copy-btn">📋 Copy</button>
+      <pre><code>@article{tupini2026asgardbench,
+  title     = {AsgardBench: Evaluating Visually Grounded Interactive Planning Under Minimal Feedback},
+  author    = {Tupini, Andrea and Liden, Lars and Tan, Reuben and Wang, Yu and Gao, Jianfeng},
+  year      = {2026},
+}</code></pre>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+          <p>
+            <a href="https://go.microsoft.com/fwlink/?LinkId=521839">Privacy</a> &middot;
+            <a href="https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks">Trademarks</a> &middot;
+            <a href="https://www.microsoft.com/en-us/legal/terms-of-use">Terms of Use</a>
+          </p>
+          <p>
+            Built on <a href="https://ai2thor.allenai.org/">AI2-THOR</a>.
+            Website template adapted from <a href="https://nerfies.github.io/">Nerfies</a>.
+          </p>
+          <p>&copy; 2026 Microsoft</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Navbar burger toggle (mobile) -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const burger = document.querySelector('.navbar-burger');
+  const menu = document.getElementById(burger.dataset.target);
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('is-active');
+    menu.classList.toggle('is-active');
+  });
+});
+</script>
+<script src="./static/js/index.js"></script>
+
+</body>
+</html>
