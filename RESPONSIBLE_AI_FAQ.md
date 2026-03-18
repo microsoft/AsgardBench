@@ -24,7 +24,7 @@ ASGARD is built on AI2Thor and adds a higher-level action layer (for example, AS
 
 Agents interact using actions like `FIND`, `OPEN`, `PICKUP`, `PUT`, `CLEAN`, `TOGGLE_ON`, `TOGGLE_OFF`, and they only get simple success/failure feedback.
 
-A detailed discussion of ASGARD, including how it was developed and evaluated, can be found in our paper at: [TODO: add link to paper].
+A detailed discussion of ASGARD, including how it was developed and evaluated, can be found in our paper at: [AsgardBench - Evaluating Visually Grounded Interactive Planning Under Minimal Feedback](https://arxiv.org/abs/2603.15888).
 
 ### Intended Uses
 

@@ -2,8 +2,7 @@
 
 A benchmark for evaluating Vision-Language Models (VLMs) on embodied household tasks.
 
-<!-- TODO(andrea): Add paper link when available -->
-📄 **Paper:** [Coming Soon]()
+📄 **Paper:** [AsgardBench - Evaluating Visually Grounded Interactive Planning Under Minimal Feedback](https://arxiv.org/abs/2603.15888)
 
 ## Overview
 
