@@ -1,7 +1,7 @@
 [project]
 name = "asgardbench"
 version = "0.1.0"
-description = "AsgardBench: An embodied AI benchmark for household task planning in AI2-THOR"
+description = "AsgardBench: Evaluating Visually Grounded Interactive Planning Under Minimal Feedback"
 requires-python = ">=3.10"
 dependencies = [
     "ai2thor",

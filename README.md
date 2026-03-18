@@ -98,7 +98,7 @@ Each task in `Generated/magt_benchmark*/` contains a `plan.json` with:
   "name": "task_name",
   "task_description": "Make coffee in the mug",  // task description given to the model
   "scene": "FloorPlan1",                         // AI2-THOR scene identifier
-  "step_count": 25,                              // Exepected number of steps to complete the task
+  "step_count": 25,                              // Expected number of steps to complete the task
   "initial_pose": {                              // Agent's starting position and orientation
     "position": {"x": 0.5, "y": 0.9, "z": -1.2},
     "rotation": 90,
@@ -233,10 +233,13 @@ This project may contain trademarks or logos for projects, products, or services
 If you use AsgardBench in your research, please cite:
 
 ```bibtex
-@article{asgardbench2026,
-  title={AsgardBench: A Benchmark for Embodied Household Tasks},
-  author={...},
-  journal={...},
-  year={2025}
+@misc{tupini2026asgardbench,
+  title={AsgardBench - Evaluating Visually Grounded Interactive Planning Under Minimal Feedback}, 
+  author={Andrea Tupini and Lars Liden and Reuben Tan and Yu Wang and Jianfeng Gao},
+  year={2026},
+  eprint={2603.15888},
+  archivePrefix={arXiv},
+  primaryClass={cs.AI},
+  url={https://arxiv.org/abs/2603.15888}, 
 }
 ```
