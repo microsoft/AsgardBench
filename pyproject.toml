@@ -13,7 +13,7 @@ dependencies = [
     "matplotlib",
     "st-file-browser",
     "transformers>=4.39.0",
-    "torch>=2.1.0",
+    "torch>=2.12.0",
     "torchvision",
     "accelerate",
     "sentencepiece",
